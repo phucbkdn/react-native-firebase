@@ -1,0 +1,32 @@
+body {
+  background-color: #f3ebd0;
+}
+
+.container {
+  background-color: #a1e899;
+  border-radius: 5px;
+  width: 500px;
+  margin: 200px auto;
+  text-align: center;
+}
+
+.btn {
+  color: white;
+  width: 110px;
+  height: 50px;
+  font-size: 25px;
+  margin: 30px;
+  border: none;
+}
+
+.increment {
+  background-color: #e4653dbd;
+}
+
+.decrement {
+  background-color: #673ab7cf;
+}
+
+.counter {
+  padding-top: 30px;
+}
