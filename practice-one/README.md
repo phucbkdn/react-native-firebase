@@ -25,7 +25,7 @@ increment-decrement-app
 ```
 
 ## GUIDELINE
-* Download Source form (repository  https://gitlab.asoft-python.com/g-phucla/react-training.git )
+* Download Source form (repository  https://gitlab.asoft-python.com/g-phucla/react-training/tree/feature/practice-one )
 
 * Run my practice
 ```
