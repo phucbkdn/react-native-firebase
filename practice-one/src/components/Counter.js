@@ -13,12 +13,14 @@ class Counter extends React.Component {
     this.handleDecrement = this.handleDecrement.bind(this);
   }
 
+  // Handle event when click button Increment
   handleIncrement() {
     this.setState((prevState) => ({
       counter: prevState.counter + 1
     }));
   }
 
+  // Handle event when click button Decrement
   handleDecrement() {
     this.setState((prevState) => ({
       counter: prevState.counter - 1
