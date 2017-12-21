@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import IndexPage from './components/page/Index/Index';
-import Data from './components/common/Data';
-import ModalUpdate from './components/page/update/Modal';
+import Data from './utils/Data';
 import { getProductByCategory, getCategory, deleteProduct } from './utils/HandleData';
 
 class App extends Component {
@@ -9,7 +8,8 @@ class App extends Component {
     super();
     const products = Data.products;
     this.state = {
-      products: products
+      products: products,
+      page: 'index'
     }
   }
 
@@ -49,18 +49,26 @@ class App extends Component {
     return category[0].name;
   }
 
+  getProduct = (product) => {
+    this.setState({
+      product: product
+    });
+  }
+
   render() {
     const categorys = Data.category;
+    const page= this.setState.page;
     return (
+
       <div className="App">
         <IndexPage handleClickAdd={this.handleClickAdd}
           categorys={categorys}
           getCategory={this.getCategory}
           changeItem={this.handleChangeItem}
           products={this.state.products}
-          editItem={this.handleClickUpdate}
-          deleteItem={this.handleClickDelete} />
-        <ModalUpdate categorys={categorys} />
+          editItem={this.getProduct}
+          deleteItem={this.handleClickDelete} 
+          product={this.state.product}/>
       </div>
     );
   }
