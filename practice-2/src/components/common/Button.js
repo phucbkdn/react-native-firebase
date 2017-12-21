@@ -10,5 +10,5 @@ export const Button = styles.button `
   display: inline-block;
   margin: 4px 2px;
   cursor: pointer;
-  background-color: ${props => props.bgcolor};
+  background-color: ${props => props.bgcolor || '#000'};
 `;
