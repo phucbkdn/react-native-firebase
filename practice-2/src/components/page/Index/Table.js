@@ -20,8 +20,12 @@ const Table = (props) => {
         </tr>
       </thead>
       <tbody>
-        {props.produces.map(produce =>
-          <Items key={produce.id} data={produce} handleEdit={props.handleEdit} handleDelete={props.handleDelete}/>
+        {props.products.map(product =>
+          <Items key={product.id} 
+                 data={product} 
+                 handleEdit={props.handleEdit} 
+                 handleDelete={props.handleDelete}
+                 getCategory={props.getCategory}/>
         )}
       </tbody>
     </TableStyle>

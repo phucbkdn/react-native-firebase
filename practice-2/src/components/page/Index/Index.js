@@ -8,10 +8,13 @@ const IndexPage = (props) => {
   return(
     <div>
       <Button onClick={props.handleClickAdd} 
-              bgcolor={'#008CBA'}>New product
+              bgcolor={'#008CBA'}
+              data-toggle="modal"
+              data-target="#myModal">New product
       </Button>
       <Dropdown data={props.categorys} onChange={props.changeItem} />
-      <Table produces={props.produces} 
+      <Table products={props.products} 
+             getCategory={props.getCategory}
              handleEdit={props.editItem} 
              handleDelete={props.deleteItem} />
     </div>
