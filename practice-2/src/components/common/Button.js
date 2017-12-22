@@ -1,6 +1,6 @@
 import styles from 'styled-components';
 
-export const Button = styles.button `
+export const Button = styles.button`
   border: none;
   border-radius: 4px;
   color: white;
@@ -10,5 +10,6 @@ export const Button = styles.button `
   display: inline-block;
   margin: 4px 2px;
   cursor: pointer;
-  background-color: ${props => props.bgcolor || '#000'};
+  font-size: 16px;
+  background-color: ${props => props.bgcolor};
 `;

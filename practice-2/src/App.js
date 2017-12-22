@@ -3,16 +3,17 @@ import IndexPage from './components/page/Index/Index';
 import Data from './utils/Data';
 import { getProductByCategory, getCategory, deleteProduct, updateProduct, addProduct } from './utils/HandleData';
 import ModalUpdate from './components/page/update/ModalUpdate';
-import ModalAdd from './components/page/update/ModalAdd';
+import ModalAdd from './components/page/add/ModalAdd';
+import { Constant } from './utils/constant';
 
 class App extends Component {
-  constructor(props) {
+  constructor() {
     super();
     const products = Data.products;
     this.state = {
       productList: products,
       products: products,
-      page: 'index'
+      page: Constant.PAGE_INDEX
     }
   }
 
@@ -50,7 +51,7 @@ class App extends Component {
     const resultData = deleteProduct(products, id);
     this.setState({
       products: resultData,
-      productList: products
+      productList: resultData
     });
   }
 
@@ -82,7 +83,7 @@ class App extends Component {
   getProduct = (product) => {
     this.setState({
       product: product,
-      page: 'update'
+      page: Constant.PAGE_UPDATE
     });
   }
 
@@ -100,7 +101,7 @@ class App extends Component {
     let page = this.state.page;
     let pageRendel;
     switch (page) {
-      case 'index':
+      case Constant.PAGE_INDEX:
         pageRendel =
           <IndexPage handleClickAdd={this.forwardPage}
             categorys={categorys}
@@ -111,20 +112,18 @@ class App extends Component {
             deleteItem={this.handleClickDelete}
           />
         break;
-      case 'update':
+      case Constant.PAGE_UPDATE:
         pageRendel = <ModalUpdate categorys={categorys}
-          modalId="myModal1"
           product={this.state.product}
           forwardPage={this.forwardPage}
           handleData={this.handleClickUpdate} />
         break;
-      case 'add':
+      case Constant.PAGE_ADD:
         pageRendel = <ModalAdd categorys={categorys}
-          modalId="myModal"
           product={this.state.product}
           forwardPage={this.forwardPage}
           handleData={this.handleClickAdd} />
-        break;  
+        break;
       default:
         break;
     }

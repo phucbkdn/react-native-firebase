@@ -1,6 +1,8 @@
 import styles from 'styled-components';
 import React from 'react';
-import { Button } from '../../common/Button';
+import PropTypes from 'prop-types';
+import { Button } from '../../../common/Button';
+import { Constant } from '../../../../utils/constant';
 
 const Item = styles.td`
   border-bottom: 1px solid gray;
@@ -26,13 +28,29 @@ const Items = (props) => {
       <Item>{props.getCategory(props.data.categoryId)}</Item>
       <Item>{props.data.price}</Item>
       <Item>
-        <Button onClick={handleEdit} bgcolor={'#008CBA'} 
-                data-toggle="modal"
-                data-target="#myModal1">Edit</Button>
-        <Button onClick={handleDelete} bgcolor={'#F44336'}>Delete</Button>
+        <Button onClick={handleEdit}
+          bgcolor={'#008CBA'}>
+          {Constant.BUTTON_EDIT}
+        </Button>
+        <Button onClick={handleDelete}
+          bgcolor={'#F44336'}>
+          {Constant.BUTTON_DELETE}
+        </Button>
       </Item>
     </tr>
   );
+};
+
+Items.propTypes = {
+  handleEdit: PropTypes.func,
+  handleDelete: PropTypes.func,
+  data: PropTypes.object
+}
+
+Items.defaultProps = {
+  data: {},
+  handleEdit() { },
+  handleDelete() { }
 };
 
 export { Items, Item };

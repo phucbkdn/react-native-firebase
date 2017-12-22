@@ -1,5 +1,6 @@
 import styles from 'styled-components';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Select = styles.select`
   border: 1px solid gray;
@@ -30,5 +31,17 @@ const Dropdown = (props) => {
     </Select>
   );
 }
+
+Dropdown.propTypes = {
+  onChange: PropTypes.func,
+  primary: PropTypes.bool,
+  data: PropTypes.array
+}
+
+Dropdown.defaultProps = {
+  primary: false,
+  onChange() {},
+  data : []
+};
 
 export default Dropdown;

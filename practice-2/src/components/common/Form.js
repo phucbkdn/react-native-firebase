@@ -1,8 +1,10 @@
 import React from 'react';
 import styles from 'styled-components';
+import PropTypes from 'prop-types';
 import Input from '../common/Input';
 import Dropdown from '../common/DropDown';
 import { Button } from '../common/Button';
+import { Constant } from '../../utils/constant';
 
 const Modal = styles.div`
   padding-top: 10%;
@@ -23,11 +25,11 @@ const Form = (props) => {
     e.preventDefault();
     product.name = this.name.value;
     product.price = this.price.value;
-    props.handleData('index', product);
+    props.handleData(Constant.PAGE_INDEX, product);
   }
 
   const handleCancel = () => {
-    props.forwardPage('index');
+    props.forwardPage(Constant.PAGE_INDEX);
   }
 
   const changeItem = (category) => {
@@ -35,25 +37,25 @@ const Form = (props) => {
   }
 
   return (
-    <Modal className="modal" id={props.modalId}>
+    <Modal className="modal">
       <div className="modal-content">
         <div className="modal-header">
           <h2>{props.modalname}</h2>
         </div>
         <div className="modal-body">
           <form onSubmit={handlesubmit}>
-            <Input label="Name"
-              placeholder="Name"
+            <Input label={Constant.LABEL_NAME}
+              placeholder={Constant.LABEL_NAME}
               innerRef={name => this.name = name}
               type="text"
               value={props.product.name}
             />
             <div>
               <label>Category</label>
-              <Dropdown primary data={props.categorys} onChange={changeItem} categoryId={props.product.categoryId}/>
+              <Dropdown primary data={props.categorys} onChange={changeItem} categoryId={props.product.categoryId} />
             </div>
-            <Input label="Price"
-              placeholder="Price"
+            <Input label={Constant.LABEL_PRICE}
+              placeholder={Constant.LABEL_PRICE}
               innerRef={price => this.price = price}
               type="number"
               value={props.product.price}
@@ -65,6 +67,22 @@ const Form = (props) => {
       </div>
     </Modal>
   );
+};
+
+Form.propTypes = {
+  modalname: PropTypes.string,
+  categorys: PropTypes.array,
+  product: PropTypes.object,
+  forwardPage: PropTypes.func,
+  handleData: PropTypes.func
+}
+
+Form.defaultProps = {
+  modalname: "Add Product",
+  categorys: [],
+  product: {},
+  forwardPage() { },
+  handleData() { }
 };
 
 export default Form;
