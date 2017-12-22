@@ -5,8 +5,9 @@ import { action } from '@storybook/addon-actions';
 import { Button } from '../common/Button';
 import Input from '../common/Input';
 import Table from '../page/Index/Table';
-import data from '../common/Data';
+import data from '../../utils/Data';
 import Dropdown from '../common/DropDown';
+import Form from '../common/Form';
 
 const editItem = (item) => {
   alert('this edit :' + item.id);
@@ -27,11 +28,15 @@ storiesOf('Button', module)
   .add('Button Submit', () => <Button onClick={action('clicked')} bgcolor={'#4CAF50'} type="button">Submit</Button>)
   .add('Button Cancel', () => <Button onClick={action('clicked')}  type="submit">Cancel</Button>);
 storiesOf('Input', module)
-  .add('Text input', () => <Input innerRef={text => this.text = text} placeholder="Input name" />);
+  .add('Text input', () => <Input label="name" value="phucla" placeholder="Input name" />);
 
 storiesOf('Index', module)
   .add('Index', () => <Table products={products} handleEdit={editItem} handleDelete={deleteItem} />);
 
   storiesOf('Dropdown', module)
   .add('Dropdown', () => <Dropdown data={categorys} onChange={changeItem} />)
-  .add('Dropdown primary', () => <Dropdown primary data={categorys} onChange={changeItem} />);
+  .add('Dropdown primary', () => <Form modalname="Update Product"
+  categorys={categorys}
+  modalId={"mymodal1"}
+  product={products[1]}
+/>);

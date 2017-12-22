@@ -4,9 +4,13 @@ import { Button } from '../../common/Button';
 import Dropdown from '../../common/DropDown';
 
 const IndexPage = (props) => {
+  const handleAdd = (e) => {
+    e.preventDefault();
+    props.handleClickAdd('add');
+  }
   return(
     <div>
-      <Button onClick={props.handleClickAdd} 
+      <Button onClick={handleAdd} 
               bgcolor={'#008CBA'}
               data-toggle="modal"
               data-target="#myModal">New product

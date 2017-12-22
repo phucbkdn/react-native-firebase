@@ -45,6 +45,7 @@ const Form = (props) => {
             <Input label="Name"
               placeholder="Name"
               innerRef={name => this.name = name}
+              type="text"
               value={props.product.name}
             />
             <div>
@@ -54,6 +55,7 @@ const Form = (props) => {
             <Input label="Price"
               placeholder="Price"
               innerRef={price => this.price = price}
+              type="number"
               value={props.product.price}
             />
             <Button bgcolor={'#4CAF50'} type="submit" >Submit</Button>

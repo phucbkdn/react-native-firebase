@@ -20,7 +20,7 @@ const Table = (props) => {
           <Item>ID</Item>
           <Item>Name</Item>
           <Item>Category</Item>
-          <Item>Price</Item>
+          <Item>Price ($)</Item>
           <Item>Option</Item>
         </tr>
       </Thead>
