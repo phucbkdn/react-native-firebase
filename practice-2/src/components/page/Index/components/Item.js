@@ -2,7 +2,7 @@ import styles from 'styled-components';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from '../../../common/Button';
-import { Constant } from '../../../../utils/constant';
+import { BUTTON_EDIT, BUTTON_DELETE } from '../../../../utils/constant';
 
 const Item = styles.td`
   border-bottom: 1px solid gray;
@@ -30,11 +30,11 @@ const Items = (props) => {
       <Item>
         <Button onClick={handleEdit}
           bgcolor={'#008CBA'}>
-          {Constant.BUTTON_EDIT}
+          {BUTTON_EDIT}
         </Button>
         <Button onClick={handleDelete}
           bgcolor={'#F44336'}>
-          {Constant.BUTTON_DELETE}
+          {BUTTON_DELETE}
         </Button>
       </Item>
     </tr>

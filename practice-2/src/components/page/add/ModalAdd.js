@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Form from '../../common/Form';
 import { getId } from '../../../utils/HandleData';
-import { Constant } from '../../../utils/constant';
+import { BLANK } from '../../../utils/constant';
 
 const ModalAdd = (props) => {
 
   let product = {
     id: getId(),
-    name: Constant.BLANK,
-    category: Constant.BLANK,
-    price: Constant.BLANK
+    name: BLANK,
+    category: BLANK,
+    price: BLANK
   };
 
   return (

@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Form from '../../common/Form';
-import { Constant} from '../../../utils/constant';
+import { UPDATE_PRODUCT, } from '../../../utils/constant';
 
 const ModalUpdate = (props) => {
   return (
-    <Form modalname={Constant.UPDATE_PRODUCT}
+    <Form modalname={UPDATE_PRODUCT}
       categorys={props.categorys}
       product={props.product}
       forwardPage={props.forwardPage}

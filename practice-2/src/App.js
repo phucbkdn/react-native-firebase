@@ -4,21 +4,18 @@ import Data from './utils/Data';
 import { getProductByCategory, getCategory, deleteProduct, updateProduct, addProduct } from './utils/HandleData';
 import ModalUpdate from './components/page/update/ModalUpdate';
 import ModalAdd from './components/page/add/ModalAdd';
-import { Constant } from './utils/constant';
+import { PAGE_INDEX, KEY_SESSION, PAGE_UPDATE, PAGE_ADD } from './utils/constant';
 
 class App extends Component {
   constructor() {
     super();
-    const products = Data.products;
     this.state = {
-      productList: products,
-      products: products,
-      page: Constant.PAGE_INDEX
+      page: PAGE_INDEX
     }
   }
 
   componentWillMount() {
-    let state = JSON.parse(sessionStorage.getItem(Constant.KEY_SESSION));
+    let state = JSON.parse(sessionStorage.getItem(KEY_SESSION));
     if (state) {
       this.setState({
         page: state.page,
@@ -27,6 +24,13 @@ class App extends Component {
     }
   }
 
+  componentDidMount() {
+    const products = Data.products;
+    this.setState({
+      productList: products,
+      products: products,
+    });
+  }
   /**
    * Function using add Product
    */
@@ -93,7 +97,7 @@ class App extends Component {
   getProduct = (product) => {
     this.setState({
       product: product,
-      page: Constant.PAGE_UPDATE
+      page: PAGE_UPDATE
     });
   }
 
@@ -114,7 +118,7 @@ class App extends Component {
       product: this.state.product,
       page: this.state.page
     }
-    sessionStorage.setItem(Constant.KEY_SESSION, JSON.stringify(state));
+    sessionStorage.setItem(KEY_SESSION, JSON.stringify(state));
   }
 
   render() {
@@ -122,7 +126,7 @@ class App extends Component {
     let page = this.state.page;
     let pageRendel;
     switch (page) {
-      case Constant.PAGE_INDEX:
+      case PAGE_INDEX:
         pageRendel =
           <IndexPage handleClickAdd={this.forwardPage}
             categorys={categorys}
@@ -133,13 +137,13 @@ class App extends Component {
             deleteItem={this.handleClickDelete}
           />
         break;
-      case Constant.PAGE_UPDATE:
+      case PAGE_UPDATE:
         pageRendel = <ModalUpdate categorys={categorys}
           product={this.state.product}
           forwardPage={this.forwardPage}
           handleData={this.handleClickUpdate} />
         break;
-      case Constant.PAGE_ADD:
+      case PAGE_ADD:
         pageRendel = <ModalAdd categorys={categorys}
           product={this.state.product}
           forwardPage={this.forwardPage}

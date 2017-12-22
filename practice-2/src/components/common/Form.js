@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Input from '../common/Input';
 import Dropdown from '../common/DropDown';
 import { Button } from '../common/Button';
-import { Constant } from '../../utils/constant';
+import { PAGE_INDEX, LABEL_NAME, LABEL_PRICE, BUTTON_SUBMIT, BUTTON_CANCEL } from '../../utils/constant';
 
 const Modal = styles.div`
   padding-top: 10%;
@@ -25,11 +25,11 @@ const Form = (props) => {
     e.preventDefault();
     product.name = this.name.value;
     product.price = this.price.value;
-    props.handleData(Constant.PAGE_INDEX, product);
+    props.handleData(PAGE_INDEX, product);
   }
 
   const handleCancel = () => {
-    props.forwardPage(Constant.PAGE_INDEX);
+    props.forwardPage(PAGE_INDEX);
   }
 
   const changeItem = (category) => {
@@ -44,8 +44,8 @@ const Form = (props) => {
         </div>
         <div className="modal-body">
           <form onSubmit={handlesubmit}>
-            <Input label={Constant.LABEL_NAME}
-              placeholder={Constant.LABEL_NAME}
+            <Input label={LABEL_NAME}
+              placeholder={LABEL_NAME}
               innerRef={name => this.name = name}
               type="text"
               value={props.product.name} />
@@ -56,19 +56,19 @@ const Form = (props) => {
                 onChange={changeItem}
                 categoryId={props.product.categoryId} />
             </div>
-            <Input label={Constant.LABEL_PRICE}
-              placeholder={Constant.LABEL_PRICE}
+            <Input label={LABEL_PRICE}
+              placeholder={LABEL_PRICE}
               innerRef={price => this.price = price}
               type="number"
               value={props.product.price} />
             <Button bgcolor={'#4CAF50'}
               type="submit" >
-              {Constant.BUTTON_SUBMIT}
+              {BUTTON_SUBMIT}
             </Button>
             <Button bgcolor={'#008CBA'}
               onClick={handleCancel}
               type="button">
-              {Constant.BUTTON_CANCEL}
+              {BUTTON_CANCEL}
             </Button>
           </form>
         </div>

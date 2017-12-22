@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from 'styled-components';
 import PropTypes from 'prop-types';
-import { Constant } from '../../utils/constant';
+import { BLANK } from '../../utils/constant';
 
 const InputText = styles.input`
   border: 1px solid gray;
@@ -34,7 +34,7 @@ Input.propTypes = {
 }
 
 Input.defaultProps = {
-  label: Constant.BLANK,
+  label: BLANK,
   innerRef() { }
 };
 

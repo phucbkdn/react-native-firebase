@@ -2,7 +2,7 @@ import React from 'react';
 import styles from 'styled-components';
 import PropTypes from 'prop-types';
 import { Items, Item } from './Item';
-import { Constant } from '../../../../utils/constant';
+import { LABEL_ID, LABEL_NAME, LABEL_CATEGORY, LABEL_PRICE, LABEL_OPTION } from '../../../../utils/constant';
 
 const TableStyle = styles.table`
   width: 100%;
@@ -20,11 +20,11 @@ const Table = (props) => {
     <TableStyle>
       <Thead>
         <tr>
-          <Item>{Constant.LABEL_ID}</Item>
-          <Item>{Constant.LABEL_NAME}</Item>
-          <Item>{Constant.LABEL_CATEGORY}</Item>
-          <Item>{Constant.LABEL_PRICE}</Item>
-          <Item>{Constant.LABEL_OPTION}</Item>
+          <Item>{LABEL_ID}</Item>
+          <Item>{LABEL_NAME}</Item>
+          <Item>{LABEL_CATEGORY}</Item>
+          <Item>{LABEL_PRICE}</Item>
+          <Item>{LABEL_OPTION}</Item>
         </tr>
       </Thead>
       <tbody>
