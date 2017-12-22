@@ -115,13 +115,15 @@ class App extends Component {
         pageRendel = <ModalUpdate categorys={categorys}
           modalId="myModal1"
           product={this.state.product}
-          forwardPage={this.handleClickUpdate} />
+          forwardPage={this.forwardPage}
+          handleData={this.handleClickUpdate} />
         break;
       case 'add':
         pageRendel = <ModalAdd categorys={categorys}
           modalId="myModal"
           product={this.state.product}
-          forwardPage={this.handleClickAdd} />
+          forwardPage={this.forwardPage}
+          handleData={this.handleClickAdd} />
         break;  
       default:
         break;

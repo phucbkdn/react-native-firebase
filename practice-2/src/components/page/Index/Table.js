@@ -13,6 +13,7 @@ const Thead = styles.thead `
 `;
 
 const Table = (props) => {
+  
   return (
     <TableStyle>
       <Thead>
@@ -20,7 +21,7 @@ const Table = (props) => {
           <Item>ID</Item>
           <Item>Name</Item>
           <Item>Category</Item>
-          <Item>Price ($)</Item>
+          <Item onclick="alert('dsf');">Price ($)</Item>
           <Item>Option</Item>
         </tr>
       </Thead>

@@ -23,11 +23,11 @@ const Form = (props) => {
     e.preventDefault();
     product.name = this.name.value;
     product.price = this.price.value;
-    props.forwardPage('index', product);
+    props.handleData('index', product);
   }
 
   const handleCancel = () => {
-    props.forwardPage('index', product);
+    props.forwardPage('index');
   }
 
   const changeItem = (category) => {
@@ -59,7 +59,7 @@ const Form = (props) => {
               value={props.product.price}
             />
             <Button bgcolor={'#4CAF50'} type="submit" >Submit</Button>
-            <Button bgcolor={'#008CBA'} onClick={handleCancel}>Cancel</Button>
+            <Button bgcolor={'#008CBA'} onClick={handleCancel} type="button">Cancel</Button>
           </form>
         </div>
       </div>

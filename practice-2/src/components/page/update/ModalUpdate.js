@@ -8,6 +8,7 @@ const ModalUpdate = (props) => {
           modalId={props.modalId}
           product={props.product}
           forwardPage={props.forwardPage}
+          handleData={props.handleData}
     />
   );
 }
