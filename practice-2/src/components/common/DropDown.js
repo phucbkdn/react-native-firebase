@@ -10,7 +10,8 @@ const Select = styles.select`
   display: inline-block;
   margin: 4px 2px;
   background-color: white;
-  width: ${props => props.primary ? '100%' : '20%'}
+  font-size: 16px;
+  width: ${props => props.primary ? '94%' : '20%'}
 `;
 
 const Dropdown = (props) => {
@@ -19,7 +20,7 @@ const Dropdown = (props) => {
   }
 
   return (
-    <Select onChange={handleChange} primary={props.primary}>
+    <Select onChange={handleChange} primary={props.primary} defaultValue={props.categoryId}>
       <option value={'all'}>-- All product --</option>
       {props.data.map(item =>
         <option key={item.categoryId} value={item.categoryId} >
