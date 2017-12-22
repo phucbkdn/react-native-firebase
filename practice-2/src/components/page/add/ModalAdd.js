@@ -17,8 +17,7 @@ const ModalAdd = (props) => {
     <Form categorys={props.categorys}
       product={product}
       forwardPage={props.forwardPage}
-      handleData={props.handleData}
-    />
+      handleData={props.handleData} />
   );
 }
 

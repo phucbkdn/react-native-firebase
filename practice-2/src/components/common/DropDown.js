@@ -21,7 +21,9 @@ const Dropdown = (props) => {
   }
 
   return (
-    <Select onChange={handleChange} primary={props.primary} defaultValue={props.categoryId}>
+    <Select onChange={handleChange}
+      primary={props.primary}
+      defaultValue={props.categoryId}>
       <option value={'all'}>-- All product --</option>
       {props.data.map(item =>
         <option key={item.categoryId} value={item.categoryId} >
@@ -40,8 +42,8 @@ Dropdown.propTypes = {
 
 Dropdown.defaultProps = {
   primary: false,
-  onChange() {},
-  data : []
+  onChange() { },
+  data: []
 };
 
 export default Dropdown;

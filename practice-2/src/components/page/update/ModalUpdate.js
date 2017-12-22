@@ -9,8 +9,7 @@ const ModalUpdate = (props) => {
       categorys={props.categorys}
       product={props.product}
       forwardPage={props.forwardPage}
-      handleData={props.handleData}
-    />
+      handleData={props.handleData} />
   );
 }
 

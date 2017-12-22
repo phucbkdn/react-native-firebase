@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from 'styled-components';
 import PropTypes from 'prop-types';
-import { Constant} from '../../utils/constant';
+import { Constant } from '../../utils/constant';
 
 const InputText = styles.input`
   border: 1px solid gray;
@@ -19,7 +19,10 @@ const Input = (props) => {
   return (
     <div>
       <label>{props.label}</label>
-      <InputText type={props.type} innerRef={props.innerRef} placeholder={props.placeholder} defaultValue={props.value} />
+      <InputText type={props.type}
+        innerRef={props.innerRef}
+        placeholder={props.placeholder}
+        defaultValue={props.value} />
     </div>
 
   );

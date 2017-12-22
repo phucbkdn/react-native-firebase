@@ -48,20 +48,28 @@ const Form = (props) => {
               placeholder={Constant.LABEL_NAME}
               innerRef={name => this.name = name}
               type="text"
-              value={props.product.name}
-            />
+              value={props.product.name} />
             <div>
               <label>Category</label>
-              <Dropdown primary data={props.categorys} onChange={changeItem} categoryId={props.product.categoryId} />
+              <Dropdown primary
+                data={props.categorys}
+                onChange={changeItem}
+                categoryId={props.product.categoryId} />
             </div>
             <Input label={Constant.LABEL_PRICE}
               placeholder={Constant.LABEL_PRICE}
               innerRef={price => this.price = price}
               type="number"
-              value={props.product.price}
-            />
-            <Button bgcolor={'#4CAF50'} type="submit" >Submit</Button>
-            <Button bgcolor={'#008CBA'} onClick={handleCancel} type="button">Cancel</Button>
+              value={props.product.price} />
+            <Button bgcolor={'#4CAF50'}
+              type="submit" >
+              {Constant.BUTTON_SUBMIT}
+            </Button>
+            <Button bgcolor={'#008CBA'}
+              onClick={handleCancel}
+              type="button">
+              {Constant.BUTTON_CANCEL}
+            </Button>
           </form>
         </div>
       </div>

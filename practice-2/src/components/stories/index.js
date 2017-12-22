@@ -12,6 +12,7 @@ import Form from '../common/Form';
 const editItem = (item) => {
   alert('this edit :' + item.id);
 }
+
 const deleteItem = (id) => {
   alert('this delete:' + id);
 }
@@ -19,8 +20,10 @@ const deleteItem = (id) => {
 const changeItem = (item) => {
   alert('this change item: ' + item);
 }
+
 const products = data.products;
 const categorys = data.category;
+
 storiesOf('Button', module)
   .add('Button add', () => <Button onClick={action('clicked')} bgcolor={'#008CBA'} type="button">New product</Button>)
   .add('Button Edit', () => <Button onClick={action('clicked')} bgcolor={'#008CBA'} type="button">Edit</Button>)
@@ -34,7 +37,7 @@ storiesOf('Page', module)
   .add('Index', () => <Table products={products} handleEdit={editItem} handleDelete={deleteItem} />)
   .add('Update/Add', () => <Form modalname="Update Product"
     categorys={categorys}
-    product={products[1]}
-  />);
+    product={products[1]} />);
+
 storiesOf('Dropdown', module)
   .add('Dropdown', () => <Dropdown data={categorys} onChange={changeItem} />);

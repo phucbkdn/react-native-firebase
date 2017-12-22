@@ -17,6 +17,16 @@ class App extends Component {
     }
   }
 
+  componentWillMount() {
+    let state = JSON.parse(sessionStorage.getItem(Constant.KEY_SESSION));
+    if (state) {
+      this.setState({
+        page: state.page,
+        product: state.product
+      });
+    }
+  }
+
   /**
    * Function using add Product
    */
@@ -96,6 +106,17 @@ class App extends Component {
     });
   }
 
+  /**
+   * Function using save page when refresh page
+   */
+  savePage = () => {
+    let state = {
+      product: this.state.product,
+      page: this.state.page
+    }
+    sessionStorage.setItem(Constant.KEY_SESSION, JSON.stringify(state));
+  }
+
   render() {
     const categorys = Data.category;
     let page = this.state.page;
@@ -130,6 +151,7 @@ class App extends Component {
     return (
       <div className="App">
         {pageRendel}
+        {this.savePage()}
       </div>
     );
   }

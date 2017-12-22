@@ -1,5 +1,6 @@
 export const getProductByCategory = (products, id) => {
-  return id === 'all' ? products : products.filter(product => product.categoryId === id);
+  return id === 'all' ? products :
+    products.filter(product => product.categoryId === id);
 };
 
 export const getCategory = (categorys, id) => {
