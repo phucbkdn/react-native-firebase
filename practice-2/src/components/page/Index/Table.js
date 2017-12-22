@@ -5,20 +5,25 @@ import { Items, Item } from '../Index/Item';
 const TableStyle = styles.table`
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
+`;
+
+const Thead = styles.thead `
+  font-weight: bold;
 `;
 
 const Table = (props) => {
   return (
     <TableStyle>
-      <thead>
+      <Thead>
         <tr>
           <Item>ID</Item>
           <Item>Name</Item>
           <Item>Category</Item>
           <Item>Price</Item>
-          <Item>option</Item>
+          <Item>Option</Item>
         </tr>
-      </thead>
+      </Thead>
       <tbody>
         {props.products.map(product =>
           <Items key={product.id} 

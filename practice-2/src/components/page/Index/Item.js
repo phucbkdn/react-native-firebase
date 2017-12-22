@@ -1,7 +1,6 @@
 import styles from 'styled-components';
 import React from 'react';
 import { Button } from '../../common/Button';
-import getCategory from '../../../utils/HandleData';
 
 const Item = styles.td`
   border-bottom: 1px solid gray;
@@ -27,7 +26,9 @@ const Items = (props) => {
       <Item>{props.getCategory(props.data.categoryId)}</Item>
       <Item>{props.data.price}</Item>
       <Item>
-        <Button onClick={handleEdit} bgcolor={'#008CBA'}>Edit</Button>
+        <Button onClick={handleEdit} bgcolor={'#008CBA'} 
+                data-toggle="modal"
+                data-target="#myModal1">Edit</Button>
         <Button onClick={handleDelete} bgcolor={'#F44336'}>Delete</Button>
       </Item>
     </tr>

@@ -3,7 +3,6 @@ import Table from './Table';
 import { Button } from '../../common/Button';
 import Dropdown from '../../common/DropDown';
 
-
 const IndexPage = (props) => {
   return(
     <div>
@@ -16,7 +15,7 @@ const IndexPage = (props) => {
       <Table products={props.products} 
              getCategory={props.getCategory}
              handleEdit={props.editItem} 
-             handleDelete={props.deleteItem} />
+             handleDelete={props.deleteItem} />    
     </div>
   );
 };
