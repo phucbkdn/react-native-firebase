@@ -30,6 +30,7 @@ storiesOf('Button', module)
   .add('Button Delete', () => <Button onClick={action('clicked')} bgcolor={'#F44336'} type="button">Delete</Button>)
   .add('Button Submit', () => <Button onClick={action('clicked')} bgcolor={'#4CAF50'} type="button">Submit</Button>)
   .add('Button Cancel', () => <Button onClick={action('clicked')} type="submit">Cancel</Button>);
+
 storiesOf('Input', module)
   .add('Text input', () => <Input label="name" value="phucla" placeholder="Input name" />);
 
