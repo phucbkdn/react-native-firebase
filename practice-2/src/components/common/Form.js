@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Input from '../common/Input';
+import Input, { LabelError, WrapInput } from '../common/Input';
 import Dropdown from '../common/DropDown';
 import { Button } from '../common/Button';
 import {
@@ -14,10 +14,6 @@ const Modal = styled.div`
   padding-top: 10%;
   width: 700px;
   margin: 0 auto;
-`;
-
-const LabelError = styled.label`
-  color: red;
 `;
 
 class Form extends React.Component {
@@ -91,16 +87,14 @@ class Form extends React.Component {
                 type="text"
                 labelError={this.state.NameErr}
                 value={this.props.product.name} />
-              <div>
+              <WrapInput>
                 <label>Category</label>
-                <br />
                 <Dropdown primary
                   data={this.props.categorys}
                   onChange={this.changeItem}
                   categoryId={this.props.product.categoryId} />
-                <br />
                 <LabelError>{this.state.CategoryErr}</LabelError>
-              </div>
+              </WrapInput>
               <Input label={LABEL_PRICE}
                 placeholder={LABEL_PRICE}
                 innerRef={price => this.price = price}

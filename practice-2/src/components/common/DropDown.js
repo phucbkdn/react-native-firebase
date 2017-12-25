@@ -8,7 +8,7 @@ const Select = styled.select`
   padding: 10px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+  display: ${props => props.primary ? 'block' : 'inline-block'};
   margin: 4px 2px;
   background-color: white;
   font-size: 16px;

@@ -8,29 +8,31 @@ const InputText = styled.input`
   border-radius: 4px;
   padding: 10px;
   text-decoration: none;
-  display: inline-block;
+  display: block;
   margin: 4px 2px;
   background-color: white;
   font-size: 16px;
   width: 580px;
 `;
 
-const LabelError = styled.label `
+export const LabelError = styled.label `
   color: red;
+`;
+
+export const WrapInput = styled.div `
+  padding-bottom: 20px;
 `;
 
 const Input = (props) => {
   return (
-    <div>
+    <WrapInput>
       <label>{props.label}</label>
-      <br />
       <InputText type={props.type}
         innerRef={props.innerRef}
         placeholder={props.placeholder}
         defaultValue={props.value} />
-      <br />  
       <LabelError>{props.labelError}</LabelError>
-    </div>
+    </WrapInput>
 
   );
 }
