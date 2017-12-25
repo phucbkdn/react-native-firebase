@@ -1,16 +1,16 @@
 import React from 'react';
-import styles from 'styled-components';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Items, Item } from './Item';
 import { LABEL_ID, LABEL_NAME, LABEL_CATEGORY, LABEL_PRICE, LABEL_OPTION } from '../../../../utils/constant';
 
-const TableStyle = styles.table`
+const TableStyle = styled.table`
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
 `;
 
-const Thead = styles.thead`
+const Thead = styled.thead`
   font-weight: bold;
 `;
 

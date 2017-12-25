@@ -1,6 +1,6 @@
-import styles from 'styled-components';
+import styled from 'styled-components';
 
-export const Button = styles.button`
+export const Button = styled.button`
   border: none;
   border-radius: 4px;
   color: white;

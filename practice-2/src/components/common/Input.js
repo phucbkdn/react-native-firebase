@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from 'styled-components';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { BLANK } from '../../utils/constant';
 
-const InputText = styles.input`
+const InputText = styled.input`
   border: 1px solid gray;
   border-radius: 4px;
   padding: 10px;
@@ -19,6 +19,7 @@ const Input = (props) => {
   return (
     <div>
       <label>{props.label}</label>
+      <br />
       <InputText type={props.type}
         innerRef={props.innerRef}
         placeholder={props.placeholder}

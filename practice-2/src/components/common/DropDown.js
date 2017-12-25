@@ -1,8 +1,8 @@
-import styles from 'styled-components';
+import styled from 'styled-components';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Select = styles.select`
+const Select = styled.select`
   border: 1px solid gray;
   border-radius: 4px;
   padding: 10px;
@@ -12,7 +12,7 @@ const Select = styles.select`
   margin: 4px 2px;
   background-color: white;
   font-size: 16px;
-  width: ${props => props.primary ? '94%' : '20%'}
+  width: ${props => props.primary ? '90%' : '20%'}
 `;
 
 const Dropdown = (props) => {

@@ -1,10 +1,10 @@
-import styles from 'styled-components';
+import styled from 'styled-components';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from '../../../common/Button';
 import { BUTTON_EDIT, BUTTON_DELETE } from '../../../../utils/constant';
 
-const Item = styles.td`
+const Item = styled.td`
   border-bottom: 1px solid gray;
   text-align: center;
 `;

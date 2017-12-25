@@ -1,12 +1,12 @@
 import React from 'react';
-import styles from 'styled-components';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Input from '../common/Input';
 import Dropdown from '../common/DropDown';
 import { Button } from '../common/Button';
 import { PAGE_INDEX, LABEL_NAME, LABEL_PRICE, BUTTON_SUBMIT, BUTTON_CANCEL } from '../../utils/constant';
 
-const Modal = styles.div`
+const Modal = styled.div`
   padding-top: 10%;
   width: 50%;
   margin: 0 auto;
@@ -51,6 +51,7 @@ const Form = (props) => {
               value={props.product.name} />
             <div>
               <label>Category</label>
+              <br />
               <Dropdown primary
                 data={props.categorys}
                 onChange={changeItem}
