@@ -84,7 +84,7 @@ class Form extends React.Component {
               <Input label={LABEL_NAME}
                 placeholder={LABEL_NAME}
                 innerRef={name => this.name = name}
-                type="text"
+                type={'text'}
                 labelError={this.state.NameErr}
                 value={this.props.product.name} />
               <WrapInput>
@@ -98,16 +98,16 @@ class Form extends React.Component {
               <Input label={LABEL_PRICE}
                 placeholder={LABEL_PRICE}
                 innerRef={price => this.price = price}
-                type="number"
+                type={'number'}
                 value={this.props.product.price}
                 labelError={this.state.PriceErr} />
               <Button bgcolor={'#4CAF50'}
-                type="submit" >
+                type={'submit'} >
                 {BUTTON_SUBMIT}
               </Button>
               <Button bgcolor={'#008CBA'}
                 onClick={this.handleCancel}
-                type="button">
+                type={'button'} >
                 {BUTTON_CANCEL}
               </Button>
             </form>

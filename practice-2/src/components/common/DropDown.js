@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ALL } from '../../utils/constant';
 
 const Select = styled.select`
   border: 1px solid gray;
@@ -24,7 +25,7 @@ const Dropdown = (props) => {
     <Select onChange={handleChange}
       primary={props.primary}
       defaultValue={props.categoryId}>
-      <option value={'all'}>-- All product --</option>
+      <option value={ALL}>-- All product --</option>
       {props.data.map(item =>
         <option key={item.categoryId} value={item.categoryId} >
           {item.name}
