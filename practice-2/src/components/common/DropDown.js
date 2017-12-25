@@ -12,7 +12,7 @@ const Select = styled.select`
   margin: 4px 2px;
   background-color: white;
   font-size: 16px;
-  width: ${props => props.primary ? '90%' : '20%'}
+  width: ${props => props.primary ? '600px' : '20%'}
 `;
 
 const Dropdown = (props) => {

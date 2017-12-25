@@ -12,7 +12,11 @@ const InputText = styled.input`
   margin: 4px 2px;
   background-color: white;
   font-size: 16px;
-  width: 90%;
+  width: 580px;
+`;
+
+const LabelError = styled.label `
+  color: red;
 `;
 
 const Input = (props) => {
@@ -24,6 +28,8 @@ const Input = (props) => {
         innerRef={props.innerRef}
         placeholder={props.placeholder}
         defaultValue={props.value} />
+      <br />  
+      <LabelError>{props.labelError}</LabelError>
     </div>
 
   );

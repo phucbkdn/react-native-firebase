@@ -36,7 +36,7 @@ class App extends Component {
    * Function using add Product
    */
   handleClickAdd = (page, product) => {
-    let products = this.state.products;
+    let products = this.state.productList;
     products = addProduct(products, product);
     this.setState({
       productList: products,
