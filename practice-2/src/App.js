@@ -62,11 +62,13 @@ class App extends Component {
    * Function using delete Product 
    */
   handleClickDelete = (id) => {
-    const products = this.state.productList;
-    const resultData = deleteProduct(products, id);
+    const productList = this.state.productList;
+    const products = this.state.products;
+    const resultProducts = deleteProduct(products, id);
+    const resultProductsList = deleteProduct(productList, id);
     this.setState({
-      products: resultData,
-      productList: resultData
+      products: resultProducts,
+      productList: resultProductsList
     });
   }
 
