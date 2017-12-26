@@ -22,7 +22,8 @@ const Dropdown = (props) => {
   }
 
   return (
-    <Select onChange={handleChange}
+    <Select
+      onChange={handleChange}
       primary={props.primary}
       defaultValue={props.categoryId}>
       <option value={ALL}>-- All product --</option>

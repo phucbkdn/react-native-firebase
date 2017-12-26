@@ -7,7 +7,7 @@ import { Button } from '../common/Button';
 import {
   PAGE_INDEX, LABEL_NAME, LABEL_PRICE, BUTTON_SUBMIT,
   BUTTON_CANCEL, BLANK, ALL, NAME_ERROR, PRICE_ERROR,
-  CATEGORY_ERROR
+  CATEGORY_ERROR, LABEL_CATEGORY
 } from '../../utils/constant';
 
 const Modal = styled.div`
@@ -81,33 +81,43 @@ class Form extends React.Component {
           </div>
           <div className="modal-body">
             <form onSubmit={this.handlesubmit}>
-              <Input label={LABEL_NAME}
+              <Input
+                label={LABEL_NAME}
                 placeholder={LABEL_NAME}
                 innerRef={name => this.name = name}
                 type={'text'}
                 labelError={this.state.NameErr}
-                value={this.props.product.name} />
+                value={this.props.product.name}
+              />
               <WrapInput>
-                <label>Category</label>
-                <Dropdown primary
+                <label>{LABEL_CATEGORY}</label>
+                <Dropdown
+                  primary
                   data={this.props.categorys}
                   onChange={this.changeItem}
-                  categoryId={this.props.product.categoryId} />
+                  categoryId={this.props.product.categoryId}
+                />
                 <LabelError>{this.state.CategoryErr}</LabelError>
               </WrapInput>
-              <Input label={LABEL_PRICE}
+              <Input
+                label={LABEL_PRICE}
                 placeholder={LABEL_PRICE}
                 innerRef={price => this.price = price}
                 type={'number'}
                 value={this.props.product.price}
-                labelError={this.state.PriceErr} />
-              <Button bgcolor={'#4CAF50'}
-                type={'submit'} >
+                labelError={this.state.PriceErr}
+              />
+              <Button
+                bgcolor={'#4CAF50'}
+                type={'submit'}
+              >
                 {BUTTON_SUBMIT}
               </Button>
-              <Button bgcolor={'#008CBA'}
+              <Button
+                bgcolor={'#008CBA'}
                 onClick={this.handleCancel}
-                type={'button'} >
+                type={'button'}
+              >
                 {BUTTON_CANCEL}
               </Button>
             </form>

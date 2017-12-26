@@ -12,16 +12,22 @@ const IndexPage = (props) => {
   }
   return (
     <div>
-      <Button onClick={handleAdd}
-        bgcolor={'#008CBA'}>
+      <Button
+        onClick={handleAdd}
+        bgcolor={'#008CBA'}
+      >
         {LABEL_NEW_PRODUCT}
       </Button>
-      <Dropdown data={props.categorys}
-        onChange={props.changeItem} />
-      <Table products={props.products}
+      <Dropdown
+        data={props.categorys}
+        onChange={props.changeItem}
+      />
+      <Table
+        products={props.products}
         getCategory={props.getCategory}
         handleEdit={props.editItem}
-        handleDelete={props.deleteItem} />
+        handleDelete={props.deleteItem}
+      />
     </div>
   );
 };

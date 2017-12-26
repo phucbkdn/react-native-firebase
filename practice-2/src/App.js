@@ -31,7 +31,7 @@ class App extends Component {
       products: products,
     });
   }
-  
+
   /**
    * Function using add Product
    */
@@ -139,16 +139,20 @@ class App extends Component {
           />
         break;
       case PAGE_UPDATE:
-        pageRendel = <ModalUpdate categorys={categorys}
-          product={this.state.product}
-          forwardPage={this.forwardPage}
-          handleData={this.handleClickUpdate} />
+        pageRendel =
+          <ModalUpdate categorys={categorys}
+            product={this.state.product}
+            forwardPage={this.forwardPage}
+            handleData={this.handleClickUpdate}
+          />
         break;
       case PAGE_ADD:
-        pageRendel = <ModalAdd categorys={categorys}
-          product={this.state.product}
-          forwardPage={this.forwardPage}
-          handleData={this.handleClickAdd} />
+        pageRendel =
+          <ModalAdd categorys={categorys}
+            product={this.state.product}
+            forwardPage={this.forwardPage}
+            handleData={this.handleClickAdd}
+          />
         break;
       default:
         break;

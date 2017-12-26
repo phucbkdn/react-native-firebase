@@ -14,10 +14,12 @@ const ModalAdd = (props) => {
   };
 
   return (
-    <Form categorys={props.categorys}
+    <Form
+      categorys={props.categorys}
       product={product}
       forwardPage={props.forwardPage}
-      handleData={props.handleData} />
+      handleData={props.handleData}
+    />
   );
 }
 

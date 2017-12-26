@@ -29,11 +29,13 @@ const Table = (props) => {
       </Thead>
       <tbody>
         {props.products.map(product =>
-          <Items key={product.id}
+          <Items
+            key={product.id}
             data={product}
             handleEdit={props.handleEdit}
             handleDelete={props.handleDelete}
-            getCategory={props.getCategory} />
+            getCategory={props.getCategory}
+          />
         )}
       </tbody>
     </TableStyle>

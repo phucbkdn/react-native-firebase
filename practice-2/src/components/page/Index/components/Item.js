@@ -28,12 +28,16 @@ const Items = (props) => {
       <Item>{props.getCategory(props.data.categoryId)}</Item>
       <Item>{props.data.price}</Item>
       <Item>
-        <Button onClick={handleEdit}
-          bgcolor={'#008CBA'}>
+        <Button
+          onClick={handleEdit}
+          bgcolor={'#008CBA'}
+        >
           {BUTTON_EDIT}
         </Button>
-        <Button onClick={handleDelete}
-          bgcolor={'#F44336'}>
+        <Button
+          onClick={handleDelete}
+          bgcolor={'#F44336'}
+        >
           {BUTTON_DELETE}
         </Button>
       </Item>

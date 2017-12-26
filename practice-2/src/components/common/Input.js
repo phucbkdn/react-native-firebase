@@ -15,11 +15,11 @@ const InputText = styled.input`
   width: 580px;
 `;
 
-export const LabelError = styled.label `
+export const LabelError = styled.label`
   color: red;
 `;
 
-export const WrapInput = styled.div `
+export const WrapInput = styled.div`
   padding-bottom: 20px;
 `;
 
@@ -27,10 +27,12 @@ const Input = (props) => {
   return (
     <WrapInput>
       <label>{props.label}</label>
-      <InputText type={props.type}
+      <InputText
+        type={props.type}
         innerRef={props.innerRef}
         placeholder={props.placeholder}
-        defaultValue={props.value} />
+        defaultValue={props.value}
+      />
       <LabelError>{props.labelError}</LabelError>
     </WrapInput>
 

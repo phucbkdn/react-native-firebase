@@ -5,11 +5,13 @@ import { UPDATE_PRODUCT, } from '../../../utils/constant';
 
 const ModalUpdate = (props) => {
   return (
-    <Form modalname={UPDATE_PRODUCT}
+    <Form
+      modalname={UPDATE_PRODUCT}
       categorys={props.categorys}
       product={props.product}
       forwardPage={props.forwardPage}
-      handleData={props.handleData} />
+      handleData={props.handleData}
+    />
   );
 }
 
