@@ -1,4 +1,14 @@
-export const getProductByCategory = (products, id) => {
+import {
+  BLANK,
+  ALL,
+  NAME_ERROR,
+  PRICE_ERROR,
+  CATEGORY_ERROR,
+} from './constant';
+import Data from './Data';
+
+export const getProductByCategory = (id) => {
+  const products = Data.products;
   return id === 'all' ? products :
     products.filter(product => product.categoryId === id);
 };
@@ -33,4 +43,28 @@ export const getId = () => {
 
 export const addProduct = (products, product) => {
   return [...products, product];
+}
+
+export const checkRequired = (product) => {
+  let nameErr = BLANK, priceErr = BLANK, categoryErr = BLANK;
+
+  if (product.name === BLANK) {
+    nameErr = NAME_ERROR;
+  }
+
+  if (product.price === BLANK) {
+    priceErr = PRICE_ERROR;
+  }
+
+  if (product.categoryId === ALL) {
+    categoryErr = CATEGORY_ERROR;
+  }
+
+  const productErr = {
+    nameErr: nameErr,
+    priceErr: priceErr,
+    categoryErr: categoryErr
+  };
+
+  return productErr;
 }

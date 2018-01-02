@@ -9,26 +9,24 @@ import { PAGE_INDEX, KEY_SESSION, PAGE_UPDATE, PAGE_ADD } from './utils/constant
 class App extends Component {
   constructor() {
     super();
-    this.state = {
-      page: PAGE_INDEX
-    }
-  }
-
-  componentWillMount() {
     let state = JSON.parse(sessionStorage.getItem(KEY_SESSION));
+    let page = PAGE_INDEX, product = [];
     if (state) {
-      this.setState({
-        page: state.page,
-        product: state.product
-      });
+      page = state.page;
+      product = state.product
     }
+
+    this.state = {
+      page: page,
+      product: product
+    }
+
   }
 
   componentDidMount() {
     const products = Data.products;
     this.setState({
-      productList: products,
-      products: products,
+      productList: products
     });
   }
 
@@ -40,8 +38,7 @@ class App extends Component {
     products = addProduct(products, product);
     this.setState({
       productList: products,
-      page: page,
-      products: products
+      page: page
     });
   }
 
@@ -53,8 +50,7 @@ class App extends Component {
     products = updateProduct(products, product);
     this.setState({
       productList: products,
-      page: page,
-      products: products
+      page: page
     });
   }
 
@@ -63,11 +59,8 @@ class App extends Component {
    */
   handleClickDelete = (id) => {
     const productList = this.state.productList;
-    const products = this.state.products;
-    const resultProducts = deleteProduct(products, id);
     const resultProductsList = deleteProduct(productList, id);
     this.setState({
-      products: resultProducts,
       productList: resultProductsList
     });
   }
@@ -76,10 +69,9 @@ class App extends Component {
    * Function change Product list when select category
    */
   handleChangeItem = (id) => {
-    const products = this.state.productList;
-    const resultData = getProductByCategory(products, id);
+    const resultData = getProductByCategory(id);
     this.setState({
-      products: resultData
+      productList: resultData
     });
   }
 
@@ -135,7 +127,7 @@ class App extends Component {
             categorys={categorys}
             getCategory={this.getCategory}
             changeItem={this.handleChangeItem}
-            products={this.state.products}
+            products={this.state.productList}
             editItem={this.getProduct}
             deleteItem={this.handleClickDelete}
           />

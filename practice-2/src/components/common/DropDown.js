@@ -39,13 +39,15 @@ const Dropdown = (props) => {
 Dropdown.propTypes = {
   onChange: PropTypes.func,
   primary: PropTypes.bool,
-  data: PropTypes.array
+  data: PropTypes.array,
+  categoryId: PropTypes.string
 }
 
 Dropdown.defaultProps = {
   primary: false,
-  onChange() { },
-  data: []
+  onChange: () => { },
+  data: [],
+  categoryId: ALL
 };
 
 export default Dropdown;

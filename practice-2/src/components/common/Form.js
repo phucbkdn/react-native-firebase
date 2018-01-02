@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import Input, { LabelError, WrapInput } from '../common/Input';
 import Dropdown from '../common/DropDown';
 import { Button } from '../common/Button';
+import { checkRequired } from '../../utils/HandleData';
 import {
   PAGE_INDEX, LABEL_NAME, LABEL_PRICE, BUTTON_SUBMIT,
-  BUTTON_CANCEL, BLANK, ALL, NAME_ERROR, PRICE_ERROR,
-  CATEGORY_ERROR, LABEL_CATEGORY
+  BUTTON_CANCEL, BLANK, LABEL_CATEGORY
 } from '../../utils/constant';
 
 const Modal = styled.div`
@@ -21,45 +21,25 @@ class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      NameErr: BLANK,
-      CategoryErr: BLANK,
-      PriceErr: BLANK
+      nameErr: BLANK,
+      categoryErr: BLANK,
+      priceErr: BLANK
     };
   };
 
-  product = {
-    id: this.props.product.id,
-    name: this.props.product.name,
-    categoryId: this.props.product.categoryId,
-    price: this.props.product.price
-  };
-
-  handlesubmit = (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
-    let NameErr = BLANK, PriceErr = BLANK, CategoryErr = BLANK;
-    this.product.name = this.name.value;
-    this.product.price = this.price.value;
-
-    if (this.product.name === BLANK) {
-      NameErr = NAME_ERROR;
-    }
-
-    if (this.product.price === BLANK) {
-      PriceErr = PRICE_ERROR;
-    }
-
-    if (this.product.categoryId === ALL) {
-      CategoryErr = CATEGORY_ERROR;
-    }
+    const productErr = checkRequired(this.props.product);
 
     this.setState({
-      NameErr: NameErr,
-      PriceErr: PriceErr,
-      CategoryErr: CategoryErr
+      nameErr: productErr.nameErr,
+      priceErr: productErr.priceErr,
+      categoryErr: productErr.categoryErr
     });
 
-    if (NameErr === BLANK && CategoryErr === BLANK && PriceErr === BLANK) {
-      this.props.handleData(PAGE_INDEX, this.product);
+    if (productErr.nameErr === BLANK && productErr.categoryErr === BLANK
+      && productErr.priceErr === BLANK) {
+      this.props.handleData(PAGE_INDEX, this.props.product);
     }
 
   }
@@ -69,7 +49,11 @@ class Form extends React.Component {
   }
 
   changeItem = (category) => {
-    this.product.categoryId = category;
+    this.props.product.categoryId = category;
+  }
+
+  handleInput = (e) => {
+    this.props.product[e.target.name] = e.target.value;
   }
 
   render() {
@@ -80,13 +64,14 @@ class Form extends React.Component {
             <h2>{this.props.modalname}</h2>
           </div>
           <div className="modal-body">
-            <form onSubmit={this.handlesubmit}>
+            <form onSubmit={this.handleSubmit}>
               <Input
                 label={LABEL_NAME}
                 placeholder={LABEL_NAME}
-                innerRef={name => this.name = name}
+                textName={'name'}
+                handleChange={this.handleInput}
                 type={'text'}
-                labelError={this.state.NameErr}
+                labelError={this.state.nameErr}
                 value={this.props.product.name}
               />
               <WrapInput>
@@ -97,15 +82,16 @@ class Form extends React.Component {
                   onChange={this.changeItem}
                   categoryId={this.props.product.categoryId}
                 />
-                <LabelError>{this.state.CategoryErr}</LabelError>
+                <LabelError>{this.state.categoryErr}</LabelError>
               </WrapInput>
               <Input
                 label={LABEL_PRICE}
                 placeholder={LABEL_PRICE}
-                innerRef={price => this.price = price}
+                textName={'price'}
+                handleChange={this.handleInput}
                 type={'number'}
                 value={this.props.product.price}
-                labelError={this.state.PriceErr}
+                labelError={this.state.priceErr}
               />
               <Button
                 bgcolor={'#4CAF50'}

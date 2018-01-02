@@ -29,7 +29,8 @@ const Input = (props) => {
       <label>{props.label}</label>
       <InputText
         type={props.type}
-        innerRef={props.innerRef}
+        name={props.textName}
+        onChange={props.handleChange}
         placeholder={props.placeholder}
         defaultValue={props.value}
       />
