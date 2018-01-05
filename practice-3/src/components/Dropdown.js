@@ -16,11 +16,15 @@ const Select = styled.select`
   width: ${props => props.primary ? '600px' : '20%'}
 `;
 
-const Dropdown = ({categorys, onchange, primary, categoryId}) => {
-
+const Dropdown = ({ categorys, onchange, primary, categoryId }) => {
+  const handleChange = (e) => {
+    if (onchange) {
+      onchange(e.target.value);
+    }
+  }
   return (
     <Select
-      onChange={(e)=>{onchange(e.target.value)}}
+      onChange={handleChange}
       primary={primary}
       defaultValue={categoryId}>
       <option value={ALL}>-- All product --</option>
