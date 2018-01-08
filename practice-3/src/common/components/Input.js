@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { BLANK } from '../utils/constants';
+import { BLANK } from '../../utils/constants';
 
 const InputText = styled.input`
   border: 1px solid gray;

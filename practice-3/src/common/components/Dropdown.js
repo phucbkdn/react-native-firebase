@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ALL } from '../utils/constants';
+import { ALL } from '../../utils/constants';
 
 const Select = styled.select`
   border: 1px solid gray;
@@ -17,14 +17,10 @@ const Select = styled.select`
 `;
 
 const Dropdown = ({ categorys, onchange, primary, categoryId }) => {
-  const handleChange = (e) => {
-    if (onchange) {
-      onchange(e.target.value);
-    }
-  }
+
   return (
     <Select
-      onChange={handleChange}
+      onChange={(e) => onchange(e.target.value)}
       primary={primary}
       defaultValue={categoryId}>
       <option value={ALL}>-- All product --</option>
