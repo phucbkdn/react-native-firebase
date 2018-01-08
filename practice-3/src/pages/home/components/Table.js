@@ -38,7 +38,7 @@ const Table = ({ products, handleDelete }) => {
           <Items
             key={product.id}
             data={product}
-            handleDelete={() => handleDelete()}
+            handleDelete={handleDelete}
           />
         )}
       </tbody>

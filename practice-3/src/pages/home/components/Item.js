@@ -25,7 +25,7 @@ const Items = ({ data, handleDelete }) => {
           </Button>
         </Link>
         <Button
-          onClick={handleDelete}
+          onClick={() =>handleDelete(data.id)}
           bgcolor={'#F44336'}
         >
           {BUTTON_DELETE}
