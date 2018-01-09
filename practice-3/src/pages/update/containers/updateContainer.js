@@ -2,12 +2,13 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { updateProduct } from '../actions';
 import UpdatetForm from '../components/UpdateContainer';
+import { UPDATE_PRODUCT } from '../../../utils/constants';
 
 const mapStateToProps = (state, ownProps) => {
   return {
     product: state.products.find(
       product => product.id === parseFloat(ownProps.match.params.id)),
-    modalName: 'Update Product'
+    modalName: UPDATE_PRODUCT
   }
 }
 
