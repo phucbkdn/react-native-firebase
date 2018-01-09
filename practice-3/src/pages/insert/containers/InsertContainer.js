@@ -4,7 +4,7 @@ import { addProduct } from '../actions/';
 import InsertForm from '../components/InsertComponent';
 import { BLANK, ALL } from '../../../utils/constants';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   const totalCount = state.products.length
   const newId = totalCount === 0 ? 1 : state.products[totalCount - 1].id + 1
   let initProduct = {
@@ -15,7 +15,8 @@ const mapStateToProps = (state) => {
   };
 
   return {
-    product: initProduct
+    product: initProduct,
+    history: ownProps.history
   };
 }
 

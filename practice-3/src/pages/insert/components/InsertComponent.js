@@ -1,9 +1,9 @@
 import React from 'react';
 import Form from '../../../common/components/Form';
 
-const InsertForm = ({product, handleData}) => {
+const InsertForm = ({product, handleData, history}) => {
   return (
-    <Form {...{handleData, product}} />
+    <Form {...{handleData, product, history}} />
   );
 }
 
