@@ -1,5 +1,9 @@
 import data from '../../../utils/Data';
-import { ADD_PRODUCT, DEL_PRODUCT } from '../actions/actionsType';
+import {
+  ADD_PRODUCT,
+  DEL_PRODUCT,
+  UPDATE_PRODUCT
+} from '../actions/actionsType';
 let INITIAL_STATE = data.products;
 
 const products = (state = INITIAL_STATE, action) => {
@@ -14,8 +18,11 @@ const products = (state = INITIAL_STATE, action) => {
           price: action.product.price
         }
       ]
+    case UPDATE_PRODUCT:
+      return state.map(product =>
+        product.id === action.product.id ? { ...product, ...action.product } : product)
     case DEL_PRODUCT:
-      return state.filter(({ id }) => id !== action.id)
+      return state.filter(({ id }) => id !== action.id);
     default:
       return state
   }

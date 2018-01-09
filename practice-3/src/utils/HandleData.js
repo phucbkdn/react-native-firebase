@@ -18,29 +18,6 @@ export const getCategory = (id) => {
   return category[0];
 };
 
-export const deleteProduct = (products, id) => {
-  const result = products.filter(product => product.id !== id);
-  return result
-}
-
-export const updateProduct = (products, product) => {
-  let index;
-  for (let i = 0; i <= products.length; i++) {
-    if (products[i].id === product.id) {
-      index = i;
-      break;
-    }
-  }
-  if (index >= 0) {
-    products[index] = product;
-  }
-  return products;
-}
-
-export const addProduct = (products, product) => {
-  return [...products, product];
-}
-
 export const checkRequired = (product) => {
   let nameErr = BLANK, priceErr = BLANK, categoryErr = BLANK;
 

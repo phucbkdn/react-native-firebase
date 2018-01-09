@@ -42,12 +42,20 @@ const Input = (props) => {
 
 Input.propTypes = {
   label: PropTypes.string,
-  innerRef: PropTypes.func
+  handleChange: PropTypes.func,
+  type: PropTypes.string,
+  textName: PropTypes.string,
+  placeholder: PropTypes.string,
+  labelError: PropTypes.string
 }
 
 Input.defaultProps = {
   label: BLANK,
-  innerRef() { }
+  handleChange: () => { },
+  type: BLANK,
+  textName: BLANK,
+  placeholder: BLANK,
+  labelError: BLANK
 };
 
 export default Input;

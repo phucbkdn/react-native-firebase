@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Button from '../../../components/Button';
+import Button from '../../../common/components/Button';
 import { BUTTON_EDIT, BUTTON_DELETE } from '../../../utils/constants';
 import { getCategory } from '../../../utils/HandleData';
 
@@ -17,6 +17,7 @@ const Items = ({ data, handleDelete }) => {
     const category = getCategory(data.categoryId);
     return category.name;
   }
+  
   return (
     <tr>
       <Item>{data.id}</Item>
@@ -25,16 +26,13 @@ const Items = ({ data, handleDelete }) => {
       <Item>{data.price}</Item>
       <Item>
         <Link to={url}>
-          <Button bgcolor={'#008CBA'} >
-            {BUTTON_EDIT}
-          </Button>
+          <Button btnName={BUTTON_EDIT} />
         </Link>
         <Button
-          onClick={() => handleDelete(data.id)}
+          btnClick={() => handleDelete(data.id)}
           bgcolor={'#F44336'}
-        >
-          {BUTTON_DELETE}
-        </Button>
+          btnName={BUTTON_DELETE}
+        />
       </Item>
     </tr>
   );

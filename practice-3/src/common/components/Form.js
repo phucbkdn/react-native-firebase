@@ -41,6 +41,8 @@ class Form extends React.Component {
 
     if (productErr.nameErr === BLANK && productErr.categoryErr === BLANK
       && productErr.priceErr === BLANK) {
+      const price = parseFloat(this.props.product.price);
+      this.props.product.price = price;
       this.props.handleData(this.props.product);
       this.setState({
         redirect: true
@@ -96,16 +98,10 @@ class Form extends React.Component {
               <Button
                 bgcolor={'#4CAF50'}
                 type={'submit'}
-              >
-                {BUTTON_SUBMIT}
-              </Button>
+                btnName={BUTTON_SUBMIT}
+              />
               <Link to="/" >
-                <Button
-                  bgcolor={'#008CBA'}
-                  type={'button'}
-                >
-                  {BUTTON_CANCEL}
-                </Button>
+                <Button btnName={BUTTON_CANCEL} />
               </Link>
             </form>
           </div>
