@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Redirect, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Input, { LabelError, WrapInput } from './Input';
 import DropdownContainer from '../containers/DropdowContainer';
@@ -8,7 +7,7 @@ import Button from './Button';
 import { checkRequired } from '../../utils/HandleData';
 import {
   LABEL_NAME, LABEL_PRICE, BUTTON_SUBMIT,
-  BUTTON_CANCEL, BLANK, LABEL_CATEGORY
+  BUTTON_CANCEL, LABEL_CATEGORY
 } from '../../utils/constants';
 
 const Modal = styled.div`
@@ -22,48 +21,49 @@ class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      nameErr: BLANK,
-      categoryErr: BLANK,
-      priceErr: BLANK,
-      redirect: false
+      productErr: {},
+      id: this.props.product.id,
+      name: this.props.product.name,
+      categoryId: this.props.product.categoryId,
+      price: this.props.product.price,
     };
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const productErr = checkRequired(this.props.product);
+    let product = {
+      id: this.state.id,
+      name: this.state.name,
+      categoryId: this.state.categoryId,
+      price: this.state.price
+    }
+    const checkResult = checkRequired(product);
 
     this.setState({
-      nameErr: productErr.nameErr,
-      priceErr: productErr.priceErr,
-      categoryErr: productErr.categoryErr
+      productErr: checkResult.productErr
     });
 
-    if (productErr.nameErr === BLANK && productErr.categoryErr === BLANK
-      && productErr.priceErr === BLANK) {
-      const price = parseFloat(this.props.product.price);
-      this.props.product.price = price;
-      this.props.handleData(this.props.product);
-      this.setState({
-        redirect: true
-      });
+    if (checkResult.status) {
+      this.props.handleData(product);
+      this.props.history.push('/')
     }
   }
 
   changeItem = (category) => {
-    this.props.product.categoryId = category;
+    this.setState({
+      categoryId: category
+    });
   }
 
   handleInput = (e) => {
-    this.props.product[e.target.name] = e.target.value;
+    let name = e.target.name;
+    let value = e.target.type === 'number' ? parseFloat(e.target.value) : e.target.value;
+    this.setState({
+      [name]: value
+    });
   }
 
   render() {
-    if (this.state.redirect) {
-      return (
-        <Redirect to="/" />
-      );
-    }
     return (
       <Modal className="modal">
         <div className="modal-content">
@@ -78,13 +78,16 @@ class Form extends React.Component {
                 textName={'name'}
                 handleChange={this.handleInput}
                 type={'text'}
-                labelError={this.state.nameErr}
+                labelError={this.state.productErr.nameErr}
                 value={this.props.product.name}
               />
               <WrapInput>
                 <label>{LABEL_CATEGORY}</label>
-                <DropdownContainer onchange={this.changeItem} />
-                <LabelError>{this.state.categoryErr}</LabelError>
+                <DropdownContainer
+                  categoryId={this.props.product.categoryId}
+                  onchange={this.changeItem}
+                />
+                <LabelError>{this.state.productErr.categoryErr}</LabelError>
               </WrapInput>
               <Input
                 label={LABEL_PRICE}
@@ -93,16 +96,17 @@ class Form extends React.Component {
                 handleChange={this.handleInput}
                 type={'number'}
                 value={this.props.product.price}
-                labelError={this.state.priceErr}
+                labelError={this.state.productErr.priceErr}
               />
               <Button
                 bgcolor={'#4CAF50'}
                 type={'submit'}
                 btnName={BUTTON_SUBMIT}
               />
-              <Link to="/" >
-                <Button btnName={BUTTON_CANCEL} />
-              </Link>
+              <Button
+                btnName={BUTTON_CANCEL}
+                btnClick={() => this.props.history.push('/')}
+              />
             </form>
           </div>
         </div>

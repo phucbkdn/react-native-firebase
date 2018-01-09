@@ -8,7 +8,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     product: state.products.find(
       product => product.id === parseFloat(ownProps.match.params.id)),
-    modalName: UPDATE_PRODUCT
+    modalName: UPDATE_PRODUCT,
+    history: ownProps.history
   }
 }
 

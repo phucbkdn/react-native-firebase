@@ -20,17 +20,23 @@ export const getCategory = (id) => {
 
 export const checkRequired = (product) => {
   let nameErr = BLANK, priceErr = BLANK, categoryErr = BLANK;
+  let status = false;
 
   if (product.name === BLANK) {
     nameErr = NAME_ERROR;
   }
 
-  if (product.price === BLANK) {
+  if (!product.price) {
     priceErr = PRICE_ERROR;
   }
 
   if (product.categoryId === ALL) {
     categoryErr = CATEGORY_ERROR;
+  }
+
+  if (nameErr === BLANK && categoryErr === BLANK
+    && priceErr === BLANK) {
+    status = true;
   }
 
   const productErr = {
@@ -39,5 +45,5 @@ export const checkRequired = (product) => {
     categoryErr: categoryErr
   };
 
-  return productErr;
+  return { productErr, status };
 }

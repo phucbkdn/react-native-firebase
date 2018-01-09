@@ -12,12 +12,12 @@ const Item = styled.td`
 `;
 
 const Items = ({ data, handleDelete }) => {
-  const url = '/edit/'.concat(data.id);
+  const url = `/edit/${data.id}`;
   const getCategoryName = () => {
     const category = getCategory(data.categoryId);
     return category.name;
   }
-  
+
   return (
     <tr>
       <Item>{data.id}</Item>
