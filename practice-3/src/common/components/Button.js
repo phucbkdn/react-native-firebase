@@ -36,14 +36,14 @@ const Button = ({ btnName, bgcolor, btnClick, type }) => {
   );
 }
 
-ButtonStyled.propTypes = {
+Button.propTypes = {
   btnName: PropTypes.string,
   bgcolor: PropTypes.string,
   btnClick: PropTypes.func,
   type: PropTypes.string
 };
 
-ButtonStyled.defaultProps = {
+Button.defaultProps = {
   btnName: "",
   bgcolor: "#008CBA",
   btnClick: () => { },

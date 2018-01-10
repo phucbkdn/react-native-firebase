@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { deleteProduct } from '../actions';
 import Table from '../components/Table';
-import {getProductByCategory} from '../../../utils/HandleData';
+import { getProductByCategory } from '../../../utils/HandleData';
 
 const mapStateToProps = state => {
   return {

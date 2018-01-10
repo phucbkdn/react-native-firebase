@@ -6,15 +6,16 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { createLogger } from 'redux-logger';
 import productReducer from './reducers';
 import { BrowserRouter as Router } from 'react-router-dom';
-import {RouterApp} from './router';
+import { RouterApp } from './router';
+
 const middleware = [thunk];
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 middleware.push(createLogger());
 let store = createStore(
   productReducer,
-  composeEnhancers(
-  applyMiddleware(...middleware))
+  composeEnhancers(applyMiddleware(...middleware))
 );
+
 ReactDOM.render(
   <Provider store={store} >
     <Router >

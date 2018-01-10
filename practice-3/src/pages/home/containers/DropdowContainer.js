@@ -5,12 +5,13 @@ import DropDown from '../../../common//components/Dropdown';
 
 const mapStateToProps = state => {
   return {
-    categorys: state.categorys
+    categorys: state.categorys,
+    categoryId: state.filterProduct
   };
 }
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({onchange: setVisibilityFilter}, dispatch);
+  return bindActionCreators({ onchange: setVisibilityFilter }, dispatch);
 }
 
 const DropdownContainer = connect(mapStateToProps, mapDispatchToProps)(DropDown);
