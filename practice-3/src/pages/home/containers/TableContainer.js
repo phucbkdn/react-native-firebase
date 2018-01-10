@@ -7,7 +7,7 @@ import { getProductByCategory } from '../../../utils/HandleData';
 const mapStateToProps = state => {
   return {
     products: getProductByCategory(state.products, state.filterProduct)
-  };
+  }
 }
 
 const mapDispatchToProps = dispatch => {
