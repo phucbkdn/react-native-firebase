@@ -9,8 +9,14 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { RouterApp } from './router';
 
 const middleware = [thunk];
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-middleware.push(createLogger());
+let composeEnhancers = compose;
+if (process.env.NODE_ENV === `development`) {
+  composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+  middleware.push(createLogger({
+    collapsed: (getState, action) => action.type === 'DEL_PRODUCT'
+  }));
+}
+
 let store = createStore(
   productReducer,
   composeEnhancers(applyMiddleware(...middleware))

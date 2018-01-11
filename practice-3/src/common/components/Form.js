@@ -105,7 +105,7 @@ class Form extends React.Component {
               />
               <Button
                 btnName={BUTTON_CANCEL}
-                btnClick={() => this.props.history.push('/')}
+                btnClick={() => this.props.history.go(-1)}
               />
             </form>
           </div>
