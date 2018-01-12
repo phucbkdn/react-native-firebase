@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Input, { LabelError, WrapInput } from './Input';
+import Input, { WrapInput } from './Input';
+import Label from './Label';
 import DropdownContainer from '../containers/DropdowContainer';
 import Button from './Button';
 import { checkRequired } from '../../utils/HandleData';
@@ -65,51 +66,45 @@ class Form extends React.Component {
 
   render() {
     return (
-      <Modal className="modal">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h2>{this.props.modalName}</h2>
-          </div>
-          <div className="modal-body">
-            <form onSubmit={this.handleSubmit}>
-              <Input
-                label={LABEL_NAME}
-                placeholder={LABEL_NAME}
-                textName={'name'}
-                handleChange={this.handleInput}
-                type={'text'}
-                labelError={this.state.productErr.nameErr}
-                value={this.props.product.name}
-              />
-              <WrapInput>
-                <label>{LABEL_CATEGORY}</label>
-                <DropdownContainer
-                  categoryId={this.props.product.categoryId}
-                  onchange={this.changeItem}
-                />
-                <LabelError>{this.state.productErr.categoryErr}</LabelError>
-              </WrapInput>
-              <Input
-                label={LABEL_PRICE}
-                placeholder={LABEL_PRICE}
-                textName={'price'}
-                handleChange={this.handleInput}
-                type={'number'}
-                value={this.props.product.price}
-                labelError={this.state.productErr.priceErr}
-              />
-              <Button
-                bgcolor={'#4CAF50'}
-                type={'submit'}
-                btnName={BUTTON_SUBMIT}
-              />
-              <Button
-                btnName={BUTTON_CANCEL}
-                btnClick={() => this.props.history.go(-1)}
-              />
-            </form>
-          </div>
-        </div>
+      <Modal>
+        <h2>{this.props.modalName}</h2>
+        <form onSubmit={this.handleSubmit}>
+          <Input
+            label={LABEL_NAME}
+            placeholder={LABEL_NAME}
+            textName={'name'}
+            handleChange={this.handleInput}
+            type={'text'}
+            labelError={this.state.productErr.nameErr}
+            value={this.props.product.name}
+          />
+          <WrapInput>
+            <Label name={LABEL_CATEGORY} />
+            <DropdownContainer
+              categoryId={this.props.product.categoryId}
+              onchange={this.changeItem}
+            />
+            <Label name={this.state.productErr.categoryErr} err />
+          </WrapInput>
+          <Input
+            label={LABEL_PRICE}
+            placeholder={LABEL_PRICE}
+            textName={'price'}
+            handleChange={this.handleInput}
+            type={'number'}
+            value={this.props.product.price}
+            labelError={this.state.productErr.priceErr}
+          />
+          <Button
+            bgcolor={'#4CAF50'}
+            type={'submit'}
+            btnName={BUTTON_SUBMIT}
+          />
+          <Button
+            btnName={BUTTON_CANCEL}
+            btnClick={() => this.props.history.go(-1)}
+          />
+        </form>
       </Modal>
     );
   }

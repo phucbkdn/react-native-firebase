@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { BLANK } from '../../utils/constants';
+import Label from './Label';
 
 const InputText = styled.input`
   border: 1px solid gray;
@@ -15,10 +16,6 @@ const InputText = styled.input`
   width: 580px;
 `;
 
-export const LabelError = styled.label`
-  color: red;
-`;
-
 export const WrapInput = styled.div`
   padding-bottom: 20px;
 `;
@@ -26,7 +23,7 @@ export const WrapInput = styled.div`
 const Input = (props) => {
   return (
     <WrapInput>
-      <label>{props.label}</label>
+      <Label name={props.label} />
       <InputText
         type={props.type}
         name={props.textName}
@@ -34,7 +31,7 @@ const Input = (props) => {
         placeholder={props.placeholder}
         defaultValue={props.value}
       />
-      <LabelError>{props.labelError}</LabelError>
+      <Label name={props.labelError} err />
     </WrapInput>
 
   );
