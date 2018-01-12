@@ -6,7 +6,7 @@ import filterProduct from './pages/home/reducers/filterReducer';
 const productReducer = combineReducers({
   products: products,
   categorys: categorys,
-  filterProduct:filterProduct
+  filter:filterProduct
 });
 
 export default productReducer;
