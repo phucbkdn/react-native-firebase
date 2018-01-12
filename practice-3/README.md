@@ -11,14 +11,16 @@ Product Management
 │   ├── index.html
 │   └── manifest.json
 ├── src
-│   ├── components
+│   ├── common
 │   ├── pages
 │   │   ├── home
 │   │   ├── insert
 │   │   └── update
 │   ├── stories
 │   ├── utils
-│   └── index.js
+│   ├── index.js
+│   ├── reducers.js
+│   └── router.js
 ├── .eslintrc
 ├── .gitignore
 ├── package.json
