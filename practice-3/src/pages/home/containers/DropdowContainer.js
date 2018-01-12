@@ -5,7 +5,7 @@ import DropDown from '../../../common/components/Dropdown';
 
 const mapStateToProps = state => {
   return {
-    categorys: state.categorys,
+    categorys: state.data.categorys,
     categoryId: state.filterProduct
   };
 }

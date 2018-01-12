@@ -61,7 +61,7 @@ let data = {
       price: 1000
     }
   ],
-  category : [
+  categorys : [
     {
       categoryId: '1',
       name: 'SamSung'

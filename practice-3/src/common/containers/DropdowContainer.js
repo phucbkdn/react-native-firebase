@@ -3,7 +3,7 @@ import DropDown from '../components/Dropdown';
 
 const mapStateToProps = state => {
   return {
-    categorys: state.categorys,
+    categorys: state.data.categorys,
     primary: true
   };
 }

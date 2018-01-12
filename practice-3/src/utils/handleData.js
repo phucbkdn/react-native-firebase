@@ -13,7 +13,7 @@ export const getProductByCategory = (products, id) => {
 };
 
 export const getCategory = (id) => {
-  const categorys = data.category;
+  const categorys = data.categorys;
   const category = categorys.filter(category => category.categoryId === id);
   return category[0];
 };
