@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Button from '../../../common/components/Button';
 import { BUTTON_EDIT, BUTTON_DELETE } from '../../../utils/constants';
-import { getCategory } from '../../../utils/HandleData';
+import { getCategory } from '../../../utils/handleData';
 
 const Item = styled.td`
   border-bottom: 1px solid gray;

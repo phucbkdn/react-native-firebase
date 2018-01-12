@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setVisibilityFilter } from '../actions';
-import DropDown from '../../../common//components/Dropdown';
+import DropDown from '../../../common/components/Dropdown';
 
 const mapStateToProps = state => {
   return {

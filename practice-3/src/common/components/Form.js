@@ -5,7 +5,7 @@ import Input, { WrapInput } from './Input';
 import Label from './Label';
 import DropdownContainer from '../containers/DropdowContainer';
 import Button from './Button';
-import { checkRequired } from '../../utils/HandleData';
+import { checkRequired } from '../../utils/handleData';
 import {
   LABEL_NAME, LABEL_PRICE, BUTTON_SUBMIT,
   BUTTON_CANCEL, LABEL_CATEGORY

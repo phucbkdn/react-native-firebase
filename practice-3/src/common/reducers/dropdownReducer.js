@@ -1,4 +1,4 @@
-import data from '../../utils/Data';
+import data from '../../utils/data';
 
 const categorys = () => {
   return data.category;

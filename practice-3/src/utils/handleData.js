@@ -5,7 +5,7 @@ import {
   PRICE_ERROR,
   CATEGORY_ERROR,
 } from './constants';
-import data from './Data';
+import data from './data';
 
 export const getProductByCategory = (products, id) => {
   return id === 'all' ? products :

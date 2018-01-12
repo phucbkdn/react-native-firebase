@@ -1,4 +1,4 @@
-import data from '../../../utils/Data';
+import data from '../../../utils/data';
 import {
   ADD_PRODUCT,
   DEL_PRODUCT,
