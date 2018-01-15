@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addProduct } from '../actions/';
+import { addProduct } from '../../home/actions';
 import InsertForm from '../components/InsertComponent';
 import { BLANK, ALL } from '../../../utils/constants';
 
 const mapStateToProps = (state, ownProps) => {
-  const totalCount = state.products.length
-  const newId = totalCount === 0 ? 1 : state.products[totalCount - 1].id + 1
+  const totalCount = state.data.products.length
+  const newId = totalCount === 0 ? 1 : state.data.products[totalCount - 1].id + 1
   let initProduct = {
     id: newId,
     name: BLANK,
