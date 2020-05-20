@@ -3,17 +3,23 @@ import { types, applySnapshot,  onSnapshot } from 'mobx-state-tree'
 // import Models
 import User from './User'
 import Todo from './Todo'
-import { values } from 'mobx';
+import { values } from 'mobx'
 
 const states = <any>[]
 let currentFrame = -1
 
 const RootStore = types
-  .model({
+  .model(
+    // define model name
+    'store',
+    {
+    // Props
     users: types.map(User),
-    todos: types.optional(types.map(Todo), {})
+    // todos: types.optional(types.map(Todo), {})
+    todos: types.array(Todo)
   })
   .views(self => ({
+    // computed property
     get pendingCount() {
       return values(self.todos).filter(todo => !todo.done).length
     },
@@ -22,11 +28,17 @@ const RootStore = types
     },
     getTodosWhereDoneIs(done: boolean) {
       return values(self.todos).filter(todo => todo.done === done)
+    },
+
+    // A view function
+    findTodosByUser(user: string) {
+      return values(self.todos).filter(todo => todo.user === user)
     }
   }))
   .actions(self => ({
     addToDo(id: any, name: string) {
-      self.todos.set(id, Todo.create({ name }))
+      self.todos.push({ name })
+      // self.todos.set(id, Todo.create({ name }))
     }
   }))
 
