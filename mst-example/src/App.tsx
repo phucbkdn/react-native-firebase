@@ -1,12 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { observer } from 'mobx-react'
+import Todos, { AppProps } from './components/TodoView'
 
-function App() {
+function App({ store }: AppProps) {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <Todos store={store} />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
@@ -23,4 +26,5 @@ function App() {
   );
 }
 
-export default App;
+export default observer(App);
+// export default inject('store')(observer (App));

@@ -1,14 +1,14 @@
-import { types, applySnapshot,  onSnapshot } from 'mobx-state-tree'
+import { types, applySnapshot,  onSnapshot, Instance } from 'mobx-state-tree'
 
 // import Models
 import User from './User'
 import Todo from './Todo'
-import { values } from 'mobx'
+import { values, autorun } from 'mobx'
 
 const states = <any>[]
 let currentFrame = -1
 
-const RootStore = types
+export const RootStore = types
   .model(
     // define model name
     'store',
@@ -36,7 +36,7 @@ const RootStore = types
     }
   }))
   .actions(self => ({
-    addToDo(id: any, name: string) {
+    addToDo(name: string) {
       self.todos.push({ name })
       // self.todos.set(id, Todo.create({ name }))
     }
@@ -46,7 +46,12 @@ const store = RootStore.create({
   users: {}
 })
 
+autorun(() => {
+  console.log('store', store.todos)
+})
+
 onSnapshot(store, snapshot => {
+  console.log(snapshot)
   if (currentFrame === states.length - 1) {
     currentFrame++
     states.push(snapshot)
@@ -65,4 +70,7 @@ export function nextState() {
   applySnapshot(store, states[currentFrame])
 }
 
+export type AppType = Instance<typeof RootStore>
+export interface TAppType extends Instance<typeof RootStore> {}
+// export RootStore
 export default store

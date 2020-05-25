@@ -25,19 +25,19 @@ const Todo = types
     toggle() {
       self.done = !self.done
     },
-    setUser(user: User) {
-      if (!user) {
-        self.user = undefined
-      } else {
-        self.user = user
-      }
-    }
+    // setUser(user: User) {
+    //   if (!user) {
+    //     self.user = undefined
+    //   } else {
+    //     self.user = user
+    //   }
+    // }
   }))
 
 // creating a tree based on the "Todo" type, with initial data:
-const coffeeTodo = Todo.create({
-  name: 'Get coffee'
-})
+// const coffeeTodo = Todo.create({
+//   name: 'Get coffee'
+// })
 
 const todoStore = Todo.create()
 
@@ -47,4 +47,5 @@ autorun(() => {
 })
 
 export type TodoType = Instance<typeof Todo>
+export interface TTodoType extends Instance<typeof Todo>{}
 export default Todo
