@@ -1,76 +1,31 @@
-import { types, applySnapshot,  onSnapshot, Instance } from 'mobx-state-tree'
+import { useContext, createContext} from 'react'
+import { types, Instance, onSnapshot } from 'mobx-state-tree'
 
-// import Models
+import { Todos } from './Todos'
 import User from './User'
-import Todo from './Todo'
-import { values, autorun } from 'mobx'
 
-const states = <any>[]
-let currentFrame = -1
-
-export const RootStore = types
-  .model(
-    // define model name
-    'store',
-    {
-    // Props
-    users: types.map(User),
-    // todos: types.optional(types.map(Todo), {})
-    todos: types.array(Todo)
-  })
-  .views(self => ({
-    // computed property
-    get pendingCount() {
-      return values(self.todos).filter(todo => !todo.done).length
-    },
-    get completedCount() {
-      return values(self.todos).filter(todo => todo.done).length
-    },
-    getTodosWhereDoneIs(done: boolean) {
-      return values(self.todos).filter(todo => todo.done === done)
-    },
-
-    // A view function
-    findTodosByUser(user: string) {
-      return values(self.todos).filter(todo => todo.user === user)
-    }
-  }))
-  .actions(self => ({
-    addToDo(name: string) {
-      self.todos.push({ name })
-      // self.todos.set(id, Todo.create({ name }))
-    }
-  }))
-
-const store = RootStore.create({
-  users: {}
+const RootModule = types.model({
+  todos: Todos,
+  user: types.map(User),
 })
 
-autorun(() => {
-  console.log('store', store.todos)
+export const rootStore = RootModule.create({
+  todos: {}
 })
 
-onSnapshot(store, snapshot => {
+onSnapshot(rootStore, snapshot => {
   console.log(snapshot)
-  if (currentFrame === states.length - 1) {
-    currentFrame++
-    states.push(snapshot)
-  }
 })
 
-export function previousState() {
-  if (currentFrame === 0) return
-  currentFrame--
-  applySnapshot(store, states[currentFrame])
-}
+export type RootInstance = Instance<typeof RootModule>
+const RootModuleContext = createContext<null | RootInstance>(null)
 
-export function nextState() {
-  if (currentFrame === states.length - 1) return
-  currentFrame++
-  applySnapshot(store, states[currentFrame])
-}
+export const Provider = RootModuleContext.Provider
 
-export type AppType = Instance<typeof RootStore>
-export interface TAppType extends Instance<typeof RootStore> {}
-// export RootStore
-export default store
+export const useMst = () => {
+  const store  = useContext(RootModuleContext)
+  if (store === null) {
+    throw new Error("Store cannot be null, please add a context provider");
+  }
+  return store;
+}

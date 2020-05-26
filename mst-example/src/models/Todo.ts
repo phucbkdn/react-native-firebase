@@ -32,6 +32,10 @@ const Todo = types
     //     self.user = user
     //   }
     // }
+    afterCreate() {
+      self.done = true
+      console.log("Created a new todo!", self)
+    }
   }))
 
 // creating a tree based on the "Todo" type, with initial data:
