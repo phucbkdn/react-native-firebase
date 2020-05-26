@@ -1,5 +1,5 @@
 import { autorun } from 'mobx'
-import { types, Instance } from 'mobx-state-tree'
+import { types, Instance, getEnv } from 'mobx-state-tree'
 import User from './User'
 
 // declaring the shape of a node with the type `Todo`
@@ -19,29 +19,17 @@ const Todo = types
   }))
   .actions(self => ({
     setName(newName: string) {
+      getEnv(self).logger.log("Changed title to: " + newName)
       self.name = newName
     },
 
     toggle() {
       self.done = !self.done
     },
-    // setUser(user: User) {
-    //   if (!user) {
-    //     self.user = undefined
-    //   } else {
-    //     self.user = user
-    //   }
-    // }
     afterCreate() {
-      self.done = true
-      console.log("Created a new todo!", self)
+      console.log("Created a new todo!", self.name)
     }
   }))
-
-// creating a tree based on the "Todo" type, with initial data:
-// const coffeeTodo = Todo.create({
-//   name: 'Get coffee'
-// })
 
 const todoStore = Todo.create()
 

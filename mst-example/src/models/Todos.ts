@@ -1,12 +1,9 @@
-import { types, applySnapshot,  onSnapshot, Instance, addMiddleware } from 'mobx-state-tree'
+import { types, Instance, addMiddleware } from 'mobx-state-tree'
 
 // import Models
 import User from './User'
 import Todo from './Todo'
-import { values, autorun } from 'mobx'
-
-const states = <any>[]
-let currentFrame = -1
+import { values } from 'mobx'
 
 export const Todos = types
   .model(
@@ -47,7 +44,7 @@ const store = Todos.create({
 })
 
 addMiddleware(store, (call, next, abort) => {
-  console.log(`action ${call.name} was invoked`)
+  console.log(`action ${call.name} was `)
   // runs the next middleware
   // or the implementation of the targeted action
   // if there is no middleware left to run
@@ -55,30 +52,6 @@ addMiddleware(store, (call, next, abort) => {
   next(call, value => value + 1)
   // return abort("value")
 })
-
-autorun(() => {
-  console.log('store', store.todos)
-})
-
-onSnapshot(store, snapshot => {
-  console.log('abc:', store)
-  if (currentFrame === states.length - 1) {
-    currentFrame++
-    states.push(snapshot)
-  }
-})
-
-export function previousState() {
-  if (currentFrame === 0) return
-  currentFrame--
-  applySnapshot(store, states[currentFrame])
-}
-
-export function nextState() {
-  if (currentFrame === states.length - 1) return
-  currentFrame++
-  applySnapshot(store, states[currentFrame])
-}
 
 export type AppType = Instance<typeof Todos>
 export interface TAppType extends Instance<typeof Todos> {}
