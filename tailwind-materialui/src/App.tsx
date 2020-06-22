@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { ResponsiveDesign } from './tailwin-example/responsive-design'
+import { ResponsiveDesign } from './tailwind-example/responsive-design'
 function App() {
   return (
     <div className="App">
