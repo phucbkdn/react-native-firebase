@@ -9,6 +9,7 @@ import tableStore from '../streams/tables'
 import ordersStore from '../streams/orders'
 import { tableOrderStyles } from './styles/TableOrder.styles'
 import currencyFormatter from 'currency-formatter'
+import moment from 'moment'
 
 export default function TableOrder({
   navigation,
@@ -36,8 +37,13 @@ export default function TableOrder({
       acc[cur.name] = cur.count;
       return acc;
     }, {});
-    console.log(obj)
-    ordersStore.createOrder({...obj, Price: price})
+
+    ordersStore.createOrder({
+      ...obj,
+      Price: price,
+      Created: moment().format('DD-MM-YYYY'),
+      Time: moment().format('hh:mm')
+    })
     tableStore.process(params.id, false)
     navigation.goBack()
   }
