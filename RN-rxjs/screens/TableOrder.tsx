@@ -26,7 +26,7 @@ export default function TableOrder({
   }, [categoriesData.categories])
 
   const processOrder = () => {
-    tableStore.process(params.id)
+    tableStore.process(params.id, true)
   }
 
   const price = categoriesData.categories.reduce((accumulator, current) => accumulator + (current.count * current.price), 0);
@@ -38,6 +38,7 @@ export default function TableOrder({
     }, {});
     console.log(obj)
     ordersStore.createOrder({...obj, Price: price})
+    tableStore.process(params.id, false)
     navigation.goBack()
   }
 
