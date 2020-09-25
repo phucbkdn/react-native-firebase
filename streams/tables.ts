@@ -33,9 +33,9 @@ const countStore = {
       subject.next(state)
      });
   },
-  process: (id: string) => {
+  process: (id: string, value: boolean) => {
     const ref = firebaseApp.database().ref(`products/tables/${id}/active`);
-    ref.set(true);
+    ref.set(value);
     object(ref)
     .pipe(map(change => ({ _key: change.snapshot.key, ...change.snapshot.val() })))
     .subscribe(list => {
