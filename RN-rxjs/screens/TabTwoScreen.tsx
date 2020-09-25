@@ -1,50 +1,53 @@
-import React, { useLayoutEffect, useState } from 'react';
-import { StyleSheet, ViewStyle } from 'react-native';
+import React from 'react'
+import { FlatList, SafeAreaView } from 'react-native'
+import { Text } from '../components/Themed'
+import withObservableStream from '../streams'
+import fetchOrder$ from '../streams/orders'
+import { tabTwoScreenStyles } from './styles/TabTwoScreen.styles'
+import { combineLatest } from 'rxjs'
+import { Order } from '../components/Order'
 
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
-import ordersStore from '../streams/orders'
+type OrderType = {
+  id: string,
+  Price: string,
+  _key: string,
+}
 
-export default function TabTwoScreen() {
-  const [countData, setCountData] = useState({ orders: []})
-  useLayoutEffect(() => {
-    ordersStore.subscribe(setCountData)
-    ordersStore.incr()
-  }, [])
+type TabTwoScreenProps = {
+  orders: Array<OrderType>,
+  name: string
+}
+
+const TabTwoScreen = ({ orders,  name}: TabTwoScreenProps) => {
+  const renderItem = ({ item }) => (
+    <Order order={item} />
+  );
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.wrapper}>
-        {countData.orders && countData.orders.map((item: Props) => (
-          <Text style={styles.title} key={item._key}>{item.Price}</Text>
-        ))}
-      </View>
-    </View>
+    <SafeAreaView style={tabTwoScreenStyles.container}>
+      <Text style={tabTwoScreenStyles.title}>{name}</Text>
+        <FlatList
+          data={orders}
+          renderItem={renderItem}
+          keyExtractor={item => item._key}
+        />
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+// Defined actions for order subject
+export const cartActions = {
+};
+
+export default withObservableStream(
+  combineLatest(
+    fetchOrder$,
+    (orders) => ({
+      orders,
+    }),
+  ),
+  cartActions,
+  {
+    orders: []
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-  wrapper: {
-    flex: 1,
-    flexDirection: "row",
-    flexWrap: "wrap",
-    paddingTop: 20,
-    paddingRight: 20,
-    justifyContent: "space-between",
-  } as ViewStyle,
-});
+)(TabTwoScreen);

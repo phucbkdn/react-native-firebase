@@ -1,27 +1,23 @@
 import { TextStyle, ViewStyle } from 'react-native'
-import { color, typography, width, height } from "../../themes"
+import { color, typography } from "../../themes"
 
-export const categoryStyles = {
+export const orderStyles = {
   wrapper: {
-    flexDirection: 'row',
-    justifyContent: "center",
-    alignItems: "center",
-    alignContent: 'center',
-    paddingVertical: 15,
-  } as ViewStyle,
-  button: {
+    width: '90%',
     backgroundColor: 'white',
     shadowColor: 'rgba(0,0,0,0.5)',
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.5,
     shadowRadius: 5,
     borderRadius: 10,
+    margin: 20,
+    paddingVertical: 10,
+  } as ViewStyle,
+  textWrapper: {
+    flexDirection: 'row',
     justifyContent: "center",
     alignItems: "center",
     alignContent: 'center',
-    elevation: 1,
-    width: 40,
-    height: 40,
   } as ViewStyle,
   textStyle: {
     fontFamily: typography.primary,
@@ -29,13 +25,14 @@ export const categoryStyles = {
     fontSize: 20,
     textTransform: "capitalize",
     paddingBottom: 15,
-    width: width / 2,
+    fontWeight: 'bold'
   } as TextStyle,
-  count: {
+  textValue: {
     fontFamily: typography.primary,
     color: color.text,
     fontSize: 20,
     textTransform: "capitalize",
-    paddingHorizontal: 15
+    paddingBottom: 15,
+    paddingLeft: 5,
   } as TextStyle,
 }
