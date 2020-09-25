@@ -1,0 +1,32 @@
+{
+  "env": {
+      "browser": true,
+      "es6": true,
+      "node": true,
+      "jest": true
+  },
+  "parser": "babel-eslint",
+  "extends": [
+      "airbnb",
+      "plugin:prettier/recommended",
+      "prettier/react"
+  ],
+  "plugins": [
+      "prettier"
+  ],
+  "rules": {
+    "camelcase": 0,
+    "react/jsx-filename-extension": [
+      0
+    ]
+  },
+  "settings": {
+      "import/resolver": {
+          "node": {
+              "paths": [
+                  "src"
+              ]
+          }
+      }
+  }
+}
