@@ -68,7 +68,7 @@ export default function TableOrder({
           <Text style={tableOrderStyles.linkText}>Order</Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={() => navigation.replace('Root')} style={tableOrderStyles.link}>
+      <TouchableOpacity onPress={() => navigation.goBack()} style={tableOrderStyles.link}>
         <Text style={tableOrderStyles.linkText}>Go to home screen!</Text>
       </TouchableOpacity>
     </View>

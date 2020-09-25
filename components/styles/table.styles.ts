@@ -1,5 +1,5 @@
 import { ImageStyle, TextStyle, ViewStyle } from 'react-native'
-import { color, typography, width, height } from "../../themes"
+import { color, width, height } from "../../themes"
 
 export const categoryStyles = {
   wrapper: {
@@ -24,7 +24,6 @@ export const categoryStyles = {
     height: '100%',
   } as ViewStyle,
   textStyle: {
-    fontFamily: typography.primary,
     color: color.text,
     fontSize: 11,
     lineHeight: 13,

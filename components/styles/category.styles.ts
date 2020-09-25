@@ -1,5 +1,5 @@
 import { TextStyle, ViewStyle } from 'react-native'
-import { color, typography, width, height } from "../../themes"
+import { color, width, height } from "../../themes"
 
 export const categoryStyles = {
   wrapper: {
@@ -24,7 +24,6 @@ export const categoryStyles = {
     height: 40,
   } as ViewStyle,
   textStyle: {
-    fontFamily: typography.primary,
     color: color.text,
     fontSize: 20,
     textTransform: "capitalize",
@@ -32,7 +31,6 @@ export const categoryStyles = {
     width: width / 2,
   } as TextStyle,
   count: {
-    fontFamily: typography.primary,
     color: color.text,
     fontSize: 20,
     textTransform: "capitalize",

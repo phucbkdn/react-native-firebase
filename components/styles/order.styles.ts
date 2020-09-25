@@ -1,5 +1,5 @@
 import { TextStyle, ViewStyle } from 'react-native'
-import { color, typography } from "../../themes"
+import { color } from "../../themes"
 
 export const orderStyles = {
   wrapper: {
@@ -20,7 +20,6 @@ export const orderStyles = {
     alignContent: 'center',
   } as ViewStyle,
   textStyle: {
-    fontFamily: typography.primary,
     color: color.text,
     fontSize: 20,
     textTransform: "capitalize",
@@ -28,7 +27,6 @@ export const orderStyles = {
     fontWeight: 'bold'
   } as TextStyle,
   textValue: {
-    fontFamily: typography.primary,
     color: color.text,
     fontSize: 20,
     textTransform: "capitalize",
