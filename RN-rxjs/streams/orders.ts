@@ -1,4 +1,4 @@
-import { list } from 'rxfire/database'
+import { list, stateChanges } from 'rxfire/database'
 import { map } from 'rxjs/operators';
 import firebaseApp from '../services'
 
@@ -9,5 +9,19 @@ const fetchOrder$ = list(ref)
     return { _key: c.snapshot.key, ...c.snapshot.val() }
   }))
 )
+
+ export const createOrder = (data: any) => {
+
+  ref.push(data);
+  stateChanges(ref).pipe(
+    map(change => {
+      return {
+        _key: change.snapshot.key,
+        event: change.event,
+        ...change.snapshot.val()
+      };
+    })
+  )
+}
 
 export default fetchOrder$
