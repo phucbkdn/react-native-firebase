@@ -1,44 +1,40 @@
 import { StackScreenProps } from '@react-navigation/stack';
-import React, { useLayoutEffect, useState, useEffect } from 'react';
+import React from 'react';
 import { useRoute } from '@react-navigation/native'
 import { Text, TouchableOpacity, View } from 'react-native';
 import { Category } from '../components/Category'
 import { RootStackParamList } from '../types';
-import categoriesStore from '../streams/categories'
 import tableStore from '../streams/tables'
-import ordersStore from '../streams/orders'
 import { tableOrderStyles } from './styles/TableOrder.styles'
 import currencyFormatter from 'currency-formatter'
 import moment from 'moment'
+import { BehaviorSubject, combineLatest } from 'rxjs';
+import withObservableStream from '../streams'
+import { createOrder } from '../streams/orders'
+import fetchCategory$ from '../streams/categories'
+import { incr, decr } from '../helpers'
 
-export default function TableOrder({
+const TableOrder = ({
   navigation,
-}: StackScreenProps<RootStackParamList, 'NotFound'>) {
-  const [categoriesData, setCategoriesData] = useState({ categories<Props>: []})
-  const [categories, setCategories] = useState<Props>([])
+  categories,
+  createOrder,
+  incrValue,
+  decrValue
+}: StackScreenProps<RootStackParamList, 'NotFound'>) => {
   const { params } = useRoute()
-  useLayoutEffect(() => {
-    categoriesStore.subscribe(setCategoriesData)
-    categoriesStore.init()
-  }, [])
-
-  useEffect(() => {
-    setCategories(categoriesData.categories)
-  }, [categoriesData.categories])
-
   const processOrder = () => {
     tableStore.process(params.id, true)
   }
 
-  const price = categoriesData.categories.reduce((accumulator, current) => accumulator + (current.count * current.price), 0);
+  const price = categories.reduce((accumulator, current) => accumulator + (current.count * current.price), 0);
 
   const submitOrder = () => {
-    const obj = categoriesData.categories.reduce(function(acc, cur, i) {
+    const obj = categories.reduce(function(acc, cur, i) {
       acc[cur.name] = cur.count;
       return acc;
     }, {});
 
-    ordersStore.createOrder({
+    createOrder({
       ...obj,
       Price: price,
       Created: moment().format('DD-MM-YYYY'),
@@ -52,8 +48,17 @@ export default function TableOrder({
     <View style={tableOrderStyles.container}>
       <Text style={tableOrderStyles.title}>{params.name}</Text>
       <View style={tableOrderStyles.wrapper}>
-        {categoriesData.categories && categoriesData.categories.map((item: Props) => (
-          <Category id={item.id} key={item._key + item.id} name={item.name} price={item.price} count={item.count} />
+        {categories.map((item: Props) => (
+          <Category
+            id={item.id}
+            key={item._key + item.id}
+            name={item.name}
+            price={item.price}
+            count={item.count}
+            categories={categories}
+            incrValue={incrValue}
+            decrValue={decrValue}
+          />
         ))}
       </View>
       <View style={tableOrderStyles.priceWrapper}>
@@ -74,3 +79,26 @@ export default function TableOrder({
     </View>
   );
 }
+
+// Defined actions for order subject
+const categorySubject = new BehaviorSubject([]);
+
+export const cartActions = {
+  createOrder: (data: any) => createOrder(data),
+  incrValue: (id, categories) => categorySubject.next(incr(id, categories)),
+  decrValue: (id, categories) => categorySubject.next(decr(id, categories)),
+};
+
+export default withObservableStream(
+  combineLatest(
+    categorySubject,
+    fetchCategory$,
+    (category, categories) => ({
+      categories,
+    }),
+  ),
+  cartActions,
+  {
+    categories: []
+  },
+)(TableOrder);

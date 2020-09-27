@@ -20,7 +20,7 @@ interface Props {
   id: string,
 }
 
-export const Category: FC<Props> = memo(({ name, price, count, id }: Props) => {
+export const Category: FC<Props> = memo(({ categories, name, price, count, id, incrValue, decrValue }: Props) => {
   const navigation = useNavigation<NavigationProp<NavigationType>>()
   const navigateRecipeScreen = () => {
     navigation.navigate('TableOrder', {
@@ -32,7 +32,7 @@ export const Category: FC<Props> = memo(({ name, price, count, id }: Props) => {
     <View style={categoryStyles.wrapper}>
       <Text style={categoryStyles.textStyle}>{`${name} (${price})`}</Text>
       <TouchableOpacity
-        onPress={() => categoriesStore.decr(id)}
+        onPress={() => incrValue(id, categories)}
         disabled={count <= 0}
         style={categoryStyles.button}
       >
@@ -40,7 +40,7 @@ export const Category: FC<Props> = memo(({ name, price, count, id }: Props) => {
       </TouchableOpacity>
       <Text style={categoryStyles.count}>{count}</Text>
       <TouchableOpacity
-        onPress={() => categoriesStore.incr(id)}
+        onPress={() => decrValue(id, categories)}
         style={categoryStyles.button}
       >
         <Text>+</Text>
