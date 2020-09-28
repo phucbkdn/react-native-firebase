@@ -11,7 +11,6 @@ const fetchOrder$ = list(ref)
 )
 
  export const createOrder = (data: any) => {
-
   ref.push(data);
   stateChanges(ref).pipe(
     map(change => {
