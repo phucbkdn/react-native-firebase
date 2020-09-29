@@ -46,4 +46,15 @@ export const tableOrderStyles = {
     height: 40,
     marginHorizontal: 10
   } as ViewStyle,
+  input: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    width: '50%',
+    textAlign: "center"
+  },
+  discountWrapper: {
+    flexDirection: "row",
+    paddingBottom: 20,
+    alignItems: 'center',
+  } as ViewStyle,
 }
