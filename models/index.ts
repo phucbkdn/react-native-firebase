@@ -11,3 +11,9 @@ export type CategoryModel = {
   id?: string,
   _key?: string,
 }
+
+export type OrderType = {
+  id: string,
+  Price: string,
+  _key: string,
+}

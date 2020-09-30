@@ -1,4 +1,5 @@
 import { TextStyle, ViewStyle } from 'react-native'
+import { color, spacing } from '../../themes'
 
 export const tableOrderStyles = {
   container: {
@@ -50,11 +51,17 @@ export const tableOrderStyles = {
     borderWidth: 1,
     borderColor: 'gray',
     width: '50%',
-    textAlign: "center"
+    textAlign: "center",
+    height: 30,
   },
   discountWrapper: {
     flexDirection: "row",
     paddingBottom: 20,
     alignItems: 'center',
   } as ViewStyle,
+  screen: {
+    backgroundColor: color.transparent,
+    paddingHorizontal: spacing[4],
+  } as ViewStyle
+
 }
