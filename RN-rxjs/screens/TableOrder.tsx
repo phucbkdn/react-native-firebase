@@ -4,7 +4,7 @@ import { useRoute } from '@react-navigation/native'
 import { Text, TouchableOpacity, View, TextInput } from 'react-native';
 import { Category } from '../components/Category'
 import { RootStackParamList } from '../types';
-import tableStore from '../streams/tables'
+import { updateOrder } from '../streams/tables'
 import { tableOrderStyles } from './styles/TableOrder.styles'
 import currencyFormatter from 'currency-formatter'
 import moment from 'moment'
@@ -22,14 +22,10 @@ interface Props extends CategoryModel{
   _key: string,
 }
 
-interface TableOrderModel extends StackScreenProps<RootStackParamList, 'NotFound'>{
+interface TableOrderModel {
   categories: Array<Props>,
   createOrder: Function,
-}
-
-const CONTAINER: ViewStyle = {
-  backgroundColor: color.transparent,
-  paddingHorizontal: spacing[4],
+  navigation: StackScreenProps<RootStackParamList, 'NotFound'>
 }
 
 const TableOrder = ({
@@ -38,17 +34,15 @@ const TableOrder = ({
   createOrder,
 }: TableOrderModel) => {
   const { params } = useRoute()
-  const processOrder = () => {
-    tableStore.process(params.id, true)
-  }
   const [categoriesData, setCategories] = useState(categories || [])
   const [discount, setDiscount] = useState(0)
   useEffect(() => {
-    console.log(categories)
     setCategories(categories)
   }, [categories])
+
   let price = categoriesData.reduce((accumulator, current) => accumulator + (current.count * current.price), 0);
   price = price * (1 - discount / 100 )
+
   const submitOrder = () => {
     const obj = categoriesData.reduce(function(acc, cur) {
       acc[cur.name] = cur.count;
@@ -61,7 +55,7 @@ const TableOrder = ({
       created: moment().format('DD-MM-YYYY'),
       time: moment().format('hh:mm')
     })
-    tableStore.process(params.id, false)
+    updateOrder(params.id, false)
     navigation.goBack()
   }
 
@@ -76,10 +70,15 @@ const TableOrder = ({
   const handleChangeDiscount = (value) => {
     setDiscount(value ? parseFloat(value) : 0)
   }
+
+  const processOrder = () => {
+    updateOrder(params.id, true)
+  }
+
   return (
     <View style={tableOrderStyles.container}>
       <Screen
-        style={CONTAINER}
+        style={tableOrderStyles.screen}
         preset="scroll"
         backgroundColor={color.transparent}
       >

@@ -6,12 +6,7 @@ import fetchOrder$ from '../streams/orders'
 import { tabTwoScreenStyles } from './styles/TabTwoScreen.styles'
 import { combineLatest } from 'rxjs'
 import { Order } from '../components/Order'
-
-type OrderType = {
-  id: string,
-  Price: string,
-  _key: string,
-}
+import { OrderType } from '../models'
 
 type TabTwoScreenProps = {
   orders: Array<OrderType>,
