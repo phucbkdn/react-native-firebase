@@ -1,5 +1,5 @@
 import { list, stateChanges } from 'rxfire/database'
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import firebaseApp from '../services'
 
 const ref = firebaseApp.database().ref('products/orders');
@@ -13,6 +13,7 @@ const fetchOrder$ = list(ref)
  export const createOrder = (data: any) => {
   ref.push(data);
   stateChanges(ref).pipe(
+    tap(x => console.log(x)),
     map(change => {
       return {
         _key: change.snapshot.key,
