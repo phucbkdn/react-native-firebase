@@ -1,21 +1,24 @@
-import { StackScreenProps } from '@react-navigation/stack';
-import React, { useState, useEffect } from 'react';
+// Libs
+import { StackScreenProps } from '@react-navigation/stack'
+import React, { useState, useEffect } from 'react'
 import { useRoute } from '@react-navigation/native'
-import { Text, TouchableOpacity, View, TextInput } from 'react-native';
-import { Category } from '../components/Category'
-import { RootStackParamList } from '../types';
-import { updateOrder } from '../streams/tables'
-import { tableOrderStyles } from './styles/TableOrder.styles'
-import currencyFormatter from 'currency-formatter'
+import { Text, TouchableOpacity, View, TextInput } from 'react-native'
 import moment from 'moment'
-import { combineLatest } from 'rxjs';
-import withObservableStream from '../streams'
+
+// Helpers
+import { updateOrder } from '../streams/tables'
 import { createOrder } from '../streams/orders'
-import fetchCategory$ from '../streams/categories'
-import { incr, decr } from '../helpers'
 import { CategoryModel } from '../models'
+import { color } from '../themes'
+import categoriesService from '../store/categories'
+import useUnmount from '../hooks/useUnmount'
+import { tableOrderStyles } from './styles/TableOrder.styles'
+import { RootStackParamList } from '../types';
+
+// Components
+import { Discount } from '../components/Discount'
+import { Category } from '../components/Category'
 import { Screen } from '../components/screen/screen'
-import { color, spacing } from '../themes'
 
 interface Props extends CategoryModel{
   id: string,
@@ -30,15 +33,23 @@ interface TableOrderModel {
 
 const TableOrder = ({
   navigation,
-  categories,
+  // categories,
   createOrder,
 }: TableOrderModel) => {
   const { params } = useRoute()
-  const [categoriesData, setCategories] = useState(categories || [])
+  const [categoriesData, setCategories] = useState([])
   const [discount, setDiscount] = useState(0)
-  useEffect(() => {
-    setCategories(categories)
-  }, [categories])
+  useEffect(()=> {
+    categoriesService.getStore()
+      .subscribe(it => {
+        setCategories(it.categories)
+        setDiscount(it.discount)
+      })
+      categoriesService.getCategories()
+  }, [])
+  useUnmount(() => {
+    categoriesService.getStore().unsubscribe()
+  })
 
   let price = categoriesData.reduce((accumulator, current) => accumulator + (current.count * current.price), 0);
   price = price * (1 - discount / 100 )
@@ -60,15 +71,16 @@ const TableOrder = ({
   }
 
   const incrValue = (id: string) => {
-    setCategories(incr(id, categoriesData))
+    categoriesService.incr(id)
   }
 
   const decrValue = (id: string) => {
-    setCategories(decr(id, categoriesData))
+    categoriesService.decr(id)
   }
 
   const handleChangeDiscount = (value) => {
-    setDiscount(value ? parseFloat(value) : 0)
+    // setDiscount(value ? parseFloat(value) : 0)
+    categoriesService.discount(value ? parseFloat(value) : 0)
   }
 
   const processOrder = () => {
@@ -104,15 +116,12 @@ const TableOrder = ({
             onChangeText={handleChangeDiscount}
           />
         </View>
-        <View style={tableOrderStyles.priceWrapper}>
-          <Text style={tableOrderStyles.title}>Total:  </Text>
-          <Text style={tableOrderStyles.title}>{currencyFormatter.format(price, { locale: 'VN' })}</Text>
-        </View>
+        <Discount />
         <View style={tableOrderStyles.priceWrapper}>
           <TouchableOpacity style={tableOrderStyles.button} onPress={processOrder}>
               <Text style={tableOrderStyles.linkText}>Process</Text>
             </TouchableOpacity>
-          <TouchableOpacity style={tableOrderStyles.button} onPress={submitOrder}>
+          <TouchableOpacity disabled={price === 0} style={tableOrderStyles.button} onPress={submitOrder}>
             <Text style={tableOrderStyles.linkText}>Order</Text>
           </TouchableOpacity>
         </View>
@@ -129,15 +138,4 @@ export const cartActions = {
   createOrder: (data: any) => createOrder(data),
 };
 
-export default withObservableStream(
-  combineLatest(
-    fetchCategory$,
-    (categories) => ({
-      categories
-    }),
-  ),
-  cartActions,
-  {
-    categories: []
-  },
-)(TableOrder);
+export default TableOrder
