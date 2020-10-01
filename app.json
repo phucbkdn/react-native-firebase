@@ -26,7 +26,8 @@
       "favicon": "./assets/images/favicon.png"
     },
     "android": {
-      "package": "com.phucla.rnrxjs"
+      "package": "com.phucla.rnrxjs",
+      "googleServicesFile": "./google-services.json"
     }
   }
 }

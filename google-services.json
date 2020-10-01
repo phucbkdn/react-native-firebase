@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "252959242991",
+    "firebase_url": "https://products-management-db74a.firebaseio.com",
+    "project_id": "products-management-db74a",
+    "storage_bucket": "products-management-db74a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:252959242991:android:aa52cf64d010d7bab5f91a",
+        "android_client_info": {
+          "package_name": "com.phucla.rnrxjs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "252959242991-kevhvoospc6k67rll1bjgjmd3c23cv3l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.phucla.rnrxjs",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "252959242991-p6dcpnidja8m72acanfj0lfae8br2bao.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARCqVJonkQWmjQyOgINacZ4YaHsS5Df1w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "252959242991-p6dcpnidja8m72acanfj0lfae8br2bao.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
