@@ -1,4 +1,4 @@
-import { BehaviorSubject, Subscription } from 'rxjs'
+import { BehaviorSubject, Subject, Subscription, Observable } from 'rxjs'
 import { scan, map } from 'rxjs/operators'
 import { incr, decr } from '../helpers'
 import { list } from 'rxfire/database'
@@ -22,7 +22,8 @@ type StateType = {
 
 const categoriesService = new (class CategoriesService {
   // Type
-  store: Subscription;
+  store: Subscription
+  dispatcher: any
 
   static DECR = "DECR"
   static INCR = "INCR"
@@ -30,7 +31,7 @@ const categoriesService = new (class CategoriesService {
   static GET_CATEGORIES = "GET_CATEGORIES"
 
   constructor() {
-    this.dispatcher = new BehaviorSubject({
+    this.dispatcher = new BehaviorSubject<StateType>({
       categories: [],
       discount: 0,
     })
@@ -67,6 +68,7 @@ const categoriesService = new (class CategoriesService {
       default: return state;
     }
   }
+
   decr(id: string) {
     this.dispatcher.next({ type: CategoriesService.INCR, value: id });
   }
@@ -98,6 +100,7 @@ const categoriesService = new (class CategoriesService {
 
   unSubscribe() {
     this.store.unsubscribe()
+    // this.dispatcher.unsubscribe()
   }
 
   getStore() {

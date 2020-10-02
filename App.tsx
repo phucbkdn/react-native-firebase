@@ -5,6 +5,8 @@ import * as Notifications from 'expo-notifications';
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
+import { Provide, createState } from './state/RXState'
+import reducer$ from './reducers'
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -33,8 +35,11 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
-        <StatusBar />
+        <Provide state$={createState(reducer$)}>
+          <Navigation colorScheme={colorScheme} />
+          <StatusBar />
+        </Provide>
+
       </SafeAreaProvider>
     );
   }
