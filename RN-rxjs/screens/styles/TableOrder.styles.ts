@@ -51,7 +51,6 @@ export const tableOrderStyles = {
     borderWidth: 1,
     borderColor: 'gray',
     width: '50%',
-    textAlign: "center",
     height: 30,
   },
   discountWrapper: {

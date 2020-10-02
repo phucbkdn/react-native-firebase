@@ -20,7 +20,7 @@ export const Category: FC<Props> = memo(({ name, price, count, id, incrValue, de
   <View style={categoryStyles.wrapper}>
     <Text style={categoryStyles.textStyle}>{`${name} (${price})`}</Text>
     <TouchableOpacity
-      onPress={() => incrValue(id)}
+      onPress={() => decrValue(id)}
       disabled={count <= 0}
       style={categoryStyles.button}
     >
@@ -28,7 +28,7 @@ export const Category: FC<Props> = memo(({ name, price, count, id, incrValue, de
     </TouchableOpacity>
     <Text style={categoryStyles.count}>{count}</Text>
     <TouchableOpacity
-      onPress={() => decrValue(id)}
+      onPress={() => incrValue(id)}
       style={categoryStyles.button}
     >
       <Text>+</Text>
