@@ -8,10 +8,7 @@ import {
 import { categoryStyles } from './styles/category.styles'
 import { CategoryModel } from '../models'
 
-const resizeMode: ImageResizeMode = 'contain'
-
 interface Props extends CategoryModel{
-  id: string,
   incrValue: Function,
   decrValue: Function,
 }

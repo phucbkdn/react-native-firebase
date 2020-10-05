@@ -63,4 +63,5 @@ export const color = {
   storybookTextColor: palette.black,
   black: palette.black,
   while: palette.white,
+  yellow: palette.yellow
 }

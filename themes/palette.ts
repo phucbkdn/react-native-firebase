@@ -12,4 +12,5 @@ export const palette = {
   saffronMango: "#fcbd56",
   serenade: '#fff6eb',
   gray: '#f6f6f6',
+  yellow: '#f8b601',
 }

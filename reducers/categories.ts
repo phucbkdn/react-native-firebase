@@ -7,7 +7,7 @@ import { list } from 'rxfire/database'
 import firebaseApp from '../services'
 
 const ref = firebaseApp.database().ref('products/category')
-export const counterActions = createActions(['increment', 'decrement', 'reset', 'init'])
+export const counterActions = createActions(['discountChange','increment', 'decrement', 'reset', 'init'])
 const initState = {categories: [], discount: 10}
 counterActions.init = list(ref)
   .pipe(
@@ -51,6 +51,12 @@ const CounterReducer$ = merge(
     map((payload: string) => (state: StateType) => ({
       ...state,
       categories: payload
+     }))
+  ),
+  counterActions.discountChange.pipe(
+    map((payload: number) => (state: StateType) => ({
+      ...state,
+      discount: payload,
      }))
   ),
 )
