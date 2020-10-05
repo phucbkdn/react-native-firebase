@@ -1,7 +1,8 @@
 import * as firebase from 'firebase';
+import { GoogleSignin } from '@react-native-community/google-signin';
 
 // Optionally import the services that you want to use
-//import "firebase/auth";
+import "firebase/auth";
 import "firebase/database";
 import "firebase/firestore";
 //import "firebase/functions";
@@ -19,6 +20,15 @@ export const firebaseConfig = {
 
 };
 
+const firebaseApp = firebase.apps[0] || firebase.initializeApp(firebaseConfig);
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+/**
+ * Auth provider
+ */
+export const loginAuth = (userName: string, password: string) => {
+  firebase.auth().signInWithEmailAndPassword(userName, password).then(result => {
+    console.log(result)
+  })
+}
+
 export default firebaseApp
