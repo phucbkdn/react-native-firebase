@@ -3,6 +3,7 @@ export type RootParamList = {
   primaryStack: undefined
   recipe: undefined
   recipes: undefined
+  login: undefined,
 }
 
 export type NavigationType = {
@@ -17,7 +18,7 @@ export type NavigationType = {
   }
 }
 
-type ProfileScreenNavigationProp = StackNavigationProp<RootParamList, 'Home'>
+type ProfileScreenNavigationProp = StackNavigationProp<RootParamList, 'login'>
 
 export type NavigationProps = {
   navigation: ProfileScreenNavigationProp

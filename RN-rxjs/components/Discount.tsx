@@ -1,29 +1,20 @@
-import React, { FC, memo, useState, useEffect } from 'react'
+import React, { FC, memo } from 'react'
 import {
   View,
   Text,
 } from 'react-native'
 import currencyFormatter from 'currency-formatter'
 import { discountStyles } from './styles/discount.styles'
-import categoriesService from '../store/categories'
-import useUnmount from '../hooks/useUnmount'
+import { connect } from '../state/RXState'
+import { CategoryModel } from '../models'
 
-export const Discount: FC = memo(() => {
-  const [categoriesData, setCategories] = useState([])
-  const [discount, setDiscount] = useState(0)
-  useEffect(()=> {
-    categoriesService.getStore()
-      .subscribe(it => {
-        setCategories(it.categories)
-        setDiscount(it.discount)
-      })
-      categoriesService.getCategories()
-  }, [])
-  useUnmount(() => {
-    categoriesService.getStore().unsubscribe()
-  })
+interface TableOrderModel {
+  categories: Array<CategoryModel>,
+  discount: number,
+}
 
-  let price = categoriesData.reduce((accumulator, current) => accumulator + (current.count * current.price), 0);
+export const Discount: FC<TableOrderModel> = memo(({categories = [], discount}: TableOrderModel) => {
+  let price = categories.reduce((accumulator, current) => accumulator + (current.count * current.price), 0);
   const discountPrice = price * discount / 100
   price = price - discountPrice
 
@@ -40,3 +31,5 @@ export const Discount: FC = memo(() => {
     </View>
   )}
 )
+
+export default connect(({ counter = {} }) => ({ categories: counter ? counter.categories : [], discount: counter.discount }), [])(Discount)

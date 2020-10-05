@@ -8,7 +8,7 @@ export type CategoryModel = {
   name: string,
   price: number,
   count: number,
-  id?: string,
+  id: string,
   _key?: string,
 }
 
