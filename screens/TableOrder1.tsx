@@ -31,7 +31,7 @@ interface TableOrderModel {
   navigation: StackScreenProps<RootStackParamList, 'NotFound'>
 }
 
-const TableOrder = ({
+const TableOrder12 = ({
   navigation,
   // categories,
   // createOrder,
@@ -138,4 +138,4 @@ export const cartActions = {
   createOrder: (data: any) => createOrder(data),
 };
 
-export default TableOrder
+export default TableOrder12
