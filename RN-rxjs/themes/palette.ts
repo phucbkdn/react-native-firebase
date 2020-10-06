@@ -13,4 +13,5 @@ export const palette = {
   serenade: '#fff6eb',
   gray: '#f6f6f6',
   yellow: '#f8b601',
+  halfShuttle: 'rgba(87, 107, 120, 0.5)',
 }
