@@ -9,6 +9,7 @@ import LoginScreen from '../screens/Login';
 import { RootStackParamList } from '../types';
 import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
+import DrawerScreen from './DrawerNavigator'
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
@@ -28,12 +29,18 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Root" component={LoginScreen} />
-      <Stack.Screen name="BottomTabNavigator" component={BottomTabNavigator} />
-      <Stack.Screen name="TableOrder" component={TableOrder} options={{ title: 'TableOrder' }} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-    </Stack.Navigator>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Root" component={LoginScreen} />
+        <Stack.Screen
+          name="primaryStack"
+          component={DrawerScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen name="TableOrder" component={TableOrder} options={{ title: 'TableOrder' }} />
+        <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      </Stack.Navigator>
   );
 }
 

@@ -13,6 +13,9 @@ export type NavigationType = {
   TableOrder: {
     id: string
   },
+  BottomTabNavigator: {
+
+  },
   recipes: {
     name: string
   }

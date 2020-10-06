@@ -103,7 +103,6 @@ const TableOrder = ({
             style={tableOrderStyles.input}
             keyboardType="numeric"
             onChangeText={handleChangeDiscount}
-
           />
         </View>
         <Discount />

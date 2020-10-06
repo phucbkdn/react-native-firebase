@@ -12,6 +12,7 @@ import { Screen } from '../components/screen/screen'
 import { loginStyles } from './styles/Login.styles'
 import { images } from '../themes'
 import { loginAuth } from '../services'
+import Auth from '../services/Auth'
 
 const resizeMode: ImageResizeMode = 'stretch'
 
@@ -31,36 +32,38 @@ const Login = () => {
 
   console.log(authForm)
   return (
-    <View style={loginStyles.container}>
-      <Screen
-        style={loginStyles.screen}
-        preset="scroll"
-        unsafe
-      >
-        <ImageBackground resizeMode={resizeMode} source={images["bg-image"]} style={loginStyles.bgImage}>
-          <Image resizeMode={resizeMode} source={images.logo} style={loginStyles.logo}/>
-          <TextInput
-            onChangeText={value => handleChange('userName', value)}
-            placeholderTextColor='white'
-            placeholder="User Name"
-            style={loginStyles.input}
-          />
-          <TextInput
-            onChangeText={value => handleChange('password', value)}
-            placeholderTextColor='white'
-            placeholder="Password"
-            style={loginStyles.input}
-            secureTextEntry
-          />
-          <TouchableOpacity style={loginStyles.button} onPress={loginGoogle}>
-            <Text style={loginStyles.title}>Login</Text>
-          </TouchableOpacity>
-          <View style={loginStyles.linkWrapper}>
-            <Text style={loginStyles.link}>Don’t have an account? Sign up</Text>
-          </View>
-        </ImageBackground>
-      </Screen>
-    </View>
+    <Auth>
+      <View style={loginStyles.container}>
+        <Screen
+          style={loginStyles.screen}
+          preset="scroll"
+          unsafe
+        >
+          <ImageBackground resizeMode={resizeMode} source={images["bg-image"]} style={loginStyles.bgImage}>
+            <Image resizeMode={resizeMode} source={images.logo} style={loginStyles.logo}/>
+            <TextInput
+              onChangeText={value => handleChange('userName', value)}
+              placeholderTextColor='white'
+              placeholder="User Name"
+              style={loginStyles.input}
+            />
+            <TextInput
+              onChangeText={value => handleChange('password', value)}
+              placeholderTextColor='white'
+              placeholder="Password"
+              style={loginStyles.input}
+              secureTextEntry
+            />
+            <TouchableOpacity style={loginStyles.button} onPress={loginGoogle}>
+              <Text style={loginStyles.title}>Login</Text>
+            </TouchableOpacity>
+            <View style={loginStyles.linkWrapper}>
+              <Text style={loginStyles.link}>Don’t have an account? Sign up</Text>
+            </View>
+          </ImageBackground>
+        </Screen>
+      </View>
+    </Auth>
   )
 }
 

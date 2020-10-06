@@ -100,7 +100,6 @@ const categoriesService = new (class CategoriesService {
 
   unSubscribe() {
     this.store.unsubscribe()
-    // this.dispatcher.unsubscribe()
   }
 
   getStore() {

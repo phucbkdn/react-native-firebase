@@ -1,4 +1,5 @@
 export type RootStackParamList = {
+  primaryStack: undefined,
   Root: undefined;
   NotFound: undefined;
   TableOrder: undefined;
