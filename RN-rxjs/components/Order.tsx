@@ -16,7 +16,6 @@ export const Order: FC<Props> = memo(({ order }: Props) => {
 
   return (
     <View style={orderStyles.wrapper}>
-
         <View style={orderStyles.textWrapper}>
           <Text style={orderStyles.textStyle}>Created:</Text>
           <Text style={orderStyles.textValue}>{order.created} - {order.time}</Text>
