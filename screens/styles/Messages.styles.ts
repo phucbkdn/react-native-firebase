@@ -4,8 +4,8 @@ import { color, spacing } from '../../themes'
 export const messagesStyles = {
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    paddingTop: 40,
+    // backgroundColor: '#fff',
+    paddingTop: 10,
   } as ViewStyle,
   title: {
     fontSize: 20,
@@ -30,6 +30,6 @@ export const messagesStyles = {
     margin: 10,
   } as ViewStyle,
   screen: {
-    backgroundColor: color.transparent,
+    // backgroundColor: color.transparent,
   } as ViewStyle,
 }

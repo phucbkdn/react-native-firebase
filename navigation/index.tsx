@@ -10,6 +10,7 @@ import { RootStackParamList } from '../types';
 import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 import DrawerScreen from './DrawerNavigator'
+import Messages from '../screens/Messages'
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
@@ -34,11 +35,9 @@ function RootNavigator() {
         <Stack.Screen
           name="primaryStack"
           component={DrawerScreen}
-          options={{
-            headerShown: false,
-          }}
         />
         <Stack.Screen name="TableOrder" component={TableOrder} options={{ title: 'TableOrder' }} />
+        <Stack.Screen name="Messages" component={Messages} options={{ title: 'TableOrder' }} />
         <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       </Stack.Navigator>
   );

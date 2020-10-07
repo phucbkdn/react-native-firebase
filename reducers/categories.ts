@@ -11,12 +11,9 @@ export const counterActions = createActions(['discountChange','increment', 'decr
 const initState = {categories: [], discount: 10}
 counterActions.init = list(ref)
   .pipe(
-    map(changes => changes.map(c => {
-      console.log('abc')
-      return { _key: c.snapshot.key, event: c.event, ...c.snapshot.val(), count: 0 }
-    }))
+    map(changes => changes.map(c => ({ _key: c.snapshot.key, event: c.event, ...c.snapshot.val(), count: 0 }
+    )))
   )
-
 
 interface CategoryType extends CategoryModel{
   id: string,

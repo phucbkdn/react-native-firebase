@@ -1,5 +1,4 @@
 import * as firebase from 'firebase';
-import { GoogleSignin } from '@react-native-community/google-signin';
 
 // Optionally import the services that you want to use
 import "firebase/auth";
