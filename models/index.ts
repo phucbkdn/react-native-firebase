@@ -17,3 +17,15 @@ export type OrderType = {
   Price: string,
   _key: string,
 }
+
+export interface User {
+  uid: string,
+  email: string,
+}
+
+export interface MessageType {
+  id: string,
+  message: string,
+  time: string,
+  user: string,
+}
