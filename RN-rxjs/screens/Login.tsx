@@ -11,13 +11,21 @@ import {
 import { Screen } from '../components/screen/screen'
 import { loginStyles } from './styles/Login.styles'
 import { images } from '../themes'
-import { loginAuth } from '../services'
 import Auth from '../services/Auth'
+import firebase from '../services'
 
 const resizeMode: ImageResizeMode = 'stretch'
 
+interface AuthForm {
+  userName: string,
+  password: string,
+}
+
 const Login = () => {
-  const [authForm, setAuthForm] =  useState({})
+  const [authForm, setAuthForm] =  useState<AuthForm>({
+    userName: '',
+    password: '',
+  })
 
   const handleChange = (key: string, value: string) => {
     setAuthForm({
@@ -27,10 +35,11 @@ const Login = () => {
   }
 
   const loginGoogle = () => {
-    loginAuth(authForm.userName, authForm.password)
+    firebase.auth().signInWithEmailAndPassword(authForm.userName, authForm.password).then(result => {
+      console.log(result)
+    })
   }
 
-  console.log(authForm)
   return (
     <Auth>
       <View style={loginStyles.container}>
