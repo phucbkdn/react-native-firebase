@@ -59,7 +59,6 @@ const TableOrder12 = ({
 
   const submitOrder = () => {
     const obj = categoriesData.reduce((acc, cur) => ({...acc, [cur.name]: cur.count}), {});
-    console.log('obj', obj)
     createOrder({
       ...obj,
       price: price,

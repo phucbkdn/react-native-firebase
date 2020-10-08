@@ -10,7 +10,7 @@ module.exports = {
       "<rootDir>/setupTest.ts",
       "<rootDir>/node_modules/react-native-gesture-handler/jestSetup.js"
     ],
-  // setupFilesAfterEnv: ['<rootDir>/test/mock-react-native-reanimated.ts'],
+  setupFilesAfterEnv: ["<rootDir>/test/timeout.ts",],
   testPathIgnorePatterns: [
     "<rootDir>/node_modules/",
     "<rootDir>/e2e"

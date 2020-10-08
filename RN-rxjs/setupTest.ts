@@ -1,7 +1,7 @@
+import React from 'react'
 import "react-native"
-import { configure } from "enzyme"
 import Adapter from "enzyme-adapter-react-16"
-
+import { configure, shallow, mount, render } from 'enzyme'
 configure({
   adapter: new Adapter(),
 })
@@ -21,3 +21,7 @@ console.error = (message: any): void => {
   }
   originalConsoleError('message: ', message)
 }
+global.React = React
+global.shallow = shallow
+global.render = render
+global.mount = mount
