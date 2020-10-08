@@ -6,7 +6,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest --watchAll"
+    "test": "jest --config=jest.config.js",
+    "test:coverage": "yarn test --coverage"
   },
   "jest": {
     "preset": "jest-expo"
@@ -36,6 +37,7 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.2.tar.gz",
+    "react-native-dotenv": "^2.4.1",
     "react-native-gesture-handler": "~1.7.0",
     "react-native-reanimated": "^1.13.1",
     "react-native-safe-area-context": "3.1.4",
@@ -46,8 +48,20 @@
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
+    "@testing-library/jest-native": "^3.4.3",
+    "@testing-library/react": "^11.0.4",
+    "@types/enzyme": "^3.10.7",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
+    "@types/jest": "^26.0.14",
+    "@types/ramda": "^0.27.20",
     "@types/react": "~16.9.35",
     "@types/react-native": "~0.63.2",
+    "babel-jest": "^26.5.2",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
+    "eslint": "^7.10.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.12.0",
     "jest-expo": "~39.0.0",
     "typescript": "~3.9.5"
   },
