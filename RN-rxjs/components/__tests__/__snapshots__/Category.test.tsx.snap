@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Category component Render correct component 1`] = `
+<div>
+  <view
+    style="flex-direction: row; justify-content: center; align-items: center; align-content: center;"
+  >
+    <text
+      style="color: rgb(153, 153, 153); font-size: 20px; text-transform: capitalize; padding-bottom: 15px; width: 375px;"
+    >
+      Name (200)
+    </text>
+    <view
+      focusable="true"
+      style="background-color: white; border-radius: 10px; justify-content: center; align-items: center; align-content: center; elevation: 1px; width: 40px; height: 40px; opacity: 1;"
+    >
+      <text>
+        -
+      </text>
+    </view>
+    <text
+      style="color: rgb(153, 153, 153); font-size: 20px; text-transform: capitalize;"
+    >
+      0
+    </text>
+    <view
+      focusable="true"
+      style="background-color: white; border-radius: 10px; justify-content: center; align-items: center; align-content: center; elevation: 1px; width: 40px; height: 40px; opacity: 1;"
+    >
+      <text>
+        +
+      </text>
+    </view>
+  </view>
+</div>
+`;
