@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Indicator component Render correct component 1`] = `
+<div>
+  <view
+    style="flex: 1; align-items: center; justify-content: center; position: absolute; width: 100%; height: 100%; z-index: 10; background-color: rgba(87, 107, 120, 0.5);"
+  >
+    <activityindicator
+      color="#999"
+    />
+  </view>
+</div>
+`;
