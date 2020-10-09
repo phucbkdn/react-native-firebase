@@ -21,6 +21,8 @@ module.exports = {
   collectCoverageFrom: [
     '**/*.{js,jsx,ts,tsx}',
     '!<rootDir>/setupTests.ts',
+    '!<rootDir>/coverage/**/*.js',
+    '!<rootDir>/test/*.ts',
     '!<rootDir>/app/**/*.story.tsx',
   ],
   timers: "fake",
