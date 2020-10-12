@@ -6,17 +6,18 @@ import moment from 'moment'
 import { FontAwesome } from '@expo/vector-icons';
 import { connect } from '../state/RXState'
 import {  counterActions } from '../reducers/categories'
-import firebaseApp from '../services'
+import firebaseApp,  { lazyMessages, addMessage } from '../services'
 import { list } from 'rxfire/database'
 import { map, filter } from 'rxjs/operators'
 import { authState } from 'rxfire/auth'
 import { useRoute } from '@react-navigation/native'
+import { combineLatest } from 'rxjs'
 
 // Helpers
 import { CategoryModel } from '../models'
 import { color } from '../themes'
 import { messagesStyles } from './styles/Messages.styles'
-import { RootStackParamList } from '../types'
+import { RootStackParamList } from '../../types'
 import { User, MessageType } from '../models'
 
 // Components
@@ -37,29 +38,40 @@ const Messages = ({}: TableOrderModel) => {
   const { params } = useRoute()
   const [messages, setMessages] = useState<MessageType[]>([])
   const [message, setMessage] = useState<string>('')
-  const [user, setUser] = useState<User>({
-    uid: '',
-    email: ''
-  })
+  const [user, setUser] = useState<User>({uid: '',email: ''})
 
   const flatList = useRef<React.RefObject<FlatList<never>>>()
 
+  // useEffect(() => {
+  //   const ref = firebaseApp.database().ref('messages')
+  //   list(ref)
+  //   .pipe(
+  //     map(changes => changes.map(c => {
+  //       return { id: c.snapshot.key, ...c.snapshot.val() }
+  //     }))
+  //   )
+  //   .subscribe((list: MessageType[]) => {
+  //     setMessages(list)
+  //   })
+
+  //   const auth = firebaseApp.auth()
+  //   const loggedIn$ = authState(auth).pipe(filter(user => !!user));
+  //   loggedIn$.subscribe(user => { setUser(user) });
+
+  // }, [])
+
   useEffect(() => {
-    const ref = firebaseApp.database().ref('messages')
-    list(ref)
-    .pipe(
-      map(changes => changes.map(c => {
-        return { id: c.snapshot.key, ...c.snapshot.val() }
-      }))
-    )
-    .subscribe((list: MessageType[]) => {
-      setMessages(list)
-    })
+
+    const sub = lazyMessages('messages', params.name)
+      .subscribe((list: MessageType[]) => {
+        setMessages(list)
+      })
 
     const auth = firebaseApp.auth()
     const loggedIn$ = authState(auth).pipe(filter(user => !!user));
     loggedIn$.subscribe(user => { setUser(user) });
 
+    return () => sub.unsubscribe()
   }, [])
 
   const handleChangeText = (value: string) => {
@@ -67,15 +79,14 @@ const Messages = ({}: TableOrderModel) => {
   }
 
   const sendMessage = () => {
-    const ref = firebaseApp.database().ref('messages')
     const data = {
       message,
-      created: moment().format('DD-MM-YYYY'),
+      created: moment().toISOString(),
       time: moment().format('hh:mm'),
-      user: user.email
+      sendTo: params.name,
     }
-    ref.push(data);
     setMessage('')
+    addMessage('messages', data).subscribe()
   }
 
   return (

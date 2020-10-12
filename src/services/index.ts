@@ -1,8 +1,13 @@
 import firebase from 'firebase/app'
+import { combineLatest, of } from 'rxjs'
+import { mergeMap, map, filter } from 'rxjs/operators'
 
 // Optionally import the services that you want to use
 import 'firebase/auth'
 import 'firebase/database'
+import 'firebase/firestore'
+import { collectionData } from 'rxfire/firestore'
+import { authState } from 'rxfire/auth'
 
 // Initialize Firebase
 export const firebaseConfig = {
@@ -27,6 +32,39 @@ export const loginAuth = (userName: string, password: string) => {
     .then((result) => {
       console.log(result)
     })
+}
+
+export const lazyMessages = (collectionName: string, query: string) => {
+  const fireStore$ = of(firebaseApp.firestore())
+  const user$ = authState(firebaseApp.auth()).pipe(filter((user) => !!user))
+  return combineLatest(fireStore$, user$).pipe(
+    mergeMap(([storeData, user]) => {
+      const ref = storeData
+        .collection(collectionName)
+        .where('thread', 'in', [
+          `${user.email}-${query}`,
+          `${query}-${user.email}`,
+        ])
+        .orderBy('created', 'asc')
+      return collectionData(ref, 'id')
+    })
+  )
+}
+
+export const addMessage = (collectionName: string, data: any) => {
+  const user$ = authState(firebaseApp.auth()).pipe(filter((user) => !!user))
+  const fireStore$ = of(firebaseApp.firestore())
+  return combineLatest(fireStore$, user$).pipe(
+    map(([storeData, user]) => {
+      const dataUpdate = {
+        ...data,
+        user: user.email,
+        thread: `${user.email}-${data.sendTo}`,
+      }
+
+      return storeData.collection(collectionName).add(dataUpdate)
+    })
+  )
 }
 
 export default firebaseApp
