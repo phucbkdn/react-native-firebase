@@ -6,11 +6,11 @@ module.exports = {
   preset: "react-native",
   setupFiles: [
       "<rootDir>/node_modules/react-native/jest/setup.js",
-      "<rootDir>/test/setup.ts",
+      "<rootDir>/src/test/setup.ts",
       "<rootDir>/setupTest.ts",
       "<rootDir>/node_modules/react-native-gesture-handler/jestSetup.js"
     ],
-  setupFilesAfterEnv: ["<rootDir>/test/timeout.ts",],
+  setupFilesAfterEnv: ["<rootDir>/src/test/timeout.ts",],
   testPathIgnorePatterns: [
     "<rootDir>/node_modules/",
     "<rootDir>/e2e"
@@ -22,7 +22,7 @@ module.exports = {
     '**/*.{js,jsx,ts,tsx}',
     '!<rootDir>/setupTests.ts',
     '!<rootDir>/coverage/**/*.js',
-    '!<rootDir>/test/*.ts',
+    '!<rootDir>/src/test/*.ts',
     '!<rootDir>/app/**/*.story.tsx',
   ],
   timers: "fake",

@@ -2,11 +2,11 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as Notifications from 'expo-notifications';
-import useCachedResources from './hooks/useCachedResources';
-import useColorScheme from './hooks/useColorScheme';
-import Navigation from './navigation';
-import { Provide, createState } from './state/RXState'
-import reducer$ from './reducers'
+import useCachedResources from './src/hooks/useCachedResources';
+import useColorScheme from './src/hooks/useColorScheme';
+import Navigation from './src/navigation';
+import { Provide, createState } from './src/state/RXState'
+import reducer$ from './src/reducers'
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
