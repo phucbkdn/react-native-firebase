@@ -22,12 +22,12 @@ export const messageStyles = {
     paddingLeft: 20,
   } as TextStyle,
   primary: {
-    backgroundColor: color.primary,
+    backgroundColor: '#cdd4da',
     borderTopLeftRadius: 5,
     borderBottomLeftRadius: 5,
   } as ViewStyle,
   secondary: {
-    backgroundColor: '#cdd4da',
+    backgroundColor: color.primary,
     borderTopEndRadius: 5,
     borderBottomEndRadius: 5,
   } as ViewStyle,

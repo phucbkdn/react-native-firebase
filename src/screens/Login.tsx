@@ -6,8 +6,10 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-  ImageResizeMode
+  ImageResizeMode,
+  Alert
 } from 'react-native'
+import { useNavigation, NavigationProp } from '@react-navigation/native'
 import { Screen } from '../components/screen/screen'
 import { loginStyles } from './styles/Login.styles'
 import { images } from '../themes'
@@ -22,6 +24,7 @@ interface AuthForm {
 }
 
 const Login = () => {
+  const navigation = useNavigation()
   const [authForm, setAuthForm] =  useState<AuthForm>({
     userName: '',
     password: '',
@@ -35,8 +38,12 @@ const Login = () => {
   }
 
   const loginGoogle = () => {
+
     firebase.auth().signInWithEmailAndPassword(authForm.userName, authForm.password).then(result => {
-      console.log(result)
+      navigation.navigate('primaryStack')
+    })
+    .catch(e => {
+      Alert.alert('Error', e.message)
     })
   }
 

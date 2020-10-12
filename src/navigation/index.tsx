@@ -6,7 +6,7 @@ import { ColorSchemeName } from 'react-native';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import TableOrder from '../screens/TableOrder';
 import LoginScreen from '../screens/Login';
-import { RootStackParamList } from '../types';
+import { RootStackParamList } from '../../types';
 import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 import DrawerScreen from './DrawerNavigator'
@@ -28,9 +28,9 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 // Read more here: https://reactnavigation.org/docs/modal
 const Stack = createStackNavigator<RootStackParamList>();
 
-function RootNavigator() {
+function RootNavigator({param}) {
   return (
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator>
         <Stack.Screen name="Root" component={LoginScreen} />
         <Stack.Screen
           name="primaryStack"
