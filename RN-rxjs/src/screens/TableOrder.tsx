@@ -13,7 +13,7 @@ import { createOrder } from '../streams/orders'
 import { CategoryModel } from '../models'
 import { color } from '../themes'
 import { tableOrderStyles } from './styles/TableOrder.styles'
-import { RootStackParamList } from '../types'
+import { RootStackParamList } from '../../types'
 
 // Components
 import Discount from '../components/Discount'
