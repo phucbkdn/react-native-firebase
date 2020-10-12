@@ -8,8 +8,8 @@
     "eject": "expo eject",
     "test": "jest --config=jest.config.js",
     "test:coverage": "yarn test --coverage",
-    "prettier": "prettier --write **/*.{js,ts,tsx}",
-    "eslint": "eslint **/*.{js,ts,tsx}"
+    "prettier": "prettier --write src/**/*.{js,ts,tsx}",
+    "eslint": "eslint src/**/*.{js,ts,tsx}"
   },
   "jest": {
     "preset": "jest-expo"
@@ -60,12 +60,17 @@
     "@types/react": "~16.9.35",
     "@types/react-native": "~0.63.2",
     "@types/react-test-renderer": "^16.9.3",
+    "babel-eslint": "^10.1.0",
     "babel-jest": "^26.5.2",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "eslint": "^7.10.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.4",
     "husky": "^4.3.0",
     "jest-expo": "~39.0.0",
     "lint-staged": "^10.4.0",
@@ -80,13 +85,12 @@
     }
   },
   "lint-staged": {
-    "**/*.{ts, tsx}": [
+    "src/**/*.{ts, tsx}": [
       "prettier --write",
       "git add"
     ],
-    "/**/*.{ts,tsx}": [
+    "src/**/*.{ts,tsx}": [
       "prettier --write",
-      "eslint --fix",
       "git add"
     ]
   }
