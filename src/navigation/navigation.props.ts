@@ -7,9 +7,6 @@ export type RootParamList = {
 }
 
 export type NavigationType = {
-  /**
-   * recipe id
-   */
   TableOrder: {
     id: string
   }

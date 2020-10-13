@@ -18,9 +18,13 @@ export type OrderType = {
   _key: string
 }
 
+export type UserState = 'online' | 'offline'
+
 export interface User {
-  uid: string
+  id: string
   email: string
+  last_changed: string
+  state: UserState
 }
 
 export interface MessageType {

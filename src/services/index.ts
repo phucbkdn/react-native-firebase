@@ -37,7 +37,7 @@ export const loginAuth = (userName: string, password: string) => {
 export const lazyMessages = (collectionName: string, query: string) => {
   const fireStore$ = of(firebaseApp.firestore())
   const user$ = authState(firebaseApp.auth()).pipe(filter((user) => !!user))
-  return combineLatest(fireStore$, user$).pipe(
+  return combineLatest([fireStore$, user$]).pipe(
     mergeMap(([storeData, user]) => {
       const ref = storeData
         .collection(collectionName)
