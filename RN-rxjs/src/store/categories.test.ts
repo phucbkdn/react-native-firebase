@@ -24,7 +24,6 @@ describe('Testing users store', () => {
   test('Handle action discount', (done) => {
     categoriesStore.discount(10)
     store.subscribe((it) => {
-      console.log(it)
       expect(it.discount).toEqual(10)
     })
     done()

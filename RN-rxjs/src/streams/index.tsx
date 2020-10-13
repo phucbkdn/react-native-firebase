@@ -1,26 +1,27 @@
 import React from 'react'
 
 export type StreamProps = {
-  observable: Record<string, any>;
-  triggers: Record<string, any>;
-  initialState: Record<string, any>;
-};
+  observable: Record<string, any>
+  triggers: Record<string, any>
+  initialState: Record<string, any>
+}
 
-const withObservableStream = (
-  observable,
-  triggers,
-  initState,
-) => Component=> {
+const withObservableStream = (observable, triggers, initState) => (
+  Component
+) => {
   return class extends React.Component {
+    subscription: any
     constructor(props) {
       super(props)
       this.state = {
-        ...initState
+        ...initState,
       }
     }
 
     componentDidMount() {
-      this.subscription = observable.subscribe((newState: any) => this.setState({...newState }))
+      this.subscription = observable.subscribe((newState: any) =>
+        this.setState({ ...newState })
+      )
     }
 
     componentWillUnMount() {
@@ -28,9 +29,7 @@ const withObservableStream = (
     }
 
     render() {
-      return (
-        <Component {...this.props} {...this.state} {...triggers} />
-      );
+      return <Component {...this.props} {...this.state} {...triggers} />
     }
   }
 }
