@@ -22,7 +22,7 @@ type StateType = {
 
 const categoriesService = new (class CategoriesService {
   // Type
-  store: Subscription
+  store: any
   dispatcher: any
 
   static DECR = 'DECR'
@@ -72,11 +72,11 @@ const categoriesService = new (class CategoriesService {
   }
 
   decr(id: string) {
-    this.dispatcher.next({ type: CategoriesService.INCR, value: id })
+    this.dispatcher.next({ type: CategoriesService.DECR, value: id })
   }
 
   incr(id: string) {
-    this.dispatcher.next({ type: CategoriesService.DECR, value: id })
+    this.dispatcher.next({ type: CategoriesService.INCR, value: id })
   }
 
   discount(value: number) {
@@ -105,10 +105,6 @@ const categoriesService = new (class CategoriesService {
           value: list,
         })
       })
-  }
-
-  unSubscribe() {
-    this.store.unsubscribe()
   }
 
   getStore() {
