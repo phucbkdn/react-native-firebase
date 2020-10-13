@@ -3,8 +3,6 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Text, TouchableOpacity, View, TextInput, FlatList } from 'react-native'
 import moment from 'moment'
 import { FontAwesome } from '@expo/vector-icons'
-import { connect } from '../state/RXState'
-import { counterActions } from '../reducers/categories'
 import firebaseApp, { lazyMessages, addMessage } from '../services'
 import { filter } from 'rxjs/operators'
 import { authState } from 'rxfire/auth'
@@ -116,10 +114,4 @@ const Messages = () => {
   )
 }
 
-export default connect(
-  ({ counter = {} }) => ({
-    categories: counter ? counter.categories : [],
-    discount: counter.discount,
-  }),
-  counterActions
-)(Messages)
+export default Messages

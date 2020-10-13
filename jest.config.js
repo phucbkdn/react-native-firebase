@@ -3,7 +3,7 @@
 
 module.exports = {
   coverageDirectory: 'coverage',
-  preset: 'react-native',
+  preset: 'jest-expo',
   setupFiles: [
     '<rootDir>/node_modules/react-native/jest/setup.js',
     '<rootDir>/src/test/setup.ts',
@@ -13,7 +13,7 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/src/test/timeout.ts'],
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/e2e'],
   transformIgnorePatterns: [
-    '<rootDir>/node_modules/(?!(jest-)?react-native|react-native|@react-navigation|@storybook|@react-native-community)',
+    'node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|sentry-expo|native-base|react-native-svg)',
   ],
   collectCoverageFrom: [
     'src/**/*.{js,jsx,ts,tsx}',
