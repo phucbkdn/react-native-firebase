@@ -3,17 +3,17 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Text, TouchableOpacity, View, TextInput, FlatList } from 'react-native'
 import moment from 'moment'
 import { FontAwesome } from '@expo/vector-icons'
-import { connect } from 'state/RXState'
-import { counterActions } from 'reducers/categories'
-import firebaseApp, { lazyMessages, addMessage } from 'services'
+import { connect } from '../state/RXState'
+import { counterActions } from '../reducers/categories'
+import firebaseApp, { lazyMessages, addMessage } from '../services'
 import { filter } from 'rxjs/operators'
 import { authState } from 'rxfire/auth'
 import { useRoute } from '@react-navigation/native'
 
 // Helpers
-import { color } from 'themes'
-import { messagesStyles } from 'screens/styles/Messages.styles'
-import { User, MessageType } from 'models'
+import { color } from '../themes'
+import { messagesStyles } from './styles/Messages.styles'
+import { User, MessageType } from '../models'
 
 // Components
 import { Screen } from '../components/screen/screen'
@@ -83,7 +83,6 @@ const Messages = () => {
         preset="fixed"
         backgroundColor={color.transparent}
       >
-        <Text style={messagesStyles.title}>{params.name}</Text>
         <FlatList
           ref={flatList}
           onContentSizeChange={() =>

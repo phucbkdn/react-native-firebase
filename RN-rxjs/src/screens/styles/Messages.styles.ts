@@ -1,11 +1,9 @@
-import { TextStyle, ViewStyle, StatusBar } from 'react-native'
-import { color, spacing } from '../../themes'
+import { TextStyle, ViewStyle } from 'react-native'
+import { color } from '../../themes'
 
 export const messagesStyles = {
   container: {
     flex: 1,
-    // backgroundColor: '#fff',
-    paddingTop: 10,
   } as ViewStyle,
   title: {
     fontSize: 20,
@@ -30,6 +28,6 @@ export const messagesStyles = {
     margin: 10,
   } as ViewStyle,
   screen: {
-    // backgroundColor: color.transparent,
+    flex: 1,
   } as ViewStyle,
 }
