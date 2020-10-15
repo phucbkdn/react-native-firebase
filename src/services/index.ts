@@ -22,18 +22,6 @@ export const firebaseConfig = {
 
 const firebaseApp = firebase.apps[0] || firebase.initializeApp(firebaseConfig)
 
-/**
- * Auth provider
- */
-export const loginAuth = (userName: string, password: string) => {
-  firebase
-    .auth()
-    .signInWithEmailAndPassword(userName, password)
-    .then((result) => {
-      console.log(result)
-    })
-}
-
 export const lazyMessages = (collectionName: string, query: string) => {
   const fireStore$ = of(firebaseApp.firestore())
   const user$ = authState(firebaseApp.auth()).pipe(filter((user) => !!user))
