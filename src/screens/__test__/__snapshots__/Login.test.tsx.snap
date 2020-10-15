@@ -121,7 +121,7 @@ exports[`Testing Messages screen Render correct component 1`] = `
                   }
                 }
               >
-                MockedScreen
+                Root
               </Text>
             </View>
           </View>
