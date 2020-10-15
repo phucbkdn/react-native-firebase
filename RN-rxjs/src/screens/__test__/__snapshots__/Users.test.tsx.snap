@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Testing Messages screen Render correct component 1`] = `
+exports[`Testing Users screen Render correct component 1`] = `
 <View
   style={
     Object {
@@ -327,6 +327,37 @@ exports[`Testing Messages screen Render correct component 1`] = `
                             ]
                           }
                         >
+                          <Text
+                            style={
+                              Object {
+                                "fontSize": 20,
+                                "fontWeight": "bold",
+                                "textAlign": "center",
+                              }
+                            }
+                          >
+                            Chat App
+                          </Text>
+                          <View
+                            accessible={true}
+                            focusable={true}
+                            onClick={[Function]}
+                            onResponderGrant={[Function]}
+                            onResponderMove={[Function]}
+                            onResponderRelease={[Function]}
+                            onResponderTerminate={[Function]}
+                            onResponderTerminationRequest={[Function]}
+                            onStartShouldSetResponder={[Function]}
+                            style={
+                              Object {
+                                "opacity": 1,
+                              }
+                            }
+                          >
+                            <Text>
+                              Logout
+                            </Text>
+                          </View>
                           <RCTScrollView
                             data={Array []}
                             disableVirtualization={false}
@@ -353,56 +384,6 @@ exports[`Testing Messages screen Render correct component 1`] = `
                           >
                             <View />
                           </RCTScrollView>
-                          <View
-                            style={
-                              Object {
-                                "alignItems": "flex-end",
-                                "flexDirection": "row",
-                                "margin": 10,
-                                "paddingBottom": 20,
-                              }
-                            }
-                          >
-                            <TextInput
-                              allowFontScaling={true}
-                              keyboardType="ascii-capable"
-                              onChangeText={[Function]}
-                              rejectResponderTermination={true}
-                              style={
-                                Object {
-                                  "backgroundColor": "rgba(0, 0, 0, 0)",
-                                  "borderBottomColor": "red",
-                                  "borderBottomWidth": 2,
-                                  "color": "#939aa4",
-                                  "fontSize": 20,
-                                  "height": 40,
-                                  "marginRight": 20,
-                                  "paddingLeft": 5,
-                                  "width": "80%",
-                                }
-                              }
-                              underlineColorAndroid="transparent"
-                              value=""
-                            />
-                            <View
-                              accessible={true}
-                              focusable={true}
-                              onClick={[Function]}
-                              onResponderGrant={[Function]}
-                              onResponderMove={[Function]}
-                              onResponderRelease={[Function]}
-                              onResponderTerminate={[Function]}
-                              onResponderTerminationRequest={[Function]}
-                              onStartShouldSetResponder={[Function]}
-                              style={
-                                Object {
-                                  "opacity": 1,
-                                }
-                              }
-                            >
-                              <Text />
-                            </View>
-                          </View>
                         </View>
                       </View>
                     </View>

@@ -8,7 +8,7 @@ const MockedNavigator = ({ component, params = {} }) => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="MockedScreen"
+          name="Root"
           component={component}
           initialParams={params}
         />
