@@ -47,6 +47,7 @@ const Login = () => {
         setLoading(false)
       })
       .catch((e) => {
+        setLoading(false)
         Alert.alert('Error', e.message)
       })
   }
