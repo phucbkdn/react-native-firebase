@@ -1,34 +1,38 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
+import { LogBox } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import * as Notifications from 'expo-notifications';
+import {
+  setNotificationHandler,
+  addNotificationResponseReceivedListener
+} from 'expo-notifications';
 import useCachedResources from './src/hooks/useCachedResources';
 import useColorScheme from './src/hooks/useColorScheme';
 import Navigation from './src/navigation';
 import { Provide, createState } from './src/state/RXState'
+import { AuthProvider } from './src/provider'
 import reducer$ from './src/reducers'
 
-Notifications.setNotificationHandler({
+setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
-    shouldPlaySound: false,
-    shouldSetBadge: false,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
   }),
-});
+})
+
+LogBox.ignoreLogs(['Setting a timer'])
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
 
   useEffect(() => {
-    Notifications.addNotificationResponseReceivedListener(_handleNotificationResponse);
+    addNotificationResponseReceivedListener(_handleNotificationResponse);
   }, [])
-  // const _handleNotification = notification => {
-  //   this.setState({ notification: notification });
-  //   };
 
   const _handleNotificationResponse = response => {
-    console.log(response);
+    console.log('Notifications:', response);
     };
   if (!isLoadingComplete) {
     return null;
@@ -36,8 +40,10 @@ export default function App() {
     return (
       <SafeAreaProvider>
         <Provide state$={createState(reducer$)}>
-          <Navigation colorScheme={colorScheme} />
+          <AuthProvider>
+            <Navigation colorScheme={colorScheme} />
           <StatusBar />
+          </AuthProvider>
         </Provide>
 
       </SafeAreaProvider>

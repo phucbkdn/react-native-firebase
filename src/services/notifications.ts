@@ -1,21 +1,11 @@
 import Constants from 'expo-constants'
 import {
-  setNotificationHandler,
   getExpoPushTokenAsync,
   setNotificationChannelAsync,
   AndroidImportance,
 } from 'expo-notifications'
 import { getAsync, askAsync, NOTIFICATIONS } from 'expo-permissions'
 import { Platform } from 'react-native'
-
-// Set notification handler
-setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: true,
-    shouldSetBadge: true,
-  }),
-})
 
 export interface IPushNotification {
   to: string
@@ -51,7 +41,7 @@ export const sendPushNotification = async ({
   })
 }
 
-export const registerForPushNotificationAsync = async (): Promise<
+export const registerForPushNotificationsAsync = async (): Promise<
   string | undefined
 > => {
   let token
