@@ -1,4 +1,4 @@
-import firebase from 'firebase/app'
+import firebase, { auth } from 'firebase/app'
 import { combineLatest, of } from 'rxjs'
 import { mergeMap, map, filter } from 'rxjs/operators'
 
@@ -7,7 +7,7 @@ import 'firebase/auth'
 import 'firebase/database'
 import 'firebase/firestore'
 import { collectionData } from 'rxfire/firestore'
-import { authState } from 'rxfire/auth'
+import { authState, idToken } from 'rxfire/auth'
 
 // Initialize Firebase
 export const firebaseConfig = {
@@ -22,8 +22,10 @@ export const firebaseConfig = {
 
 const firebaseApp = firebase.apps[0] || firebase.initializeApp(firebaseConfig)
 
+export const db = firebaseApp.firestore()
+
 export const lazyMessages = (collectionName: string, query: string) => {
-  const fireStore$ = of(firebaseApp.firestore())
+  const fireStore$ = of(db)
   const user$ = authState(firebaseApp.auth()).pipe(filter((user) => !!user))
   return combineLatest([fireStore$, user$]).pipe(
     mergeMap(([storeData, user]) => {
@@ -41,7 +43,7 @@ export const lazyMessages = (collectionName: string, query: string) => {
 
 export const addMessage = (collectionName: string, data: any) => {
   const user$ = authState(firebaseApp.auth()).pipe(filter((user) => !!user))
-  const fireStore$ = of(firebaseApp.firestore())
+  const fireStore$ = of(db)
   return combineLatest(fireStore$, user$).pipe(
     map(([storeData, user]) => {
       const dataUpdate = {
@@ -53,6 +55,56 @@ export const addMessage = (collectionName: string, data: any) => {
       return storeData.collection(collectionName).add(dataUpdate)
     })
   )
+}
+
+export const saveExpoPushToken = (token: string | undefined) => {
+  if (!token) {
+    return
+  }
+
+  db.collection('private')
+    .doc(firebaseApp.auth().currentUser?.uid)
+    .withConverter(privateConverter)
+    .get()
+    .then((doc) => {
+      if (!doc.exists || !doc.data()?.ExpoPushToken?.includes(token)) {
+        db.collection('private')
+          .doc(firebaseApp.auth().currentUser?.uid)
+          .set({
+            ExpoPushToken: [...(doc.data()?.ExpoPushToken || []), token],
+          })
+      }
+    })
+}
+
+export const uploadAvatar = (
+  file: Blob,
+  fileName: string,
+  cb: (User: firebase.User) => void
+) => {}
+
+export const logout = () => firebaseApp.auth().signOut()
+
+interface priv {
+  ExpoPushToken: string[]
+}
+
+// Firestore data converter
+const privateConverter = {
+  toFirestore({ ExpoPushToken }: priv): firebase.firestore.DocumentData {
+    return {
+      ExpoPushToken,
+    }
+  },
+  fromFirestore(
+    snapshot: firebase.firestore.QueryDocumentSnapshot,
+    options: firebase.firestore.SnapshotOptions
+  ): priv {
+    const { ExpoPushToken } = snapshot.data(options)
+    return {
+      ExpoPushToken,
+    }
+  },
 }
 
 export default firebaseApp

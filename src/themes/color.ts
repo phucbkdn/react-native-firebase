@@ -64,4 +64,7 @@ export const color = {
   black: palette.black,
   while: palette.white,
   yellow: palette.yellow,
+  gallery: palette.gallery,
+  azureRadiance: palette.azureRadiance,
+  grayNurse: palette.grayNurse,
 }
