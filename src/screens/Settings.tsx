@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useCallback, FC } from 'react'
-import { View, Text, ScrollView, Switch } from 'react-native'
+import { View, Text, Switch } from 'react-native'
 import { Avatar, ListItem } from 'react-native-elements'
 
 import * as ImagePicker from 'expo-image-picker'
@@ -14,6 +14,7 @@ import useStatusBar from '../hooks/useStatusBar'
 import { logout, uploadAvatar, saveExpoPushToken } from '../services'
 import { AuthUserContext } from '../provider'
 import BaseIcon from '../components/Icon'
+import Indicator from '../components/IndicatorBackdrop'
 import { settingsStyles } from './styles/Settings.styles'
 
 const Settings: FC = () => {
@@ -21,7 +22,7 @@ const Settings: FC = () => {
 
   const [expoPushToken, setExpoPushToken] = useState('')
   const { user, setUser } = useContext(AuthUserContext)
-
+  const [loading, setLoading] = useState<boolean>(false)
   const [, updateState] = useState()
   const forceUpdate = useCallback(() => updateState({}), [])
 
@@ -61,20 +62,23 @@ const Settings: FC = () => {
         aspect: [1, 1],
         quality: 0.8,
       })
+
       if (!result.cancelled) {
+        setLoading(true)
         const response = await fetch(result.uri)
         const blob = await response.blob()
-
         uploadAvatar(blob, result.uri, (new_user) => {
           setUser(new_user)
           forceUpdate()
+          setLoading(false)
         })
       }
     } catch {}
   }
 
   return (
-    <ScrollView style={settingsStyles.scroll}>
+    <View style={settingsStyles.scroll}>
+      {loading && <Indicator />}
       <View style={settingsStyles.userRow}>
         <View style={settingsStyles.userImage}>
           <Avatar
@@ -156,7 +160,7 @@ const Settings: FC = () => {
           </ListItem.Content>
         </ListItem>
       </View>
-    </ScrollView>
+    </View>
   )
 }
 

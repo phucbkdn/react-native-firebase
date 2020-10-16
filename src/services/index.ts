@@ -1,13 +1,17 @@
-import firebase, { auth } from 'firebase/app'
+import firebase from 'firebase/app'
 import { combineLatest, of } from 'rxjs'
 import { mergeMap, map, filter } from 'rxjs/operators'
+import { extname } from 'path'
 
 // Optionally import the services that you want to use
 import 'firebase/auth'
 import 'firebase/database'
 import 'firebase/firestore'
+import 'firebase/storage'
+
 import { collectionData } from 'rxfire/firestore'
-import { authState, idToken } from 'rxfire/auth'
+import { authState } from 'rxfire/auth'
+import { fromTask, getDownloadURL } from 'rxfire/storage'
 
 // Initialize Firebase
 export const firebaseConfig = {
@@ -44,7 +48,7 @@ export const lazyMessages = (collectionName: string, query: string) => {
 export const addMessage = (collectionName: string, data: any) => {
   const user$ = authState(firebaseApp.auth()).pipe(filter((user) => !!user))
   const fireStore$ = of(db)
-  return combineLatest(fireStore$, user$).pipe(
+  return combineLatest([fireStore$, user$]).pipe(
     map(([storeData, user]) => {
       const dataUpdate = {
         ...data,
@@ -80,8 +84,27 @@ export const saveExpoPushToken = (token: string | undefined) => {
 export const uploadAvatar = (
   file: Blob,
   fileName: string,
-  cb: (User: firebase.User) => void
-) => {}
+  cb: (User: firebase.User | null) => void
+) => {
+  const storageRef = firebaseApp
+    .storage()
+    .ref('avatar/' + firebaseApp.auth().currentUser?.uid + extname(fileName))
+
+  const task = storageRef.put(file, { cacheControl: 'public,max-age=86400' })
+
+  fromTask(task).subscribe((snap) => {
+    getDownloadURL(snap.ref).subscribe((url) => {
+      firebaseApp
+        .auth()
+        .currentUser?.updateProfile({
+          photoURL: url,
+        })
+        .then(() => {
+          if (firebaseApp.auth().currentUser) cb(firebaseApp.auth().currentUser)
+        })
+    })
+  })
+}
 
 export const logout = () => firebaseApp.auth().signOut()
 

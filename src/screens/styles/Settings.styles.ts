@@ -1,10 +1,12 @@
 import { TextStyle, ViewStyle, StatusBar } from 'react-native'
-import { color } from '../../themes'
+import { color, height } from '../../themes'
 
 export const settingsStyles = {
   scroll: {
+    flex: 1,
     backgroundColor: 'white',
     marginTop: StatusBar.currentHeight || 0,
+    height: height,
   } as ViewStyle,
   userRow: {
     alignItems: 'center',
