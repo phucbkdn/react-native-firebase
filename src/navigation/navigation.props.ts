@@ -14,6 +14,10 @@ export type NavigationType = {
   recipes: {
     name: string
   }
+  Messages: {
+    id: string
+    name: string
+  }
 }
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootParamList, 'login'>

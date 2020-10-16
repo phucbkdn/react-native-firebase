@@ -33,3 +33,13 @@ export interface MessageType {
   time: string
   user: string
 }
+
+export type RootStackParamList = {
+  primaryStack: undefined
+  Root: undefined
+  NotFound: undefined
+  TableOrder: undefined
+  BottomTabNavigator: undefined
+  Messages: undefined
+  Login: undefined
+}

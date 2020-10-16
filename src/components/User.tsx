@@ -23,8 +23,12 @@ export const User: FC<Props> = memo(({ name, active, id }: Props) => {
   }
 
   return (
-    <View style={userStyles.wrapper}>
-      <TouchableOpacity onPress={navigateRecipeScreen} key={id}>
+    <View>
+      <TouchableOpacity
+        style={userStyles.wrapper}
+        onPress={navigateRecipeScreen}
+        key={id}
+      >
         <FontAwesome
           size={30}
           style={{ marginBottom: -3, color: active ? 'green' : 'gray' }}

@@ -1,18 +1,21 @@
 import { TextStyle, ViewStyle } from 'react-native'
-import { color } from '../../themes'
+import { color, width } from '../../themes'
 
 export const userStyles = {
   wrapper: {
     flexDirection: 'row',
     paddingBottom: 20,
-    alignItems: 'flex-end',
+    alignItems: 'center',
     margin: 10,
+    width: width,
+    flex: 1,
   } as ViewStyle,
   textStyle: {
     color: color.text,
     fontSize: 11,
     lineHeight: 13,
     textTransform: 'capitalize',
-    paddingBottom: 15,
+    paddingLeft: 15,
+    width: (width * 3) / 4,
   } as TextStyle,
 }
