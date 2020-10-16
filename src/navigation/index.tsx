@@ -127,7 +127,7 @@ const RootNavigator = () => {
       }
     })
 
-    // return () => sub.unsubscribe()
+    return () => sub.unsubscribe()
   }, [])
 
   if (waitAuthCheck) {
