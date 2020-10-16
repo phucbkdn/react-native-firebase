@@ -14,4 +14,7 @@ export const palette = {
   gray: '#f6f6f6',
   yellow: '#f8b601',
   halfShuttle: 'rgba(87, 107, 120, 0.5)',
+  gallery: '#ececec',
+  azureRadiance: '#007aff',
+  grayNurse: '#f4f5f4',
 }
