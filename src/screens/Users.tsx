@@ -1,17 +1,17 @@
-import React, { FC, useState, useEffect } from 'react'
-import { View, Text, FlatList, TouchableOpacity, Alert } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
-import firebaseApp from '../services'
-import { messagesStyles } from './styles/Messages.styles'
+import React, { FC, useState, useEffect, useContext } from 'react'
+import { View, Text, FlatList } from 'react-native'
+import { Avatar } from 'react-native-elements'
+import { usersStyles } from './styles/Users.styles'
 import { Screen } from '../components/screen/screen'
 import { color } from '../themes'
 import { User } from '../components/User'
 import usersStore from '../store/users'
 import { User as UserType } from '../models'
+import { AuthUserContext } from '../provider'
 
 const Users: FC = () => {
   const [users, setUsers] = useState<UserType[]>([])
-  const navigation = useNavigation()
+  const { user } = useContext(AuthUserContext)
 
   useEffect(() => {
     const sub = usersStore.getStore().subscribe((it) => {
@@ -22,30 +22,37 @@ const Users: FC = () => {
     return () => sub.unsubscribe()
   }, [])
 
-  const handleLogout = () => {
-    firebaseApp
-      .auth()
-      .signOut()
-      .then(() => {
-        console.log('Sign-out successful.')
-        navigation.navigate('Root')
-      })
-      .catch((err) => {
-        Alert.alert('Error', err.message)
-      })
-  }
-
   return (
-    <View style={messagesStyles.container}>
+    <View style={usersStyles.container}>
       <Screen
-        style={messagesStyles.screen}
+        style={usersStyles.screen}
         preset="fixed"
         backgroundColor={color.transparent}
       >
-        <Text style={messagesStyles.title}>Chat App</Text>
-        <TouchableOpacity onPress={handleLogout}>
-          <Text>Logout</Text>
-        </TouchableOpacity>
+        <View style={usersStyles.userRow}>
+          <View style={usersStyles.userImage}>
+            <Avatar
+              rounded
+              size="large"
+              source={{
+                uri:
+                  user?.photoURL ??
+                  'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
+              }}
+            />
+          </View>
+          <View>
+            <Text style={{ fontSize: 16 }}>{user?.displayName}</Text>
+            <Text
+              style={{
+                color: 'gray',
+                fontSize: 16,
+              }}
+            >
+              {user?.email}
+            </Text>
+          </View>
+        </View>
         <FlatList
           data={users}
           renderItem={({ item }) => (

@@ -1,6 +1,6 @@
 // Libs
 import React, { useState, useEffect, useRef } from 'react'
-import { Text, TouchableOpacity, View, TextInput, FlatList } from 'react-native'
+import { TouchableOpacity, View, TextInput, FlatList } from 'react-native'
 import moment from 'moment'
 import { FontAwesome } from '@expo/vector-icons'
 import firebaseApp, { lazyMessages, addMessage } from '../services'
