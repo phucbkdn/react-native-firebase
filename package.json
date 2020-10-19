@@ -9,13 +9,16 @@
     "test": "jest --config=jest.config.js",
     "test:coverage": "yarn test --coverage",
     "prettier": "prettier --write src/**/*.{js,ts,tsx}",
-    "eslint": "eslint src/**/*.{js,ts,tsx}"
+    "eslint": "eslint src/**/*.{js,ts,tsx}",
+    "firebase": "firebase emulators:start --only firestore"
   },
   "jest": {
     "preset": "jest-expo"
   },
   "dependencies": {
     "@expo/vector-icons": "^10.0.0",
+    "@firebase/rules-unit-testing": "^1.0.8",
+    "@firebase/testing": "^0.20.11",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/bottom-tabs": "^5.8.0",
     "@react-navigation/drawer": "^5.9.2",
@@ -36,6 +39,7 @@
     "expo-status-bar": "~1.0.2",
     "expo-web-browser": "~8.5.0",
     "firebase": "7.9.0",
+    "firebase-admin": "^9.2.0",
     "moment": "^2.29.0",
     "path": "^0.12.7",
     "ramda": "^0.27.1",
