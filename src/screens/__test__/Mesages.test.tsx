@@ -3,7 +3,7 @@ import Messages from '../Messages'
 import renderer from 'react-test-renderer'
 import { TextInput, TouchableOpacity } from 'react-native'
 import MockedNavigator from '../../test/mock-navigator'
-import { setupFirebaseUnitTest } from '../../test/setupTest'
+import { setupFirebaseUnitTest } from '../../test/setupFirebaseTest'
 
 const { adminDB } = setupFirebaseUnitTest()
 
