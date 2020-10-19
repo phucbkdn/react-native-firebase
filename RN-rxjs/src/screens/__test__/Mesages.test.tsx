@@ -3,12 +3,20 @@ import Messages from '../Messages'
 import renderer from 'react-test-renderer'
 import { TextInput, TouchableOpacity } from 'react-native'
 import MockedNavigator from '../../test/mock-navigator'
+import { setupFirebaseUnitTest } from '../../test/setupTest'
+
+const { adminDB } = setupFirebaseUnitTest()
 
 describe('Testing Messages screen', () => {
   const Component = () => <Messages />
   const wrapper = renderer.create(<MockedNavigator component={Component} />)
   test('Render correct component', async () => {
-    expect(wrapper).toMatchSnapshot()
+    await adminDB.collection('messages').add({
+      message: 'hello',
+      sendTo: 'test@gmail.com',
+    })
+    const render = renderer.create(<MockedNavigator component={Component} />)
+    expect(render).toMatchSnapshot()
   })
 
   test('Render send message', () => {
