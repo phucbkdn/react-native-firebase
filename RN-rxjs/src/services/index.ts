@@ -4,11 +4,13 @@ import { mergeMap, map, filter } from 'rxjs/operators'
 import { extname } from 'path'
 
 // Optionally import the services that you want to use
+import 'firebase/firestore'
 import 'firebase/auth'
 import 'firebase/database'
-import 'firebase/firestore'
+import 'firebase/functions'
 import 'firebase/storage'
-
+import 'firebase/remote-config'
+// import * as admin from 'firebase-admin'
 import { collectionData } from 'rxfire/firestore'
 import { authState } from 'rxfire/auth'
 import { fromTask, getDownloadURL } from 'rxfire/storage'
@@ -27,6 +29,23 @@ export const firebaseConfig = {
 const firebaseApp = firebase.apps[0] || firebase.initializeApp(firebaseConfig)
 
 export const db = firebaseApp.firestore()
+
+export const firestore = () => firebaseApp.firestore()
+export type Query = firebase.firestore.Query
+export const auth = firebaseApp.auth()
+export const functions = firebaseApp.functions()
+export const storage = firebaseApp.storage()
+export const remoteConfig = firebaseApp.remoteConfig()
+// export const serverNow = firebaseApp.firestore.FieldValue.serverTimestamp();
+// export const clientNow = firebaseApp.firestore.Timestamp.now();
+// export const StringFormat = firebaseApp.storage.StringFormat;
+
+if (location.hostname === 'localhost') {
+  db.settings({
+    host: 'localhost:8080',
+    ssl: false,
+  })
+}
 
 export const lazyMessages = (collectionName: string, query: string) => {
   const fireStore$ = of(db)
