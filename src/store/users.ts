@@ -1,10 +1,11 @@
 import { BehaviorSubject, combineLatest } from 'rxjs'
 import { scan, filter } from 'rxjs/operators'
 import { authState } from 'rxfire/auth'
+import { of } from 'rxjs'
+import { mergeMap } from 'rxjs/operators'
 import { collectionData } from 'rxfire/firestore'
-import firebase, { db } from '../services/firebaseAccess'
+import { db } from '../services/firebaseAccess'
 import { User } from '../models'
-jest.mock('../services/firebaseAccess')
 interface ActionType {
   type: string
   payload: any
@@ -57,15 +58,10 @@ const usersStore = new (class UsersStore {
 
   init() {
     const ref = db.collection('users')
-    const user$ = authState(firebase.auth()).pipe(filter((t) => !!t))
-
-    const users$ = collectionData(ref, 'id')
-
-    combineLatest([users$, user$]).subscribe(([items, item]) => {
-      const result = items.filter((t) => t.email !== item.email)
+    collectionData(ref, 'id').subscribe((list) => {
       this.dispatcher.next({
         type: UsersStore.ACTIONS.INIT,
-        payload: result,
+        payload: list,
       })
     })
   }
