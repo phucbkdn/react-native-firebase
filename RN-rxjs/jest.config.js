@@ -22,6 +22,5 @@ module.exports = {
     '!<rootDir>/src/test/*.ts',
     '!<rootDir>/app/**/*.story.tsx',
   ],
-  timers: 'fake',
   testEnvironment: 'jsdom',
 }
