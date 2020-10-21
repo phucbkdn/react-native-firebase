@@ -1,8 +1,8 @@
-import { BehaviorSubject, Subject, Subscription, Observable } from 'rxjs'
+import { BehaviorSubject } from 'rxjs'
 import { scan, map } from 'rxjs/operators'
 import { incr, decr } from '../helpers'
-import { list } from 'rxfire/database'
-import firebaseApp from '../services'
+import { db } from '../services/firebaseAccess'
+import { collectionData } from 'rxfire/firestore'
 import { CategoryModel } from '../models'
 
 interface CategoryType extends CategoryModel {
@@ -84,16 +84,14 @@ const categoriesService = new (class CategoriesService {
   }
 
   getCategories() {
-    const ref = firebaseApp.database().ref('products/category')
+    const ref = db.collection('categories')
 
-    list(ref)
+    collectionData(ref, '_key')
       .pipe(
         map((changes) =>
           changes.map((c) => {
             return {
-              _key: c.snapshot.key,
-              event: c.event,
-              ...c.snapshot.val(),
+              ...c,
               count: 0,
             }
           })
