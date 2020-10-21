@@ -3,10 +3,10 @@ import { map } from 'rxjs/operators'
 import { createActions } from '../state/RXState'
 import { incr, decr } from '../helpers'
 import { CategoryModel } from '../models'
-import { list } from 'rxfire/database'
-import firebaseApp from '../services'
+import { collectionData } from 'rxfire/firestore'
+import { db } from '../services/firebaseAccess'
 
-const ref = firebaseApp.database().ref('products/category')
+const ref = db.collection('categories')
 export const counterActions = createActions([
   'discountChange',
   'increment',
@@ -15,12 +15,10 @@ export const counterActions = createActions([
   'init',
 ])
 const initState = { categories: [], discount: 10 }
-counterActions.init = list(ref).pipe(
+counterActions.init = collectionData(ref, '_key').pipe(
   map((changes) =>
     changes.map((c) => ({
-      _key: c.snapshot.key,
-      event: c.event,
-      ...c.snapshot.val(),
+      ...c,
       count: 0,
     }))
   )
