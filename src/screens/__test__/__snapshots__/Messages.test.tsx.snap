@@ -400,7 +400,28 @@ exports[`Testing Messages screen Render correct component 1`] = `
                                 }
                               }
                             >
-                              <Text />
+                              <Text
+                                allowFontScaling={false}
+                                style={
+                                  Array [
+                                    Object {
+                                      "color": undefined,
+                                      "fontSize": 30,
+                                    },
+                                    Object {
+                                      "marginBottom": -3,
+                                    },
+                                    Object {
+                                      "fontFamily": "FontAwesome",
+                                      "fontStyle": "normal",
+                                      "fontWeight": "normal",
+                                    },
+                                    Object {},
+                                  ]
+                                }
+                              >
+                                
+                              </Text>
                             </View>
                           </View>
                         </View>
