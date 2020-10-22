@@ -1,22 +1,26 @@
 import { combineLatest, of } from 'rxjs'
-import { mergeMap, map, filter } from 'rxjs/operators'
+import { mergeMap, map, filter, switchMap } from 'rxjs/operators'
 import { extname } from 'path'
 import { collectionData } from 'rxfire/firestore'
-import { authState } from 'rxfire/auth'
+import { authState, user, idToken } from 'rxfire/auth'
 import { fromTask, getDownloadURL } from 'rxfire/storage'
-import firebaseApp, { db } from './firebaseAccess'
+import firebaseApp, { db, auth } from './firebaseAccess'
+
+if (location.hostname === 'localhost') {
+  db.settings({
+    host: 'localhost:8080',
+    ssl: false,
+  })
+}
 
 export const lazyMessages = (collectionName: string, query: string) => {
-  const fireStore$ = of(db)
-  const user$ = authState(firebaseApp.auth()).pipe(filter((user) => !!user))
-  return combineLatest([fireStore$, user$]).pipe(
-    mergeMap(([storeData, user]) => {
-      const ref = storeData
+  const user$ = authState(auth).pipe(filter((user) => !!user))
+  return user$.pipe(
+    switchMap((user) => {
+      console.log('user', user)
+      const ref = db
         .collection(collectionName)
-        .where('thread', 'in', [
-          `${user.email}-${query}`,
-          `${query}-${user.email}`,
-        ])
+
         .orderBy('created', 'asc')
       return collectionData(ref, 'id')
     })
@@ -24,17 +28,18 @@ export const lazyMessages = (collectionName: string, query: string) => {
 }
 
 export const addMessage = (collectionName: string, data: any) => {
-  const user$ = authState(firebaseApp.auth()).pipe(filter((user) => !!user))
+  const user$ = authState(auth).pipe(filter((user) => !!user))
   const fireStore$ = of(db)
-  return combineLatest([fireStore$, user$]).pipe(
-    map(([storeData, user]) => {
+
+  return user$.pipe(
+    switchMap((user) => {
       const dataUpdate = {
         ...data,
         user: user.email,
         thread: `${user.email}-${data.sendTo}`,
       }
 
-      return storeData.collection(collectionName).add(dataUpdate)
+      return db.collection(collectionName).add(dataUpdate)
     })
   )
 }
