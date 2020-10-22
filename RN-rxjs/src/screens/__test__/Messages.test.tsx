@@ -4,44 +4,44 @@ import renderer from 'react-test-renderer'
 import { TextInput, TouchableOpacity } from 'react-native'
 import MockedNavigator from '../../test/mock-navigator'
 import { setupFirebaseUnitTest, teardown } from '../../test/setupFirebaseTest'
-// jest.mock('../../services/firebaseAccess')
-const { adminDB } = setupFirebaseUnitTest()
+import Message from '../../components/Message'
 
-afterAll(async () => {
-  await teardown()
-})
+const mockData = {
+  'messages/1': {
+    created: '2020-10-12T09:22:36.555Z',
+    message: 'Hello',
+    sendTo: 'abc1@test.com',
+    thread: 'abc@test.com-abc1@test.com',
+    time: '4:02',
+    user: 'abc@test.com',
+  },
+  'messages/2': {
+    created: '2020-10-12T09:22:36.555Z',
+    message: 'Hi',
+    sendTo: 'abc1@test.com',
+    thread: 'abc@test.com-abc1@test.com',
+    time: '4:02',
+    user: 'abc@test.com',
+  },
+}
 
 describe('Testing Messages screen', () => {
+  beforeEach(async () => {
+    jest.mock('../../services/firebaseAccess')
+    await setupFirebaseUnitTest(mockData)
+  })
+
+  afterEach(async () => {
+    await teardown()
+  })
   const Component = () => <Messages />
   const wrapper = renderer.create(<MockedNavigator component={Component} />)
-  test('Render correct component', async () => {
-    await adminDB.collection('messages').add({
-      created: '2020-10-12T09:22:36.555Z',
-      message: 'Hello',
-      sendTo: 'abc1@test.com',
-      thread: 'abc@test.com-abc1@test.com',
-      time: '4:02',
-      user: 'abc@test.com',
-    })
-    await adminDB.collection('messages').add({
-      created: '2020-10-12T09:22:36.555Z',
-      message: 'Hi',
-      sendTo: 'abc1@test.com',
-      thread: 'abc@test.com-abc1@test.com',
-      time: '4:02',
-      user: 'abc@test.com',
-    })
-    await adminDB.collection('messages').add({
-      created: '2020-10-12T09:22:36.555Z',
-      message: 'Test',
-      sendTo: 'abc1@test.com',
-      thread: 'abc@test.com-abc1@test.com',
-      time: '4:02',
-      user: 'abc@test.com',
-    })
-
+  test('Render correct component', (done) => {
     const render = renderer.create(<MockedNavigator component={Component} />)
     expect(render).toMatchSnapshot()
+    const messages = wrapper.root.findAllByType(Message)
+    expect(messages.length).toEqual(2)
+    done()
   })
 
   test('Render send message', () => {

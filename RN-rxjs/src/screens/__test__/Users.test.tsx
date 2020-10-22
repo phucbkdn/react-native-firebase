@@ -2,29 +2,38 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import MockedNavigator from '../../test/mock-navigator'
 import Users from '../Users'
-import { setupFirebaseUnitTest, teardown } from '../../test/setupFirebaseTest'
+import { User } from '../../components/User'
 
-const { adminDB } = setupFirebaseUnitTest()
+import {
+  setupFirebaseUnitTest,
+  teardown,
+  clearFirestoreData,
+} from '../../test/setupFirebaseTest'
 
-beforeEach(async () => {
-  await adminDB.collection('users').add({
+const mockData = {
+  'users/jeffd23': {
+    foo: 'bar',
+  },
+  'users/testTask': {
     state: 'online',
-    email: 'abc1@test.com',
-  })
-  await adminDB.collection('users').add({
-    state: 'online',
-    email: 'test@test.com',
-  })
-})
-
-afterEach(async () => {
-  await teardown()
-})
+    email: 'user-1@test.com',
+  },
+}
 
 describe('Testing Users screen', () => {
+  let adminDB
+  beforeAll(async () => {
+    await clearFirestoreData()
+    adminDB = await setupFirebaseUnitTest(mockData)
+  })
+
   const Component = () => <Users />
   const wrapper = renderer.create(<MockedNavigator component={Component} />)
-  test('Render correct component', async () => {
+
+  test('Render correct component', (done) => {
     expect(wrapper).toMatchSnapshot()
+    const users = wrapper.root.findAllByType(User)
+    expect(users.length).toEqual(2)
+    done()
   })
 })
