@@ -535,7 +535,15 @@ exports[`Testing Users screen Render correct component 1`] = `
                             </View>
                           </View>
                           <RCTScrollView
-                            data={Array []}
+                            data={
+                              Array [
+                                Object {
+                                  "email": "abc1@test.com",
+                                  "id": "9NURUowzheYhFOyWSwJ7",
+                                  "state": "online",
+                                },
+                              ]
+                            }
                             disableVirtualization={false}
                             getItem={[Function]}
                             getItemCount={[Function]}
@@ -558,7 +566,75 @@ exports[`Testing Users screen Render correct component 1`] = `
                             viewabilityConfigCallbackPairs={Array []}
                             windowSize={21}
                           >
-                            <View />
+                            <View>
+                              <View
+                                onLayout={[Function]}
+                                style={null}
+                              >
+                                <View>
+                                  <View
+                                    accessible={true}
+                                    focusable={true}
+                                    onClick={[Function]}
+                                    onResponderGrant={[Function]}
+                                    onResponderMove={[Function]}
+                                    onResponderRelease={[Function]}
+                                    onResponderTerminate={[Function]}
+                                    onResponderTerminationRequest={[Function]}
+                                    onStartShouldSetResponder={[Function]}
+                                    style={
+                                      Object {
+                                        "alignItems": "center",
+                                        "flex": 1,
+                                        "flexDirection": "row",
+                                        "margin": 10,
+                                        "opacity": 1,
+                                        "paddingBottom": 20,
+                                        "width": 750,
+                                      }
+                                    }
+                                  >
+                                    <Text
+                                      allowFontScaling={false}
+                                      style={
+                                        Array [
+                                          Object {
+                                            "color": undefined,
+                                            "fontSize": 30,
+                                          },
+                                          Object {
+                                            "color": "green",
+                                            "marginBottom": -3,
+                                          },
+                                          Object {
+                                            "fontFamily": "FontAwesome",
+                                            "fontStyle": "normal",
+                                            "fontWeight": "normal",
+                                          },
+                                          Object {},
+                                        ]
+                                      }
+                                    >
+                                      
+                                    </Text>
+                                    <Text
+                                      style={
+                                        Object {
+                                          "color": "#999",
+                                          "fontSize": 11,
+                                          "lineHeight": 13,
+                                          "paddingLeft": 15,
+                                          "textTransform": "capitalize",
+                                          "width": 562.5,
+                                        }
+                                      }
+                                    >
+                                      abc1@test.com
+                                    </Text>
+                                  </View>
+                                </View>
+                              </View>
+                            </View>
                           </RCTScrollView>
                         </View>
                       </View>

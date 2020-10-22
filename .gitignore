@@ -14,3 +14,7 @@ web-build/
 
 # testing
 /coverage
+firestore-coverage.html
+firestore-debug.log
+firestore.rules
+ui-debug.log

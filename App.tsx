@@ -12,7 +12,11 @@ import Navigation from './src/navigation';
 import { Provide, createState } from './src/state/RXState'
 import { AuthProvider } from './src/provider'
 import reducer$ from './src/reducers'
+import {decode, encode} from 'base-64'
 
+if (!global.btoa) {  global.btoa = encode }
+
+if (!global.atob) { global.atob = decode }
 setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
