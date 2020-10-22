@@ -1,8 +1,5 @@
-import { BehaviorSubject, combineLatest } from 'rxjs'
-import { scan, filter } from 'rxjs/operators'
-import { authState } from 'rxfire/auth'
-import { of } from 'rxjs'
-import { mergeMap } from 'rxjs/operators'
+import { BehaviorSubject } from 'rxjs'
+import { scan } from 'rxjs/operators'
 import { collectionData } from 'rxfire/firestore'
 import { db } from '../services/firebaseAccess'
 import { User } from '../models'
@@ -57,8 +54,7 @@ const usersStore = new (class UsersStore {
   }
 
   init() {
-    const ref = db.collection('users')
-    collectionData(ref, 'id').subscribe((list) => {
+    collectionData(db.collection('users'), 'id').subscribe((list) => {
       this.dispatcher.next({
         type: UsersStore.ACTIONS.INIT,
         payload: list,

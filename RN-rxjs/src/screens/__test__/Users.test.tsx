@@ -21,10 +21,13 @@ const mockData = {
 }
 
 describe('Testing Users screen', () => {
-  let adminDB
   beforeAll(async () => {
     await clearFirestoreData()
-    adminDB = await setupFirebaseUnitTest(mockData)
+    await setupFirebaseUnitTest(mockData)
+  })
+
+  afterEach(async () => {
+    await teardown()
   })
 
   const Component = () => <Users />

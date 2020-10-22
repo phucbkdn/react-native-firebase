@@ -1,9 +1,9 @@
+// import * as firebase from 'firebase'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 import 'firebase/functions'
 import 'firebase/storage'
-import 'firebase/remote-config'
 
 // Initialize Firebase
 export const firebaseConfig = {
@@ -18,12 +18,11 @@ export const firebaseConfig = {
 
 const firebaseApp = firebase.apps[0] || firebase.initializeApp(firebaseConfig)
 export const db = firebase.firestore()
-export type Query = firebase.firestore.Query
 export const auth = firebase.auth()
-export const functions = firebase.functions()
-export const storage = firebase.storage()
-export const remoteConfig = firebase.remoteConfig()
-export const serverNow = firebase.firestore.FieldValue.serverTimestamp()
-export const clientNow = firebase.firestore.Timestamp.now()
-export const StringFormat = firebase.storage.StringFormat
 export default firebaseApp
+if (location.hostname === 'localhost') {
+  db.settings({
+    host: 'localhost:8080',
+    ssl: false,
+  })
+}

@@ -17,7 +17,6 @@ jest.mock('firebase', () => {
   const get = jest.fn(() => Promise.resolve(users))
   const snapshot = { val: () => users }
   const onAuthStateChanged = jest.fn()
-
   const getRedirectResult = jest.fn(() => {
     return Promise.resolve({
       user: {
@@ -56,7 +55,16 @@ jest.mock('firebase', () => {
       reset: jest.fn(),
     })),
     auth: jest.fn().mockReturnValue({
-      onAuthStateChanged,
+      onAuthStateChanged: jest.fn().mockReturnValue({
+        displayName: 'testDisplayName',
+        email: 'test@test.com',
+        emailVerified: true,
+      }),
+      onIdTokenChanged: jest.fn().mockReturnValue({
+        displayName: 'testDisplayName',
+        email: 'test@test.com',
+        emailVerified: true,
+      }),
       currentUser: {
         displayName: 'testDisplayName',
         email: 'test@test.com',
@@ -70,6 +78,16 @@ jest.mock('firebase', () => {
         return {
           createUserWithEmailAndPassword,
           signInWithEmailAndPassword,
+          onAuthStateChanged: jest.fn().mockReturnValue({
+            displayName: 'testDisplayName',
+            email: 'test@test.com',
+            emailVerified: true,
+          }),
+          onIdTokenChanged: jest.fn().mockReturnValue({
+            displayName: 'testDisplayName',
+            email: 'test@test.com',
+            emailVerified: true,
+          }),
         }
       },
       database: jest.fn(() => ({
