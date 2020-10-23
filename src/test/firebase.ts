@@ -15,6 +15,7 @@ jest.mock('firebase', () => {
   ]
   const set = jest.fn(() => Promise.resolve(users))
   const get = jest.fn(() => Promise.resolve(users))
+  const settings = jest.fn()
   const snapshot = { val: () => users }
   const onAuthStateChanged = jest.fn()
   const getRedirectResult = jest.fn(() => {
@@ -53,6 +54,7 @@ jest.mock('firebase', () => {
       get: jest.fn(),
       onSnapshot: jest.fn(),
       reset: jest.fn(),
+      settings,
     })),
     auth: jest.fn().mockReturnValue({
       onAuthStateChanged: jest.fn().mockReturnValue({
@@ -88,6 +90,11 @@ jest.mock('firebase', () => {
             email: 'test@test.com',
             emailVerified: true,
           }),
+          currentUser: {
+            displayName: 'testDisplayName',
+            email: 'test@test.com',
+            emailVerified: true,
+          },
         }
       },
       database: jest.fn(() => ({
@@ -107,6 +114,7 @@ jest.mock('firebase', () => {
         get: jest.fn(),
         onSnapshot: jest.fn(),
         reset: jest.fn(),
+        settings,
       })),
     }),
   }

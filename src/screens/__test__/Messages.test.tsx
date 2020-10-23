@@ -3,7 +3,11 @@ import Messages from '../Messages'
 import renderer from 'react-test-renderer'
 import { TextInput, TouchableOpacity } from 'react-native'
 import MockedNavigator from '../../test/mock-navigator'
-import { setupFirebaseUnitTest, teardown } from '../../test/setupFirebaseTest'
+import {
+  setupFirebaseUnitTest,
+  teardown,
+  clearFirestoreData,
+} from '../../test/setupFirebaseTest'
 import Message from '../../components/Message'
 
 const mockData = {
@@ -27,13 +31,15 @@ const mockData = {
 
 describe('Testing Messages screen', () => {
   beforeEach(async () => {
-    jest.mock('../../services/firebaseAccess')
+    // jest.mock('../../services/firebaseAccess')
+    await clearFirestoreData()
     await setupFirebaseUnitTest(mockData)
   })
 
   afterEach(async () => {
     await teardown()
   })
+
   const Component = () => <Messages />
   const wrapper = renderer.create(<MockedNavigator component={Component} />)
   test('Render correct component', (done) => {
