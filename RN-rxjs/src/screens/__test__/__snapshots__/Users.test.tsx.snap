@@ -539,11 +539,11 @@ exports[`Testing Users screen Render correct component 1`] = `
                               Array [
                                 Object {
                                   "foo": "bar",
-                                  "id": "jeffd23",
+                                  "id": "user-1",
                                 },
                                 Object {
                                   "email": "user-1@test.com",
-                                  "id": "testTask",
+                                  "id": "user-2",
                                   "state": "online",
                                 },
                               ]

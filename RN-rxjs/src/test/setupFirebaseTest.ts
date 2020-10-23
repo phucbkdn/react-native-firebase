@@ -23,9 +23,9 @@ export const setupFirebaseUnitTest = async (data) => {
   })
 
   // eslint-disable-next-line no-undef
-  // beforeEach(async () => {
-  //   await mockFirebase.clearFirestoreData({ projectId: PROJECT_ID })
-  // })
+  beforeEach(async () => {
+    await mockFirebase.clearFirestoreData({ projectId: PROJECT_ID })
+  })
 
   afterAll(async () => {
     await mockFirebase.clearFirestoreData({ projectId: PROJECT_ID })

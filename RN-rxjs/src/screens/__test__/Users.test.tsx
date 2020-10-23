@@ -11,10 +11,10 @@ import {
 } from '../../test/setupFirebaseTest'
 
 const mockData = {
-  'users/jeffd23': {
+  'users/user-1': {
     foo: 'bar',
   },
-  'users/testTask': {
+  'users/user-2': {
     state: 'online',
     email: 'user-1@test.com',
   },
