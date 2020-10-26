@@ -25,3 +25,9 @@ exports.upperCaseText = functions.firestore
     // Update new value
     return snap.ref.set({ message }, { merge: true })
   })
+
+exports.addMessage = functions.https.onRequest(async (req, res) => {
+  const original = req.query.text
+  const snapshot = await admin.firestore().collection('news').add({ original })
+  res.redirect(303, snapshot.get())
+})

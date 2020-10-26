@@ -53,4 +53,19 @@ describe('testing basic function', () => {
     const responseData = snapshot.data() || {}
     expect(responseData.message).toEqual(data.message.toUpperCase())
   })
+
+  it('Test addMessage function', () => {
+    const req = { query: { text: 'input' } }
+    const res = {
+      redirect: (code, url) => {
+        expect(code).toEqual(303)
+
+        const expectedRef = new RegExp(
+          'https://products-management-db74a.firebaseio.com/news/'
+        )
+        expect(expectedRef.test(url)).toBeTruthy()
+      },
+    }
+    functions.addMessage(req, res)
+  })
 })
