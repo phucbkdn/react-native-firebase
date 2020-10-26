@@ -54,6 +54,51 @@ describe('testing basic function', () => {
     expect(responseData.message).toEqual(data.message.toUpperCase())
   })
 
+  it('Test function trigger update message', async () => {
+    // Mock testing data
+    const MESSAGE_ID = 'message-id'
+    const context = {
+      params: {
+        userId: 'test',
+        pushId: MESSAGE_ID,
+      },
+    }
+    const afterValue = {
+      message: 'bar',
+    }
+    const beforeValue = {
+      message: 'faz',
+    }
+
+    // Make snapshot for state of database beforehand
+    const beforeSnap = test.firestore.makeDocumentSnapshot(
+      beforeValue,
+      `/messages/${MESSAGE_ID}`
+    )
+
+    // Make snapshot for state of database after the change
+    const afterSnap = test.firestore.makeDocumentSnapshot(
+      afterValue,
+      `/messages/${MESSAGE_ID}`
+    )
+    const change = test.makeChange(beforeSnap, afterSnap)
+
+    // Call wrapped function with the Change object
+    const wrapped = test.wrap(functions.updateMessage)
+    wrapped(change, context)
+
+    // Get snapshot
+    const snapshot = await admin
+      .firestore()
+      .collection('messages')
+      .doc(MESSAGE_ID)
+      .get()
+
+    const responseData = snapshot.data() || {}
+    expect(responseData.newValue).toEqual(afterValue.message)
+    expect(responseData.previousValue).toEqual(beforeValue.message)
+  })
+
   it('Test addMessage function', () => {
     const req = { query: { text: 'input' } }
     const res = {
