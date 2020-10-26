@@ -99,6 +99,43 @@ describe('testing basic function', () => {
     expect(responseData.previousValue).toEqual(beforeValue.message)
   })
 
+  it('Test function trigger delete message', async () => {
+    // Mock testing data
+    const MESSAGE_ID = 'delete-message-id'
+    const context = {
+      params: {
+        userId: 'test',
+        pushId: MESSAGE_ID,
+      },
+    }
+    const data = {
+      created: '2020-10-12T09:22:36.555Z',
+      message: 'function',
+      sendTo: 'abc1@test.com',
+      thread: 'abc@test.com-abc1@test.com',
+      time: '4:02',
+      user: 'abc@test.com',
+    }
+
+    const createdSnapshot = test.firestore.makeDocumentSnapshot(
+      data,
+      `/messages/${MESSAGE_ID}`
+    )
+    const wrapperFunction = test.wrap(functions.deleteMessage)
+
+    await wrapperFunction(createdSnapshot, context)
+
+    const snapshot = await admin
+      .firestore()
+      .collection('logs')
+      .doc(MESSAGE_ID)
+      .get()
+
+    const responseData = snapshot.data() || {}
+    console.log(responseData)
+    expect(responseData['message-id']).toEqual(MESSAGE_ID)
+  })
+
   it('Test addMessage function', () => {
     const req = { query: { text: 'input' } }
     const res = {

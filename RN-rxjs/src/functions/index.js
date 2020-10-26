@@ -38,6 +38,18 @@ exports.updateMessage = functions.firestore
     )
   })
 
+exports.deleteMessage = functions.firestore
+  .document('messages/{messageId}')
+  .onDelete((snap, context) => {
+    const value = snap.data()
+
+    return admin
+      .firestore()
+      .collection('logs')
+      .doc(snap.id)
+      .set({ 'message-id': snap.id, message: value.message })
+  })
+
 exports.addMessage = functions.https.onRequest(async (req, res) => {
   const original = req.query.text
   const snapshot = await admin
