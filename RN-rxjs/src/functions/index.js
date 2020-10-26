@@ -26,8 +26,23 @@ exports.upperCaseText = functions.firestore
     return snap.ref.set({ message }, { merge: true })
   })
 
+exports.updateMessage = functions.firestore
+  .document('messages/{messageId}')
+  .onUpdate((change, context) => {
+    const newValue = change.after.data()
+    const previousValue = change.before.data()
+
+    return change.before.ref.set(
+      { newValue: newValue.message, previousValue: previousValue.message },
+      { merge: true }
+    )
+  })
+
 exports.addMessage = functions.https.onRequest(async (req, res) => {
   const original = req.query.text
-  const snapshot = await admin.firestore().collection('news').add({ original })
-  res.redirect(303, snapshot.get())
+  const snapshot = await admin
+    .firestore()
+    .collection('messages')
+    .add({ original })
+  res.json({ result: `Message with ID: ${snapshot.id} added` })
 })
