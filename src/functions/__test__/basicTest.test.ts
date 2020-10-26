@@ -132,7 +132,6 @@ describe('testing basic function', () => {
       .get()
 
     const responseData = snapshot.data() || {}
-    console.log(responseData)
     expect(responseData['message-id']).toEqual(MESSAGE_ID)
   })
 
