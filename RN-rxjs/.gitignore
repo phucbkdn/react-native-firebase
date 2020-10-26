@@ -18,3 +18,5 @@ firestore-coverage.html
 firestore-debug.log
 firestore.rules
 ui-debug.log
+service-account-file.json
+firebase-debug.log

@@ -1,11 +1,11 @@
 import admin from 'firebase-admin'
 import test from '../../test/firebase-functions'
 
-let index, adminStub
+let functions, adminStub
 describe('testing basic function', () => {
   beforeAll(() => {
     adminStub = jest.spyOn(admin, 'initializeApp')
-    index = require('../index')
+    functions = require('../index')
     return
   })
 
@@ -15,17 +15,18 @@ describe('testing basic function', () => {
   })
 
   it('Test function return value', () => {
-    expect(index.basicTest()).toEqual(6)
+    expect(functions.basicTest()).toEqual(6)
   })
 
   it('Test function trigger create message', async () => {
+    // Mock testing data
+    const MESSAGE_ID = 'mock-message-id'
     const context = {
       params: {
         userId: 'test',
-        pushId: '-push-id',
+        pushId: MESSAGE_ID,
       },
     }
-
     const data = {
       created: '2020-10-12T09:22:36.555Z',
       message: 'function',
@@ -35,20 +36,21 @@ describe('testing basic function', () => {
       user: 'abc@test.com',
     }
 
-    const createdSnapshot = test.database.makeDataSnapshot(
+    const createdSnapshot = test.firestore.makeDocumentSnapshot(
       data,
-      '/messages/-push-id'
+      `/messages/${MESSAGE_ID}`
     )
-
-    const wrapperFunction = test.wrap(index.upperCaseText)
+    const wrapperFunction = test.wrap(functions.upperCaseText)
 
     await wrapperFunction(createdSnapshot, context)
 
     const snapshot = await admin
       .firestore()
       .collection('messages')
-      .doc('-push-id')
+      .doc(MESSAGE_ID)
+      .get()
 
-    expect(snapshot.get()).toEqual(data.message.toUpperCase())
+    const responseData = snapshot.data() || {}
+    expect(responseData.message).toEqual(data.message.toUpperCase())
   })
 })
