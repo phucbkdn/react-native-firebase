@@ -19,7 +19,7 @@ exports.upperCaseText = functions.firestore
   .onCreate((snap, context) => {
     // Get snapshot data
     const value = snap.data()
-    let { message } = value
+    let { message = '' } = value
     message = message.toUpperCase()
 
     // Update new value
@@ -43,11 +43,11 @@ exports.deleteMessage = functions.firestore
   .onDelete((snap, context) => {
     const value = snap.data()
 
-    return admin
-      .firestore()
-      .collection('logs')
-      .doc(snap.id)
-      .set({ 'message-id': snap.id, message: value.message })
+    return admin.firestore().collection('logs').doc(snap.id).set({
+      'message-id': snap.id,
+      message: value.message,
+      created: new Date(),
+    })
   })
 
 exports.addMessage = functions.https.onRequest(async (req, res) => {

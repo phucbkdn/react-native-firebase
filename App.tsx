@@ -15,8 +15,8 @@ import reducer$ from './src/reducers'
 import {decode, encode} from 'base-64'
 
 if (!global.btoa) {  global.btoa = encode }
-
 if (!global.atob) { global.atob = decode }
+
 setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
@@ -37,7 +37,8 @@ export default function App() {
 
   const _handleNotificationResponse = response => {
     console.log('Notifications:', response);
-    };
+  };
+
   if (!isLoadingComplete) {
     return null;
   } else {
@@ -49,9 +50,7 @@ export default function App() {
           <StatusBar />
           </AuthProvider>
         </Provide>
-
       </SafeAreaProvider>
     );
   }
 }
-
