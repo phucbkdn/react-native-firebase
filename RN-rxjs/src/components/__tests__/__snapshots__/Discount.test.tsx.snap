@@ -24,7 +24,7 @@ exports[`Testing Discount component Render correct component 1`] = `
         }
       }
     >
-      Discount:  
+      Discount: 
     </Text>
     <Text
       style={
@@ -53,7 +53,7 @@ exports[`Testing Discount component Render correct component 1`] = `
         }
       }
     >
-      Total:  
+      Total: 
     </Text>
     <Text
       style={

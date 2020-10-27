@@ -20,3 +20,4 @@ firestore.rules
 ui-debug.log
 service-account-file.json
 firebase-debug.log
+google-services.json
