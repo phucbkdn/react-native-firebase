@@ -11,7 +11,7 @@ export const categoryStyles = {
     backgroundColor: 'red',
   } as ViewStyle,
   button: {
-    backgroundColor: 'white',
+    backgroundColor: color.while,
     shadowColor: color.shadowColor,
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.5,

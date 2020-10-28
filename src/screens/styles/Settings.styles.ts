@@ -4,7 +4,7 @@ import { color, height } from '../../themes'
 export const settingsStyles = {
   scroll: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: color.while,
     marginTop: StatusBar.currentHeight || 0,
     height: height,
   } as ViewStyle,

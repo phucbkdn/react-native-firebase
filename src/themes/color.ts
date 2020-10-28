@@ -68,4 +68,7 @@ export const color = {
   azureRadiance: palette.azureRadiance,
   grayNurse: palette.grayNurse,
   shadowColor: 'rgba(0,0,0,0.5)',
+  lighterGrey: palette.lighterGrey,
+  red: 'red',
+  gray: palette.gray,
 }

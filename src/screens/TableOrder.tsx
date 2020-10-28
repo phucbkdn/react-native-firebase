@@ -5,7 +5,7 @@ import { useRoute } from '@react-navigation/native'
 import { Text, TouchableOpacity, View, TextInput } from 'react-native'
 import moment from 'moment'
 import { connect } from '../state/RXState'
-import {  counterActions } from '../reducers/categories'
+import { counterActions } from '../reducers/categories'
 
 // Helpers
 import { updateOrder } from '../streams/tables'
@@ -13,7 +13,7 @@ import { createOrder } from '../streams/orders'
 import { CategoryModel } from '../models'
 import { color } from '../themes'
 import { tableOrderStyles } from './styles/TableOrder.styles'
-import { RootStackParamList } from '../../types'
+import { RootStackParamList } from '../models'
 
 // Components
 import Discount from '../components/Discount'
@@ -21,12 +21,12 @@ import { Category } from '../components/Category'
 import { Screen } from '../components/screen/screen'
 
 interface TableOrderModel {
-  categories: Array<CategoryModel>,
-  navigation: StackScreenProps<RootStackParamList, 'NotFound'>,
-  increment: Function,
-  decrement: Function,
-  discountChange: Function,
-  discount: number,
+  categories: Array<CategoryModel>
+  navigation: StackScreenProps<RootStackParamList, 'NotFound'>
+  increment: Function
+  decrement: Function
+  discountChange: Function
+  discount: number
 }
 
 const TableOrder = ({
@@ -35,26 +35,32 @@ const TableOrder = ({
   increment,
   decrement,
   discountChange,
-  discount
+  discount,
 }: TableOrderModel) => {
   const { params } = useRoute()
   const [categoriesData, setCategories] = useState<CategoryModel[]>([])
-  useEffect(()=> {
+  useEffect(() => {
     if (categories) {
       setCategories(categories)
     }
   }, [categories])
 
-  let price = categoriesData.reduce((accumulator, current) => accumulator + (current.count * current.price), 0);
-  price = price * (1 - discount / 100 )
+  let price = categoriesData.reduce(
+    (accumulator, current) => accumulator + current.count * current.price,
+    0
+  )
+  price = price * (1 - discount / 100)
 
   const submitOrder = () => {
-    const obj = categoriesData.reduce((acc, cur) => ({...acc, [cur.name]: cur.count}), {});
+    const obj = categoriesData.reduce(
+      (acc, cur) => ({ ...acc, [cur.name]: cur.count }),
+      {}
+    )
     createOrder({
       ...obj,
       price: price,
       created: moment().format('DD-MM-YYYY'),
-      time: moment().format('hh:mm')
+      time: moment().format('hh:mm'),
     })
     updateOrder(params.id, false)
     navigation.goBack()
@@ -98,7 +104,7 @@ const TableOrder = ({
           ))}
         </View>
         <View style={tableOrderStyles.discountWrapper}>
-          <Text style={tableOrderStyles.title}>Discount( % ):  </Text>
+          <Text style={tableOrderStyles.title}>Discount( % ): </Text>
           <TextInput
             style={tableOrderStyles.input}
             keyboardType="numeric"
@@ -107,19 +113,35 @@ const TableOrder = ({
         </View>
         <Discount />
         <View style={tableOrderStyles.priceWrapper}>
-          <TouchableOpacity style={tableOrderStyles.button} onPress={processOrder}>
-              <Text style={tableOrderStyles.linkText}>Process</Text>
-            </TouchableOpacity>
-          <TouchableOpacity disabled={price === 0} style={tableOrderStyles.button} onPress={submitOrder}>
+          <TouchableOpacity
+            style={tableOrderStyles.button}
+            onPress={processOrder}
+          >
+            <Text style={tableOrderStyles.linkText}>Process</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            disabled={price === 0}
+            style={tableOrderStyles.button}
+            onPress={submitOrder}
+          >
             <Text style={tableOrderStyles.linkText}>Order</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={tableOrderStyles.link}>
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={tableOrderStyles.link}
+        >
           <Text style={tableOrderStyles.linkText}>Go to home screen!</Text>
         </TouchableOpacity>
       </Screen>
     </View>
-  );
+  )
 }
 
-export default connect(({ counter = {} }) => ({ categories: counter ? counter.categories : [], discount: counter.discount }), counterActions)(TableOrder)
+export default connect(
+  ({ counter = {} }) => ({
+    categories: counter ? counter.categories : [],
+    discount: counter.discount,
+  }),
+  counterActions
+)(TableOrder)

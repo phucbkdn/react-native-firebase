@@ -1,5 +1,5 @@
 import { TextStyle, ViewStyle } from 'react-native'
-import { color, width, height } from '../../themes'
+import { color, width } from '../../themes'
 
 export const categoryStyles = {
   wrapper: {
@@ -10,7 +10,7 @@ export const categoryStyles = {
     paddingVertical: 15,
   } as ViewStyle,
   button: {
-    backgroundColor: 'white',
+    backgroundColor: color.while,
     shadowColor: color.shadowColor,
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.5,
