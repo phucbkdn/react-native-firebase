@@ -6,7 +6,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest --config=jest.config.js",
+    "test": "firebase emulators:exec 'jest --config=jest.config.js -u'",
     "test:coverage": "yarn test --coverage",
     "prettier": "prettier --write src/**/*.{js,ts,tsx}",
     "eslint": "eslint src/**/*.{js,ts,tsx}",
@@ -37,7 +37,7 @@
     "expo-splash-screen": "~0.6.1",
     "expo-status-bar": "~1.0.2",
     "expo-web-browser": "~8.5.0",
-    "firebase": "7.9.1",
+    "firebase": "^8.0.0",
     "firebase-admin": "^9.2.0",
     "firebase-functions": "^3.11.0",
     "firebase-tools": "^8.13.0",
@@ -82,10 +82,10 @@
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.4",
+    "firebase-functions-test": "^0.2.2",
     "husky": "^4.3.0",
     "jest-expo": "~39.0.0",
     "lint-staged": "^10.4.0",
-    "firebase-functions-test": "^0.2.2",
     "prettier": "^2.1.2",
     "react-test-renderer": "^16.13.1",
     "typescript": "~3.9.5"
@@ -93,7 +93,7 @@
   "private": true,
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && yarn test"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
