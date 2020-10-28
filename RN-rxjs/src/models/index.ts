@@ -14,8 +14,10 @@ export type CategoryModel = {
 
 export type OrderType = {
   id: string
-  Price: string
+  price: number
   _key: string
+  created: string
+  time: string
 }
 
 export type UserState = 'online' | 'offline'
