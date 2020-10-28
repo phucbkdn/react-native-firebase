@@ -1,5 +1,5 @@
 import { TextStyle, ViewStyle, ImageStyle, TextInputProps } from 'react-native'
-import { color, spacing, images, height, width } from '../../themes'
+import { color, height, width } from '../../themes'
 
 export const loginStyles = {
   container: {
@@ -20,7 +20,7 @@ export const loginStyles = {
     backgroundColor: color.transparent,
   } as ViewStyle,
   input: {
-    borderBottomColor: 'red',
+    borderBottomColor: color.red,
     borderBottomWidth: 2,
     width: '80%',
     height: 40,

@@ -1,10 +1,11 @@
 import { ViewStyle } from 'react-native'
+import { color } from '../../themes'
 
 export const iconStyles = {
   container: {
     alignItems: 'center',
-    backgroundColor: 'black',
-    borderColor: 'transparent',
+    backgroundColor: color.black,
+    borderColor: color.transparent,
     borderRadius: 10,
     borderWidth: 1,
     height: 34,

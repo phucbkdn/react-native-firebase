@@ -14,6 +14,7 @@ export const counterActions = createActions([
   'reset',
   'init',
 ])
+
 const initState = { categories: [], discount: 10 }
 counterActions.init = collectionData(ref, '_key').pipe(
   map((changes) =>
@@ -24,13 +25,8 @@ counterActions.init = collectionData(ref, '_key').pipe(
   )
 )
 
-interface CategoryType extends CategoryModel {
-  id: string
-  _key: string
-}
-
 interface StateType {
-  categories: Array<CategoryType>
+  categories: Array<CategoryModel>
   discount: number
 }
 

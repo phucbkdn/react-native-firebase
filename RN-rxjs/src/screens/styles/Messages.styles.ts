@@ -11,7 +11,7 @@ export const messagesStyles = {
     textAlign: 'center',
   } as TextStyle,
   input: {
-    borderBottomColor: 'red',
+    borderBottomColor: color.red,
     borderBottomWidth: 2,
     width: '80%',
     height: 40,

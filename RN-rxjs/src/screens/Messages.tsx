@@ -25,24 +25,6 @@ const Messages = () => {
 
   const flatList = useRef<React.RefObject<FlatList<never>>>()
 
-  // useEffect(() => {
-  //   const ref = firebaseApp.database().ref('messages')
-  //   list(ref)
-  //   .pipe(
-  //     map(changes => changes.map(c => {
-  //       return { id: c.snapshot.key, ...c.snapshot.val() }
-  //     }))
-  //   )
-  //   .subscribe((list: MessageType[]) => {
-  //     setMessages(list)
-  //   })
-
-  //   const auth = firebaseApp.auth()
-  //   const loggedIn$ = authState(auth).pipe(filter(user => !!user));
-  //   loggedIn$.subscribe(user => { setUser(user) });
-
-  // }, [])
-
   useEffect(() => {
     const sub = lazyMessages('messages', params.name).subscribe(
       (list: MessageType[]) => {

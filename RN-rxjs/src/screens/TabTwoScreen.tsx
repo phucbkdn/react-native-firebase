@@ -5,20 +5,17 @@ import { Text } from '../components/Themed'
 import withObservableStream from '../streams'
 import fetchOrder$ from '../streams/orders'
 import { tabTwoScreenStyles } from './styles/TabTwoScreen.styles'
-import { combineLatest } from 'rxjs'
 import { Order } from '../components/Order'
 import { OrderType } from '../models'
 import OrderInfo from '../components/OrderInfo'
 
 type TabTwoScreenProps = {
-  orders: Array<OrderType>,
+  orders: Array<OrderType>
   name: string
 }
 
-const TabTwoScreen = ({ orders,  name}: TabTwoScreenProps) => {
-  const renderItem = ({ item }) => (
-    <Order order={item} />
-  );
+const TabTwoScreen = ({ orders, name }: TabTwoScreenProps) => {
+  const renderItem = ({ item }) => <Order order={item} />
 
   return (
     <SafeAreaView style={tabTwoScreenStyles.container}>
@@ -27,22 +24,23 @@ const TabTwoScreen = ({ orders,  name}: TabTwoScreenProps) => {
       <FlatList
         data={orders}
         renderItem={renderItem}
-        keyExtractor={item => item._key}
+        keyExtractor={(item) => item._key}
       />
     </SafeAreaView>
-  );
+  )
 }
 
 // Defined actions for order subject
-export const orderActions = {
-};
+export const orderActions = {}
 
 export default withObservableStream(
-  fetchOrder$.pipe(map(orders => ({
-    orders,
-  }))),
+  fetchOrder$.pipe(
+    map((orders) => ({
+      orders,
+    }))
+  ),
   orderActions,
   {
-    orders: []
-  },
-)(TabTwoScreen);
+    orders: [],
+  }
+)(TabTwoScreen)
