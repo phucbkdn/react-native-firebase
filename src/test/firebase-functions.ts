@@ -3,7 +3,7 @@ import * as admin from 'firebase-admin'
 import * as path from 'path'
 
 // you can check all these information in firebase console/settings
-const projectConfig = {
+export const projectConfig = {
   databaseURL: 'https://products-management-db74a.firebaseio.com',
   storageBucket: 'products-management-db74a.appspot.com',
   projectId: 'products-management-db74a',
