@@ -5,7 +5,7 @@ export const orderStyles = {
   wrapper: {
     width: '90%',
     backgroundColor: 'white',
-    shadowColor: 'rgba(0,0,0,0.5)',
+    shadowColor: color.shadowColor,
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.5,
     shadowRadius: 5,
