@@ -1,21 +1,13 @@
 import React, { FC, memo } from 'react'
-import {
-  View,
-  TouchableOpacity,
-  Text,
-  Image,
-  ImageResizeMode,
-} from 'react-native'
+import { View, TouchableOpacity, Text } from 'react-native'
 import { useNavigation, NavigationProp } from '@react-navigation/native'
 import { categoryStyles } from './styles/table.styles'
 import { NavigationType } from '../navigation'
 
-const resizeMode: ImageResizeMode = 'contain'
-
 interface Props {
-  name: string,
-  active: Boolean,
-  id: string,
+  name: string
+  active: Boolean
+  id: string
 }
 
 export const Table: FC<Props> = memo(({ name, active, id }: Props) => {
@@ -32,7 +24,11 @@ export const Table: FC<Props> = memo(({ name, active, id }: Props) => {
       <TouchableOpacity
         onPress={navigateRecipeScreen}
         key={id}
-        style={active ? {...categoryStyles.button, ...categoryStyles.buttonActive} : categoryStyles.button}
+        style={
+          active
+            ? { ...categoryStyles.button, ...categoryStyles.buttonActive }
+            : categoryStyles.button
+        }
       >
         <Text style={categoryStyles.textStyle}>{name}</Text>
       </TouchableOpacity>

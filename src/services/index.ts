@@ -15,12 +15,14 @@ if (location.hostname === 'localhost') {
 
 export const lazyMessages = (collectionName: string, query: string) => {
   const user$ = authState(auth).pipe(filter((user) => !!user))
-  return user$.pipe(
+  return user(auth).pipe(
     switchMap((user) => {
-      console.log('user', user)
       const ref = db
         .collection(collectionName)
-
+        // .where('thread', 'in', [
+        //   `${user.email}-${query}`,
+        //   `${query}-${user.email}`,
+        // ])
         .orderBy('created', 'asc')
       return collectionData(ref, 'id')
     })
