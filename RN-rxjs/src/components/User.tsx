@@ -1,9 +1,9 @@
 import React, { FC, memo } from 'react'
 import { View, TouchableOpacity, Text } from 'react-native'
 import { useNavigation, NavigationProp } from '@react-navigation/native'
+import { FontAwesome } from '@expo/vector-icons'
 import { userStyles } from './styles/user.stylers'
 import { NavigationType } from '../navigation'
-import { FontAwesome } from '@expo/vector-icons'
 import usersStore from '../store/users'
 
 interface Props {
