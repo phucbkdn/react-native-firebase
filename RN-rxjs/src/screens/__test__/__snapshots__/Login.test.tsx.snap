@@ -295,7 +295,7 @@ exports[`Testing Messages screen Render correct component 1`] = `
                           Array [
                             Array [
                               Object {
-                                "backgroundColor": "#ffffff",
+                                "backgroundColor": "#fff",
                                 "flex": 1,
                                 "height": "100%",
                               },
@@ -311,7 +311,7 @@ exports[`Testing Messages screen Render correct component 1`] = `
                           style={
                             Array [
                               Object {
-                                "backgroundColor": "#ffffff",
+                                "backgroundColor": "#fff",
                                 "flex": 1,
                                 "height": "100%",
                               },
@@ -337,7 +337,7 @@ exports[`Testing Messages screen Render correct component 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "backgroundColor": "#ffffff",
+                                  "backgroundColor": "#fff",
                                   "flex": 1,
                                   "height": "100%",
                                 },
@@ -400,7 +400,7 @@ exports[`Testing Messages screen Render correct component 1`] = `
                                       "backgroundColor": "rgba(0, 0, 0, 0)",
                                       "borderBottomColor": "red",
                                       "borderBottomWidth": 2,
-                                      "color": "#ffffff",
+                                      "color": "#fff",
                                       "fontSize": 20,
                                       "height": 40,
                                       "marginBottom": 20,
@@ -422,7 +422,7 @@ exports[`Testing Messages screen Render correct component 1`] = `
                                       "backgroundColor": "rgba(0, 0, 0, 0)",
                                       "borderBottomColor": "red",
                                       "borderBottomWidth": 2,
-                                      "color": "#ffffff",
+                                      "color": "#fff",
                                       "fontSize": 20,
                                       "height": 40,
                                       "marginBottom": 20,
@@ -466,7 +466,7 @@ exports[`Testing Messages screen Render correct component 1`] = `
                                   <Text
                                     style={
                                       Object {
-                                        "color": "#ffffff",
+                                        "color": "#fff",
                                         "fontSize": 20,
                                         "fontWeight": "bold",
                                       }
@@ -486,7 +486,7 @@ exports[`Testing Messages screen Render correct component 1`] = `
                                   <Text
                                     style={
                                       Object {
-                                        "color": "#ffffff",
+                                        "color": "#fff",
                                         "paddingBottom": 30,
                                       }
                                     }

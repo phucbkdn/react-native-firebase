@@ -295,7 +295,7 @@ exports[`Testing Messages screen Render correct component 1`] = `
                           Array [
                             Array [
                               Object {
-                                "backgroundColor": "#ffffff",
+                                "backgroundColor": "#fff",
                                 "flex": 1,
                                 "height": "100%",
                               },
