@@ -1,4 +1,5 @@
 import { CategoryModel } from '../models'
+
 /**
  * Function increment
  * @param id {string}
