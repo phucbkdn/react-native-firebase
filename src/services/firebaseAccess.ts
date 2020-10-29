@@ -5,6 +5,7 @@ import 'firebase/auth'
 import 'firebase/functions'
 import 'firebase/storage'
 
+// TODO: move to env config
 // Initialize Firebase
 export const firebaseConfig = {
   apiKey: 'AIzaSyBqEZbrQK2U4U5LGSXC-sBAOd_BJTPTFlU',
@@ -17,12 +18,16 @@ export const firebaseConfig = {
 }
 
 const firebaseApp = firebase.apps[0] || firebase.initializeApp(firebaseConfig)
-export const db = firebase.firestore()
+
 export const auth = firebase.auth()
 export default firebaseApp
+
+// Mock local host for firebase emulator
 if (location.hostname === 'localhost') {
-  db.settings({
+  firebase.firestore().settings({
     host: 'localhost:8080',
     ssl: false,
   })
 }
+
+export const db = firebase.firestore()

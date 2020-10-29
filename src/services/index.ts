@@ -1,17 +1,10 @@
-import { combineLatest, of } from 'rxjs'
-import { mergeMap, map, filter, switchMap } from 'rxjs/operators'
+import { of } from 'rxjs'
+import { filter, switchMap } from 'rxjs/operators'
 import { extname } from 'path'
 import { collectionData } from 'rxfire/firestore'
-import { authState, user, idToken } from 'rxfire/auth'
+import { authState, user } from 'rxfire/auth'
 import { fromTask, getDownloadURL } from 'rxfire/storage'
 import firebaseApp, { db, auth } from './firebaseAccess'
-
-if (location.hostname === 'localhost') {
-  db.settings({
-    host: 'localhost:8080',
-    ssl: false,
-  })
-}
 
 export const lazyMessages = (collectionName: string, query: string) => {
   const user$ = authState(auth).pipe(filter((user) => !!user))
@@ -114,5 +107,3 @@ const privateConverter = {
     }
   },
 }
-
-export default firebaseApp
