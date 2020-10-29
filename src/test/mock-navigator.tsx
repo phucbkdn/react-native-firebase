@@ -12,6 +12,11 @@ const MockedNavigator = ({ component, params = {} }) => {
           component={component}
           initialParams={params}
         />
+        <Stack.Screen
+          name="Messages"
+          component={component}
+          initialParams={params}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )
