@@ -6,7 +6,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "firebase emulators:exec 'jest --config=jest.config.js -u'",
+    "test": "firebase emulators:exec 'jest --config=jest.config.js'",
     "test:coverage": "firebase emulators:exec 'jest --config=jest.config.js --coverage'",
     "prettier": "prettier --write src/**/*.{js,ts,tsx}",
     "eslint": "eslint src/**/*.{js,ts,tsx}",
