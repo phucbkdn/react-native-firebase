@@ -8,24 +8,19 @@ interface Props {
   order: OrderType
 }
 
-export const Order: FC<Props> = memo(({ order }: Props) => {
-  const value = order
-  delete value._key
-
-  return (
-    <View style={orderStyles.wrapper}>
-      <View style={orderStyles.textWrapper}>
-        <Text style={orderStyles.textStyle}>Created:</Text>
-        <Text style={orderStyles.textValue}>
-          {order.created} - {order.time}
-        </Text>
-      </View>
-      <View style={orderStyles.textWrapper}>
-        <Text style={orderStyles.textStyle}>Price:</Text>
-        <Text style={orderStyles.textValue}>
-          {currencyFormatter.format(order.price, { locale: 'VN' })}
-        </Text>
-      </View>
+export const Order: FC<Props> = memo(({ order }: Props) => (
+  <View style={orderStyles.wrapper}>
+    <View style={orderStyles.textWrapper}>
+      <Text style={orderStyles.textStyle}>Created:</Text>
+      <Text style={orderStyles.textValue}>
+        {order.created} - {order.time}
+      </Text>
     </View>
-  )
-})
+    <View style={orderStyles.textWrapper}>
+      <Text style={orderStyles.textStyle}>Price:</Text>
+      <Text style={orderStyles.textValue}>
+        {currencyFormatter.format(order.price, { locale: 'VN' })}
+      </Text>
+    </View>
+  </View>
+))
