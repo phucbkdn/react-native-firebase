@@ -7,15 +7,14 @@ import { fromTask, getDownloadURL } from 'rxfire/storage'
 import firebaseApp, { db, auth } from './firebaseAccess'
 
 export const lazyMessages = (collectionName: string, query: string) => {
-  const user$ = authState(auth).pipe(filter((user) => !!user))
   return user(auth).pipe(
     switchMap((user) => {
       const ref = db
         .collection(collectionName)
-        // .where('thread', 'in', [
-        //   `${user.email}-${query}`,
-        //   `${query}-${user.email}`,
-        // ])
+        .where('thread', 'in', [
+          `${user.email}-${query}`,
+          `${query}-${user.email}`,
+        ])
         .orderBy('created', 'asc')
       return collectionData(ref, 'id')
     })
