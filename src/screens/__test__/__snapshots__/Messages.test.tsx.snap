@@ -286,6 +286,7 @@ exports[`Testing Messages screen Render correct component 1`] = `
                       style={
                         Object {
                           "flex": 1,
+                          "marginTop": 0,
                         }
                       }
                     >

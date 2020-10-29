@@ -42,17 +42,11 @@ const Users: FC = () => {
             />
           </View>
           <View>
-            <Text style={{ fontSize: 16 }}>{user?.displayName}</Text>
-            <Text
-              style={{
-                color: 'gray',
-                fontSize: 16,
-              }}
-            >
-              {user?.email}
-            </Text>
+            <Text style={usersStyles.displayName}>{user?.displayName}</Text>
+            <Text style={usersStyles.email}>{user?.email}</Text>
           </View>
         </View>
+        <Text style={usersStyles.chatList}>Chat list</Text>
         <FlatList
           data={users}
           renderItem={({ item }) => (

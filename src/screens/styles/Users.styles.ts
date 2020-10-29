@@ -1,4 +1,5 @@
-import { ViewStyle } from 'react-native'
+import { TextStyle, ViewStyle } from 'react-native'
+import { color } from '../../themes'
 
 export const usersStyles = {
   container: {
@@ -18,4 +19,15 @@ export const usersStyles = {
   userImage: {
     marginRight: 12,
   } as ViewStyle,
+  chatList: {
+    textAlign: 'center',
+    fontSize: 20,
+  } as TextStyle,
+  displayName: {
+    fontSize: 18,
+  } as TextStyle,
+  email: {
+    color: color.shadowColor,
+    fontSize: 16,
+  } as TextStyle,
 }

@@ -5,7 +5,7 @@ export const settingsStyles = {
   scroll: {
     flex: 1,
     backgroundColor: color.while,
-    marginTop: StatusBar.currentHeight || 0,
+    marginTop: 30,
     height: height,
   } as ViewStyle,
   userRow: {

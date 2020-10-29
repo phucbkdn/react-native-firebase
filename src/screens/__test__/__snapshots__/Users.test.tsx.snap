@@ -520,20 +520,30 @@ exports[`Testing Users screen Render correct component 1`] = `
                               <Text
                                 style={
                                   Object {
-                                    "fontSize": 16,
+                                    "fontSize": 18,
                                   }
                                 }
                               />
                               <Text
                                 style={
                                   Object {
-                                    "color": "gray",
+                                    "color": "rgba(0,0,0,0.5)",
                                     "fontSize": 16,
                                   }
                                 }
                               />
                             </View>
                           </View>
+                          <Text
+                            style={
+                              Object {
+                                "fontSize": 20,
+                                "textAlign": "center",
+                              }
+                            }
+                          >
+                            Chat list
+                          </Text>
                           <RCTScrollView
                             data={
                               Array [
