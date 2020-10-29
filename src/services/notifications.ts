@@ -6,6 +6,7 @@ import {
 } from 'expo-notifications'
 import { getAsync, askAsync, NOTIFICATIONS } from 'expo-permissions'
 import { Platform } from 'react-native'
+import { color } from '../themes'
 
 export interface IPushNotification {
   to: string
@@ -67,7 +68,7 @@ export const registerForPushNotificationsAsync = async (): Promise<
       name: 'default',
       importance: AndroidImportance.MAX,
       vibrationPattern: [0, 250, 250, 250],
-      lightColor: '#ff231f7c',
+      lightColor: color.lightColor,
     })
   }
 

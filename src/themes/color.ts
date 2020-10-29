@@ -71,4 +71,5 @@ export const color = {
   lighterGrey: palette.lighterGrey,
   red: 'red',
   gray: palette.gray,
+  lightColor: '#ff231f7c',
 }
