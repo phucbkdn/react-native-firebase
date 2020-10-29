@@ -1,9 +1,9 @@
-// import * as firebase from 'firebase'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 import 'firebase/functions'
 import 'firebase/storage'
+import 'firebase/database'
 
 // TODO: move to env config
 // Initialize Firebase
