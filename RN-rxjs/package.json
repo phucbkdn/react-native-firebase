@@ -10,7 +10,7 @@
     "test:coverage": "firebase emulators:exec 'jest --config=jest.config.js --coverage'",
     "prettier": "prettier --write src/**/*.{js,ts,tsx}",
     "eslint": "eslint src/**/*.{js,ts,tsx}",
-    "firebase": "firebase emulators:start --only firestore"
+    "emulators:start": "firebase emulators:start"
   },
   "jest": {
     "preset": "jest-expo"

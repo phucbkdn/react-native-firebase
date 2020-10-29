@@ -25,6 +25,7 @@ setNotificationHandler({
   }),
 })
 
+// Ignore log setting a time on android devices
 LogBox.ignoreLogs(['Setting a timer'])
 
 export default function App() {
@@ -35,6 +36,7 @@ export default function App() {
     addNotificationResponseReceivedListener(_handleNotificationResponse);
   }, [])
 
+  // TODO: update handle notification
   const _handleNotificationResponse = response => {
     console.log('Notifications:', response);
   };

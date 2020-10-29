@@ -5,7 +5,7 @@ import { messageStyles } from './styles/message.styles'
 interface MessageType {
   message: string
   time: string
-  isPrimary: boolean
+  isPrimary?: boolean
 }
 
 const Message: FC<MessageType> = memo(
@@ -31,8 +31,6 @@ const Message: FC<MessageType> = memo(
 )
 
 Message.defaultProps = {
-  message: '',
-  time: '',
   isPrimary: false,
 }
 
