@@ -89,9 +89,9 @@ const categoriesService = new (class CategoriesService {
     collectionData(ref, '_key')
       .pipe(
         map((changes) =>
-          changes.map((c) => {
+          changes.map((snapshot) => {
             return {
-              ...c,
+              ...snapshot,
               count: 0,
             }
           })

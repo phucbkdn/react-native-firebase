@@ -1,4 +1,4 @@
-import { addMessage, lazyMessages, saveExpoPushToken } from '../index'
+import { lazyMessages } from '../index'
 import {
   setupFirebaseUnitTest,
   teardown,

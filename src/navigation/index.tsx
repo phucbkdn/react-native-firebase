@@ -16,9 +16,8 @@ import DrawerScreen from './DrawerNavigator'
 // Screens
 import Messages from '../screens/Messages'
 import NotFoundScreen from '../screens/NotFoundScreen'
-import TableOrder from '../screens/TableOrder'
 import LoginScreen from '../screens/Login'
-import firebaseApp from '../services'
+import firebaseApp from '../services/firebaseAccess'
 
 // Components
 import Indicator from '../components/IndicatorBackdrop'
@@ -61,11 +60,6 @@ export const AppStack = () => {
   return (
     <Stack.Navigator headerMode="none">
       <Stack.Screen name="primaryStack" component={DrawerScreen} />
-      <Stack.Screen
-        name="TableOrder"
-        component={TableOrder}
-        options={{ title: 'TableOrder' }}
-      />
       <Stack.Screen
         name="Messages"
         component={Messages}

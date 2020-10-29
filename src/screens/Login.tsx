@@ -13,7 +13,7 @@ import { useNavigation } from '@react-navigation/native'
 import { Screen } from '../components/screen/screen'
 import { loginStyles } from './styles/Login.styles'
 import { images } from '../themes'
-import firebase from '../services'
+import firebase from '../services/firebaseAccess'
 import Indicator from '../components/IndicatorBackdrop'
 
 const resizeMode: ImageResizeMode = 'stretch'
