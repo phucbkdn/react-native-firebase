@@ -6,7 +6,7 @@ import { NavigationType } from '../navigation'
 
 interface Props {
   name: string
-  active: Boolean
+  active?: Boolean
   id: string
 }
 
@@ -37,7 +37,5 @@ export const Table: FC<Props> = memo(({ name, active, id }: Props) => {
 })
 
 Table.defaultProps = {
-  name: '',
   active: false,
-  id: '',
 }

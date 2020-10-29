@@ -7,12 +7,9 @@ import { View, ActivityIndicator } from 'react-native'
 import styles from './styles/indicator.styles'
 import { palette } from '../themes'
 
-const Indicator: FC<> = () => (
+const Indicator: FC = () => (
   <View style={styles.backdrops}>
-    <ActivityIndicator
-      size='large'
-      color={palette.dustyGray}
-    />
+    <ActivityIndicator size="large" color={palette.dustyGray} />
   </View>
 )
 
