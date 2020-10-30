@@ -1,6 +1,5 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import * as firebase from 'firebase'
 import { TextInput, TouchableOpacity } from 'react-native'
 import MockedNavigator from '../../test/mock-navigator'
 import Login from '../Login'
