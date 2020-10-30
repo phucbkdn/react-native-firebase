@@ -29,7 +29,7 @@ export const addMessage = (collectionName: string, data: any) => {
   const user$ = authState(auth).pipe(filter((user) => !!user))
   return user(auth).pipe(
     switchMap((user) => {
-      return db.collection(collectionName).add(user)
+      return db.collection(collectionName).add(data)
     })
   )
 }

@@ -5,6 +5,8 @@ import {
   ScrollView,
   StatusBar,
   View,
+  Keyboard,
+  TouchableWithoutFeedback,
 } from 'react-native'
 import { useSafeArea } from 'react-native-safe-area-context'
 import { ScreenProps } from './screen.props'
@@ -24,11 +26,13 @@ const ScreenWithoutScrolling: FC<ScreenProps> = (props: ScreenProps) => {
   return (
     <KeyboardAvoidingView
       style={[preset.outer, backgroundStyle]}
-      behavior={isIos ? 'padding' : null}
+      behavior={isIos ? 'padding' : undefined}
       keyboardVerticalOffset={offsets[props.keyboardOffset || 'none']}
     >
       <StatusBar barStyle={props.statusBar || 'light-content'} />
-      <View style={[preset.inner, style, insetStyle]}>{props.children}</View>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <View style={[preset.inner, style, insetStyle]}>{props.children}</View>
+      </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   )
 }
@@ -45,18 +49,20 @@ const ScreenWithScrolling: FC<ScreenProps> = memo((props: ScreenProps) => {
   return (
     <KeyboardAvoidingView
       style={[preset.outer, backgroundStyle]}
-      behavior={isIos ? 'padding' : null}
+      behavior={isIos ? 'padding' : undefined}
       keyboardVerticalOffset={offsets[props.keyboardOffset || 'none']}
     >
       <StatusBar barStyle={props.statusBar || 'light-content'} />
-      <View style={[preset.outer, backgroundStyle, insetStyle]}>
-        <ScrollView
-          style={[preset.outer, backgroundStyle]}
-          contentContainerStyle={[preset.inner, style]}
-        >
-          {props.children}
-        </ScrollView>
-      </View>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <View style={[preset.outer, backgroundStyle, insetStyle]}>
+          <ScrollView
+            style={[preset.outer, backgroundStyle]}
+            contentContainerStyle={[preset.inner, style]}
+          >
+            {props.children}
+          </ScrollView>
+        </View>
+      </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   )
 })
