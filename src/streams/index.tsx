@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, FC } from 'react'
 
 export type StreamProps = {
   observable: Record<string, any>
@@ -7,13 +7,13 @@ export type StreamProps = {
 }
 
 const withObservableStream = (observable, triggers, initState) => (
-  Component
+  Component: FC | any
 ) => (props) => {
   const [state, setState] = useState(initState)
   useEffect(() => {
     const subscription = observable.subscribe((newState) => setState(newState))
     return () => subscription.unsubscribe()
-  })
+  }, [])
 
   return <Component {...props} {...state} {...triggers} />
 }

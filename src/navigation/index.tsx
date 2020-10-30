@@ -6,7 +6,7 @@ import {
 } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { ColorSchemeName } from 'react-native'
-
+import { map } from 'rxjs/operators'
 import { RootStackParamList } from '../models'
 import LinkingConfiguration from './LinkingConfiguration'
 import DrawerScreen from './DrawerNavigator'
@@ -23,6 +23,7 @@ import Indicator from '../components/IndicatorBackdrop'
 import usersStore from '../store/users'
 import { AuthUserContext } from '../provider'
 import { authStateChange } from '../hooks/useAuthStateChange'
+import withObservableStream from '../streams'
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
@@ -45,32 +46,35 @@ export default function Navigation({
 // Read more here: https://reactnavigation.org/docs/modal
 const Stack = createStackNavigator<RootStackParamList>()
 
-export const AppStack = () => {
-  const [user, setUser] = useState('')
-  useEffect(() => {
-    const sub = usersStore.getStore().subscribe((it) => {
-      setUser(it.user)
-    })
+export const App = ({ user }) => (
+  <Stack.Navigator>
+    <Stack.Screen name="primaryStack" component={DrawerScreen} />
+    <Stack.Screen
+      name="Messages"
+      component={Messages}
+      options={{ title: user }}
+    />
+    <Stack.Screen
+      name="NotFound"
+      component={NotFoundScreen}
+      options={{ title: 'Oops!' }}
+    />
+  </Stack.Navigator>
+)
 
-    return () => sub.unsubscribe()
-  }, [])
+const store = usersStore.getStore()
 
-  return (
-    <Stack.Navigator headerMode="none">
-      <Stack.Screen name="primaryStack" component={DrawerScreen} />
-      <Stack.Screen
-        name="Messages"
-        component={Messages}
-        options={{ title: user }}
-      />
-      <Stack.Screen
-        name="NotFound"
-        component={NotFoundScreen}
-        options={{ title: 'Oops!' }}
-      />
-    </Stack.Navigator>
-  )
-}
+const AppStack = withObservableStream(
+  store.pipe(
+    map((data: any) => ({
+      user: data.user,
+    }))
+  ),
+  {},
+  {
+    user: '',
+  }
+)(App)
 
 export const AuthStack = () => (
   <Stack.Navigator headerMode="none">
