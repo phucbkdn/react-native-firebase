@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useCallback, FC } from 'react'
-import { View, Text, Switch } from 'react-native'
+import { View, Text, Switch, Alert } from 'react-native'
 import { Avatar, ListItem } from 'react-native-elements'
 
 import * as ImagePicker from 'expo-image-picker'
@@ -67,6 +67,11 @@ const Settings: FC = () => {
         setLoading(true)
         const response = await fetch(result.uri)
         const blob = await response.blob()
+        if (!blob || blob.size === 0) {
+          Alert.alert('Upload Avatar Error')
+          return
+        }
+
         uploadAvatar(blob, result.uri, (new_user) => {
           setUser(new_user)
           forceUpdate()
