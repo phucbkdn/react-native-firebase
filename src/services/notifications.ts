@@ -47,9 +47,8 @@ export const registerForPushNotificationsAsync = async (): Promise<
 > => {
   let token
   if (Constants.isDevice) {
-    const { status: existingStatus } = await getAsync(NOTIFICATIONS)
-    let finalStatus = existingStatus
-    if (existingStatus !== 'granted') {
+    let { status: finalStatus } = await getAsync(NOTIFICATIONS)
+    if (finalStatus !== 'granted') {
       const { status } = await askAsync(NOTIFICATIONS)
       finalStatus = status
     }
