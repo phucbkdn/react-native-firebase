@@ -1,4 +1,4 @@
-import { of } from 'rxjs'
+import firebase from 'firebase/app'
 import { filter, switchMap } from 'rxjs/operators'
 import { extname } from 'path'
 import { collectionData } from 'rxfire/firestore'
@@ -6,6 +6,11 @@ import { authState, user } from 'rxfire/auth'
 import { fromTask, getDownloadURL } from 'rxfire/storage'
 import firebaseApp, { db, auth } from './firebaseAccess'
 
+/**
+ * Lazy Messages
+ * @param collectionName {string}
+ * @param query {string}
+ */
 export const lazyMessages = (collectionName: string, query: string) => {
   return user(auth).pipe(
     switchMap((user) => {
@@ -15,6 +20,11 @@ export const lazyMessages = (collectionName: string, query: string) => {
   )
 }
 
+/**
+ * Add message function
+ * @param collectionName {string}
+ * @param data {Object} Message object
+ */
 export const addMessage = (collectionName: string, data: any) => {
   const user$ = authState(auth).pipe(filter((user) => !!user))
   return user(auth).pipe(
@@ -24,19 +34,25 @@ export const addMessage = (collectionName: string, data: any) => {
   )
 }
 
+/**
+ * Save expo push token
+ * @param token {string}
+ */
 export const saveExpoPushToken = (token: string | undefined) => {
   if (!token) {
     return
   }
 
+  // Get current user
+  const currentUser = auth.currentUser
   db.collection('private')
-    .doc(firebaseApp.auth().currentUser?.uid)
+    .doc(currentUser?.uid)
     .withConverter(privateConverter)
     .get()
     .then((doc) => {
       if (!doc.exists || !doc.data()?.ExpoPushToken?.includes(token)) {
         db.collection('private')
-          .doc(firebaseApp.auth().currentUser?.uid)
+          .doc(currentUser?.uid)
           .set({
             ExpoPushToken: [...(doc.data()?.ExpoPushToken || []), token],
           })
@@ -44,31 +60,42 @@ export const saveExpoPushToken = (token: string | undefined) => {
     })
 }
 
+/**
+ * Upload avatar and update user avatar
+ * @param file {Blob}
+ * @param fileName {string}
+ * @param callback {Callback}
+ */
 export const uploadAvatar = (
   file: Blob,
   fileName: string,
-  cb: (User: firebase.User | null) => void
+  callback: (User: firebase.User | null) => void
 ) => {
+  const currentUser = auth.currentUser
   const storageRef = firebaseApp
     .storage()
-    .ref('avatar/' + firebaseApp.auth().currentUser?.uid + extname(fileName))
+    .ref('avatar/' + currentUser?.uid + extname(fileName))
 
   const task = storageRef.put(file, { cacheControl: 'public,max-age=86400' })
 
   fromTask(task).subscribe((snap) => {
     getDownloadURL(snap.ref).subscribe((url) => {
-      firebaseApp
-        .auth()
-        .currentUser?.updateProfile({
+      currentUser
+        ?.updateProfile({
           photoURL: url,
         })
         .then(() => {
-          if (firebaseApp.auth().currentUser) cb(firebaseApp.auth().currentUser)
+          if (currentUser) {
+            callback(currentUser)
+          }
         })
     })
   })
 }
 
+/**
+ * Function logout
+ */
 export const logout = () => firebaseApp.auth().signOut()
 
 interface priv {
