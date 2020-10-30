@@ -9,6 +9,12 @@ export const AuthUserContext = createContext<{
   setUser: () => {},
 })
 
+export const LocaleContext = createContext<{
+  locale: string | undefined
+}>({
+  locale: 'VN',
+})
+
 export const AuthProvider: FC = ({ children }) => {
   const [user, setUser] = useState<User | null>(null)
 

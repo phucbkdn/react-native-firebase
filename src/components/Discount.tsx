@@ -1,9 +1,10 @@
-import React, { FC, memo } from 'react'
+import React, { FC, memo, useContext } from 'react'
 import { View, Text } from 'react-native'
 import currencyFormatter from 'currency-formatter'
 import { discountStyles } from './styles/discount.styles'
 import { connect } from '../state/RXState'
 import { CategoryModel } from '../models'
+import { LocaleContext } from '../provider'
 
 interface TableOrderModel {
   categories: Array<CategoryModel>
@@ -16,6 +17,7 @@ export const Discount: FC<TableOrderModel> = memo(
       (accumulator, current) => accumulator + current.count * current.price,
       0
     )
+    const { locale } = useContext(LocaleContext)
     const discountPrice = (price * discount) / 100
     price = price - discountPrice
 
@@ -24,13 +26,13 @@ export const Discount: FC<TableOrderModel> = memo(
         <View style={discountStyles.priceWrapper}>
           <Text style={discountStyles.title}>Discount: </Text>
           <Text style={discountStyles.title}>
-            {currencyFormatter.format(discountPrice, { locale: 'VN' })}
+            {currencyFormatter.format(discountPrice, { locale })}
           </Text>
         </View>
         <View style={discountStyles.priceWrapper}>
           <Text style={discountStyles.title}>Total: </Text>
           <Text style={discountStyles.title}>
-            {currencyFormatter.format(price, { locale: 'VN' })}
+            {currencyFormatter.format(price, { locale })}
           </Text>
         </View>
       </View>
