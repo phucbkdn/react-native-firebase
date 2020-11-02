@@ -1,13 +1,15 @@
-import React, { FC } from 'react'
-import {
-  View,
-  Text,
-} from 'react-native'
+import React, { FC, useEffect } from 'react'
+import { View, Text } from 'react-native'
 
-const AppInfo: FC = () => (
-  <View>
-    <Text>App Info</Text>
-  </View>
-)
+const AppInfo: FC = () => {
+  useEffect(() => {
+    throw new Error('Testing error boundary!!')
+  }, [])
+  return (
+    <View>
+      <Text>App Info</Text>
+    </View>
+  )
+}
 
 export default AppInfo
