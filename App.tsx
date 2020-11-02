@@ -13,6 +13,7 @@ import { Provide, createState } from './src/state/RXState'
 import { AuthProvider } from './src/provider'
 import reducer$ from './src/reducers'
 import {decode, encode} from 'base-64'
+import ErrorBoundary from './src/components/ErrorBoundary'
 
 if (!global.btoa) {  global.btoa = encode }
 if (!global.atob) { global.atob = decode }
@@ -45,14 +46,16 @@ export default function App() {
     return null;
   } else {
     return (
-      <SafeAreaProvider>
-        <Provide state$={createState(reducer$)}>
-          <AuthProvider>
-            <Navigation colorScheme={colorScheme} />
-          <StatusBar />
-          </AuthProvider>
-        </Provide>
-      </SafeAreaProvider>
+      <ErrorBoundary>
+        <SafeAreaProvider>
+          <Provide state$={createState(reducer$)}>
+            <AuthProvider>
+              <Navigation colorScheme={colorScheme} />
+            <StatusBar />
+            </AuthProvider>
+          </Provide>
+        </SafeAreaProvider>
+      </ErrorBoundary>
     );
   }
 }
