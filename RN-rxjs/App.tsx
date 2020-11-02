@@ -7,7 +7,6 @@ import {
   addNotificationResponseReceivedListener
 } from 'expo-notifications';
 import useCachedResources from './src/hooks/useCachedResources';
-import useColorScheme from './src/hooks/useColorScheme';
 import Navigation from './src/navigation';
 import { Provide, createState } from './src/state/RXState'
 import { AuthProvider } from './src/provider'
@@ -31,7 +30,6 @@ LogBox.ignoreLogs(['Setting a timer'])
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
-  const colorScheme = useColorScheme();
 
   useEffect(() => {
     addNotificationResponseReceivedListener(_handleNotificationResponse);
@@ -50,7 +48,7 @@ export default function App() {
         <SafeAreaProvider>
           <Provide state$={createState(reducer$)}>
             <AuthProvider>
-              <Navigation colorScheme={colorScheme} />
+              <Navigation />
             <StatusBar />
             </AuthProvider>
           </Provide>

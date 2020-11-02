@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Text as DefaultText, View as DefaultView } from 'react-native'
 
 import Colors from '../constants/Colors'
-import useColorScheme from '../hooks/useColorScheme'
+import { AuthUserContext } from '../provider'
 
 export const useThemeColor = (
   props: { light?: string; dark?: string },
   colorName: keyof typeof Colors.light & keyof typeof Colors.dark
 ) => {
-  const theme = useColorScheme()
+  const { theme } = useContext(AuthUserContext)
   const colorFromProps = props[theme]
 
   if (colorFromProps) {
