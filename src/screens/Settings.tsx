@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useCallback, FC } from 'react'
-import { View, Text, Switch, Alert } from 'react-native'
+import { Switch, Alert } from 'react-native'
 import { Avatar, ListItem } from 'react-native-elements'
 
 import * as ImagePicker from 'expo-image-picker'
@@ -17,14 +17,20 @@ import BaseIcon from '../components/Icon'
 import Indicator from '../components/IndicatorBackdrop'
 import { settingsStyles } from './styles/Settings.styles'
 
+// Themes
+import { View, Text } from '../components/Themed'
+import { color } from '../themes'
+
 const Settings: FC = () => {
   useStatusBar('dark-content')
 
   const [expoPushToken, setExpoPushToken] = useState('')
-  const { user, setUser } = useContext(AuthUserContext)
+  const { user, setUser, setTheme, theme } = useContext(AuthUserContext)
   const [loading, setLoading] = useState<boolean>(false)
   const [, updateState] = useState()
+  const [darkMode, setDarkMode] = useState(false)
   const forceUpdate = useCallback(() => updateState({}), [])
+  const styles = settingsStyles(theme)
 
   useEffect(() => {
     registerForPushNotificationsAsync().then((token) => {
@@ -81,11 +87,16 @@ const Settings: FC = () => {
     } catch {}
   }
 
+  const switchMode = () => {
+    setTheme(!darkMode ? 'dark' : 'light')
+    setDarkMode(!darkMode)
+  }
+
   return (
-    <View style={settingsStyles.scroll}>
+    <View style={styles.scroll}>
       {loading && <Indicator />}
-      <View style={settingsStyles.userRow}>
-        <View style={settingsStyles.userImage}>
+      <View style={styles.userRow}>
+        <View style={styles.userImage}>
           <Avatar
             rounded
             size="large"
@@ -97,23 +108,16 @@ const Settings: FC = () => {
           />
         </View>
         <View>
-          <Text style={{ fontSize: 16 }}>{user?.displayName}</Text>
-          <Text
-            style={{
-              color: 'gray',
-              fontSize: 16,
-            }}
-          >
-            {user?.email}
-          </Text>
+          <Text style={styles.title}>{user?.displayName}</Text>
+          <Text style={styles.title}>{user?.email}</Text>
         </View>
       </View>
-      <View style={settingsStyles.textWrapper}>
-        <Text style={settingsStyles.text}>Account</Text>
+      <View style={styles.textWrapper}>
+        <Text style={styles.text}>Account</Text>
       </View>
       <View>
         <ListItem
-          style={settingsStyles.listItemContainer}
+          containerStyle={styles.listItemContainer}
           onPress={() =>
             sendPushNotification({
               to: expoPushToken,
@@ -126,7 +130,7 @@ const Settings: FC = () => {
         >
           <BaseIcon
             style={{
-              backgroundColor: '#FFADF2',
+              backgroundColor: color.lavenderRose,
             }}
             icon={{
               type: 'material',
@@ -134,15 +138,33 @@ const Settings: FC = () => {
             }}
           />
           <ListItem.Content>
-            <ListItem.Title>Push notification</ListItem.Title>
+            <Text>Push notification</Text>
           </ListItem.Content>
           <Switch onValueChange={() => {}} value={true} />
         </ListItem>
-
-        <ListItem style={settingsStyles.listItemContainer} onPress={_pickImage}>
+        <ListItem containerStyle={styles.listItemContainer}>
           <BaseIcon
             style={{
-              backgroundColor: '#57DCE7',
+              backgroundColor: color.lavenderRose,
+            }}
+            icon={{
+              type: 'material',
+              name: 'sync',
+            }}
+          />
+          <ListItem.Content>
+            <Text>Dark mode</Text>
+          </ListItem.Content>
+          <Switch onValueChange={switchMode} value={darkMode} />
+        </ListItem>
+
+        <ListItem
+          containerStyle={styles.listItemContainer}
+          onPress={_pickImage}
+        >
+          <BaseIcon
+            style={{
+              backgroundColor: color.turquoiseBlue,
             }}
             icon={{
               type: 'material',
@@ -150,18 +172,16 @@ const Settings: FC = () => {
             }}
           />
           <ListItem.Content>
-            <ListItem.Title>Upload avatar</ListItem.Title>
+            <Text>Upload avatar</Text>
           </ListItem.Content>
           <ListItem.Chevron />
         </ListItem>
         <ListItem
           onPress={handleSignOut}
-          style={settingsStyles.listItemContainer}
+          containerStyle={styles.listItemContainer}
         >
           <ListItem.Content>
-            <ListItem.Title style={settingsStyles.logoutText}>
-              Sign out
-            </ListItem.Title>
+            <ListItem.Title style={styles.logoutText}>Sign out</ListItem.Title>
           </ListItem.Content>
         </ListItem>
       </View>

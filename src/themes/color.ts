@@ -72,4 +72,6 @@ export const color = {
   red: 'red',
   gray: palette.gray,
   lightColor: '#ff231f7c',
+  lavenderRose: palette.lavenderRose,
+  turquoiseBlue: palette.turquoiseBlue,
 }

@@ -1,11 +1,10 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import {
   NavigationContainer,
   DefaultTheme,
   DarkTheme,
 } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { ColorSchemeName } from 'react-native'
 import { map } from 'rxjs/operators'
 import { RootStackParamList } from '../models'
 import LinkingConfiguration from './LinkingConfiguration'
@@ -27,15 +26,12 @@ import withObservableStream from '../streams'
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
-export default function Navigation({
-  colorScheme,
-}: {
-  colorScheme: ColorSchemeName
-}) {
+export default function Navigation() {
+  const { theme } = useContext(AuthUserContext)
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+      theme={theme === 'dark' ? DarkTheme : DefaultTheme}
     >
       <RootNavigator />
     </NavigationContainer>
@@ -47,7 +43,7 @@ export default function Navigation({
 const Stack = createStackNavigator<RootStackParamList>()
 
 export const App = ({ user }) => (
-  <Stack.Navigator>
+  <Stack.Navigator headerMode="none">
     <Stack.Screen name="primaryStack" component={DrawerScreen} />
     <Stack.Screen
       name="Messages"

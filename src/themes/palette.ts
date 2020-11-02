@@ -17,4 +17,6 @@ export const palette = {
   gallery: '#ececec',
   azureRadiance: '#007aff',
   grayNurse: '#f4f5f4',
+  lavenderRose: '#ffadf2',
+  turquoiseBlue: '#57dce7',
 }
