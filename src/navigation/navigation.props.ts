@@ -1,10 +1,6 @@
 import { StackNavigationProp } from '@react-navigation/stack'
-export type RootParamList = {
-  primaryStack: undefined
-  recipe: undefined
-  recipes: undefined
-  login: undefined
-}
+import { RouteProp } from '@react-navigation/native'
+import { RootStackParamList } from '../models'
 
 export type NavigationType = {
   TableOrder: {
@@ -20,8 +16,11 @@ export type NavigationType = {
   }
 }
 
-type ProfileScreenNavigationProp = StackNavigationProp<RootParamList, 'login'>
-
+type ProfileScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'Login'
+>
+export type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'Messages'>
 export type NavigationProps = {
   navigation: ProfileScreenNavigationProp
 }

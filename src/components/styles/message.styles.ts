@@ -1,5 +1,5 @@
 import { TextStyle, ViewStyle } from 'react-native'
-import { color, width } from '../../themes'
+import { color } from '../../themes'
 
 export const messageStyles = {
   wrapper: {
@@ -11,12 +11,11 @@ export const messageStyles = {
     margin: 10,
   } as ViewStyle,
   textStyle: {
-    color: color.text,
     fontSize: 18,
     flexWrap: 'wrap',
+    maxWidth: '80%',
   } as TextStyle,
   time: {
-    color: color.dim,
     fontSize: 16,
     textTransform: 'capitalize',
     paddingLeft: 20,
@@ -32,13 +31,9 @@ export const messageStyles = {
     borderBottomEndRadius: 5,
   } as ViewStyle,
   primaryWrapper: {
-    flex: 1,
     alignItems: 'flex-end',
-    width: width,
   } as ViewStyle,
   secondaryWrapper: {
-    width: width,
-    flex: 1,
     alignItems: 'flex-start',
   } as ViewStyle,
 }
