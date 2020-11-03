@@ -11,7 +11,6 @@ export const userStyles = {
     flex: 1,
   } as ViewStyle,
   textStyle: {
-    color: color.text,
     fontSize: 11,
     lineHeight: 13,
     textTransform: 'capitalize',

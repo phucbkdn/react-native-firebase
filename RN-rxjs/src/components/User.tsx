@@ -1,10 +1,11 @@
 import React, { FC, memo } from 'react'
-import { View, TouchableOpacity, Text } from 'react-native'
+import { TouchableOpacity } from 'react-native'
 import { useNavigation, NavigationProp } from '@react-navigation/native'
 import { FontAwesome } from '@expo/vector-icons'
 import { userStyles } from './styles/user.stylers'
 import { NavigationType } from '../navigation'
 import usersStore from '../store/users'
+import { View, Text } from './Themed'
 
 interface Props {
   name: string

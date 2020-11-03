@@ -8,9 +8,7 @@ import {
 } from 'expo-notifications';
 import useCachedResources from './src/hooks/useCachedResources';
 import Navigation from './src/navigation';
-import { Provide, createState } from './src/state/RXState'
 import { AuthProvider } from './src/provider'
-import reducer$ from './src/reducers'
 import {decode, encode} from 'base-64'
 import ErrorBoundary from './src/components/ErrorBoundary'
 
@@ -46,12 +44,10 @@ export default function App() {
     return (
       <ErrorBoundary>
         <SafeAreaProvider>
-          <Provide state$={createState(reducer$)}>
-            <AuthProvider>
-              <Navigation />
-            <StatusBar />
-            </AuthProvider>
-          </Provide>
+          <AuthProvider>
+            <Navigation />
+          <StatusBar />
+          </AuthProvider>
         </SafeAreaProvider>
       </ErrorBoundary>
     );
