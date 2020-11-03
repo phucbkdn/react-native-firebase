@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect, useContext } from 'react'
-import { View, Text, FlatList } from 'react-native'
+import { FlatList } from 'react-native'
 import { Avatar } from 'react-native-elements'
 import { usersStyles } from './styles/Users.styles'
 import { Screen } from '../components/screen/screen'
@@ -8,6 +8,7 @@ import { User } from '../components/User'
 import usersStore from '../store/users'
 import { User as UserType } from '../models'
 import { AuthUserContext } from '../provider'
+import { View, Text } from '../components/Themed'
 
 const Users: FC = () => {
   const [users, setUsers] = useState<UserType[]>([])

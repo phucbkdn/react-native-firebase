@@ -2,7 +2,6 @@ import React, { FC, memo, useContext } from 'react'
 import { View, Text } from 'react-native'
 import currencyFormatter from 'currency-formatter'
 import { discountStyles } from './styles/discount.styles'
-import { connect } from '../state/RXState'
 import { CategoryModel } from '../models'
 import { LocaleContext } from '../provider'
 
@@ -40,10 +39,4 @@ export const Discount: FC<TableOrderModel> = memo(
   }
 )
 
-export default connect(
-  ({ counter = {} }) => ({
-    categories: counter ? counter.categories : [],
-    discount: counter.discount,
-  }),
-  []
-)(Discount)
+export default Discount

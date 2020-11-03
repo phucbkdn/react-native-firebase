@@ -284,9 +284,14 @@ exports[`Testing Users screen Render correct component 1`] = `
                   >
                     <View
                       style={
-                        Object {
-                          "flex": 1,
-                        }
+                        Array [
+                          Object {
+                            "backgroundColor": "#fff",
+                          },
+                          Object {
+                            "flex": 1,
+                          },
+                        ]
                       }
                     >
                       <View
@@ -310,6 +315,15 @@ exports[`Testing Users screen Render correct component 1`] = `
                         }
                       >
                         <View
+                          accessible={true}
+                          focusable={true}
+                          onClick={[Function]}
+                          onResponderGrant={[Function]}
+                          onResponderMove={[Function]}
+                          onResponderRelease={[Function]}
+                          onResponderTerminate={[Function]}
+                          onResponderTerminationRequest={[Function]}
+                          onStartShouldSetResponder={[Function]}
                           style={
                             Array [
                               Object {
@@ -329,21 +343,31 @@ exports[`Testing Users screen Render correct component 1`] = `
                         >
                           <View
                             style={
-                              Object {
-                                "alignItems": "center",
-                                "flexDirection": "row",
-                                "paddingBottom": 8,
-                                "paddingLeft": 15,
-                                "paddingRight": 15,
-                                "paddingTop": 6,
-                              }
+                              Array [
+                                Object {
+                                  "backgroundColor": "#fff",
+                                },
+                                Object {
+                                  "alignItems": "center",
+                                  "flexDirection": "row",
+                                  "paddingBottom": 8,
+                                  "paddingLeft": 15,
+                                  "paddingRight": 15,
+                                  "paddingTop": 6,
+                                },
+                              ]
                             }
                           >
                             <View
                               style={
-                                Object {
-                                  "marginRight": 12,
-                                }
+                                Array [
+                                  Object {
+                                    "backgroundColor": "#fff",
+                                  },
+                                  Object {
+                                    "marginRight": 12,
+                                  },
+                                ]
                               }
                             >
                               <View
@@ -516,30 +540,54 @@ exports[`Testing Users screen Render correct component 1`] = `
                                 </View>
                               </View>
                             </View>
-                            <View>
+                            <View
+                              style={
+                                Array [
+                                  Object {
+                                    "backgroundColor": "#fff",
+                                  },
+                                  undefined,
+                                ]
+                              }
+                            >
                               <Text
                                 style={
-                                  Object {
-                                    "fontSize": 18,
-                                  }
+                                  Array [
+                                    Object {
+                                      "color": "#000",
+                                    },
+                                    Object {
+                                      "fontSize": 18,
+                                    },
+                                  ]
                                 }
                               />
                               <Text
                                 style={
-                                  Object {
-                                    "color": "rgba(0,0,0,0.5)",
-                                    "fontSize": 16,
-                                  }
+                                  Array [
+                                    Object {
+                                      "color": "#000",
+                                    },
+                                    Object {
+                                      "color": "rgba(0,0,0,0.5)",
+                                      "fontSize": 16,
+                                    },
+                                  ]
                                 }
                               />
                             </View>
                           </View>
                           <Text
                             style={
-                              Object {
-                                "fontSize": 20,
-                                "textAlign": "center",
-                              }
+                              Array [
+                                Object {
+                                  "color": "#000",
+                                },
+                                Object {
+                                  "fontSize": 20,
+                                  "textAlign": "center",
+                                },
+                              ]
                             }
                           >
                             Chat list
@@ -585,7 +633,16 @@ exports[`Testing Users screen Render correct component 1`] = `
                                 onLayout={[Function]}
                                 style={null}
                               >
-                                <View>
+                                <View
+                                  style={
+                                    Array [
+                                      Object {
+                                        "backgroundColor": "#fff",
+                                      },
+                                      undefined,
+                                    ]
+                                  }
+                                >
                                   <View
                                     accessible={true}
                                     focusable={true}
@@ -633,14 +690,18 @@ exports[`Testing Users screen Render correct component 1`] = `
                                     </Text>
                                     <Text
                                       style={
-                                        Object {
-                                          "color": "#999",
-                                          "fontSize": 11,
-                                          "lineHeight": 13,
-                                          "paddingLeft": 15,
-                                          "textTransform": "capitalize",
-                                          "width": 562.5,
-                                        }
+                                        Array [
+                                          Object {
+                                            "color": "#000",
+                                          },
+                                          Object {
+                                            "fontSize": 11,
+                                            "lineHeight": 13,
+                                            "paddingLeft": 15,
+                                            "textTransform": "capitalize",
+                                            "width": 562.5,
+                                          },
+                                        ]
                                       }
                                     >
                                       
@@ -652,7 +713,16 @@ exports[`Testing Users screen Render correct component 1`] = `
                                 onLayout={[Function]}
                                 style={null}
                               >
-                                <View>
+                                <View
+                                  style={
+                                    Array [
+                                      Object {
+                                        "backgroundColor": "#fff",
+                                      },
+                                      undefined,
+                                    ]
+                                  }
+                                >
                                   <View
                                     accessible={true}
                                     focusable={true}
@@ -700,14 +770,18 @@ exports[`Testing Users screen Render correct component 1`] = `
                                     </Text>
                                     <Text
                                       style={
-                                        Object {
-                                          "color": "#999",
-                                          "fontSize": 11,
-                                          "lineHeight": 13,
-                                          "paddingLeft": 15,
-                                          "textTransform": "capitalize",
-                                          "width": 562.5,
-                                        }
+                                        Array [
+                                          Object {
+                                            "color": "#000",
+                                          },
+                                          Object {
+                                            "fontSize": 11,
+                                            "lineHeight": 13,
+                                            "paddingLeft": 15,
+                                            "textTransform": "capitalize",
+                                            "width": 562.5,
+                                          },
+                                        ]
                                       }
                                     >
                                       user-1@test.com
