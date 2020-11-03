@@ -1,5 +1,5 @@
 import React, { FC, memo } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text } from './Themed'
 import { messageStyles } from './styles/message.styles'
 
 interface MessageType {

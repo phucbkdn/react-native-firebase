@@ -4,12 +4,8 @@ exports[`Testing Message component Render correct component 1`] = `
 <div>
   <view>
     <view>
-      <text
-        style="color: rgb(153, 153, 153); font-size: 18px; flex-wrap: wrap;"
-      />
-      <text
-        style="color: rgb(147, 154, 164); font-size: 16px; text-transform: capitalize; padding-left: 20px;"
-      >
+      <text />
+      <text>
         1:00
       </text>
     </view>

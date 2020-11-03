@@ -1,6 +1,6 @@
 // Libs
 import React, { useState, useEffect, useRef } from 'react'
-import { TouchableOpacity, View, TextInput, FlatList } from 'react-native'
+import { TouchableOpacity, TextInput, FlatList } from 'react-native'
 import moment from 'moment'
 import { FontAwesome } from '@expo/vector-icons'
 import { lazyMessages, addMessage } from '../services'
@@ -17,14 +17,16 @@ import { User, MessageType } from '../models'
 // Components
 import { Screen } from '../components/screen/screen'
 import Message from '../components/Message'
+import { View, useThemeColor } from '../components/Themed'
+import { ProfileScreenRouteProp } from '../navigation'
 
 const Messages = () => {
-  const { params } = useRoute()
+  const { params } = useRoute<ProfileScreenRouteProp>()
   const [messages, setMessages] = useState<MessageType[]>([])
   const [message, setMessage] = useState<string>('')
-  const [user, setUser] = useState<User>({ uid: '', email: '' })
+  const [user, setUser] = useState<User | undefined>()
 
-  const flatList = useRef<React.RefObject<FlatList<never>>>()
+  const flatList = useRef() as React.RefObject<FlatList<MessageType>>
 
   useEffect(() => {
     const sub = lazyMessages('messages', params.name).subscribe(
@@ -67,13 +69,13 @@ const Messages = () => {
         <FlatList
           ref={flatList}
           onContentSizeChange={() =>
-            flatList.current.scrollToEnd({ animated: true })
+            flatList.current?.scrollToEnd({ animated: true })
           }
-          onLayout={() => flatList.current.scrollToEnd({ animated: true })}
+          onLayout={() => flatList.current?.scrollToEnd({ animated: true })}
           data={messages}
           renderItem={({ item }) => (
             <Message
-              isPrimary={item.user === user.email}
+              isPrimary={item.user === user?.email}
               key={item.id}
               message={item.message}
               time={item.time}
@@ -88,8 +90,13 @@ const Messages = () => {
             keyboardType="ascii-capable"
             value={message}
           />
-          <TouchableOpacity onPress={sendMessage}>
-            <FontAwesome size={30} style={{ marginBottom: -3 }} name="send" />
+          <TouchableOpacity onPress={sendMessage} disabled={!message}>
+            <FontAwesome
+              size={30}
+              style={{ marginBottom: -3 }}
+              name="send"
+              color={useThemeColor({}, 'text')}
+            />
           </TouchableOpacity>
         </View>
       </Screen>

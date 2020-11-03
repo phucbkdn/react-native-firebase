@@ -284,10 +284,15 @@ exports[`Testing Messages screen Render correct component 1`] = `
                   >
                     <View
                       style={
-                        Object {
-                          "flex": 1,
-                          "marginTop": 0,
-                        }
+                        Array [
+                          Object {
+                            "backgroundColor": "#fff",
+                          },
+                          Object {
+                            "flex": 1,
+                            "marginTop": 0,
+                          },
+                        ]
                       }
                     >
                       <View
@@ -311,15 +316,6 @@ exports[`Testing Messages screen Render correct component 1`] = `
                         }
                       >
                         <View
-                          accessible={true}
-                          focusable={true}
-                          onClick={[Function]}
-                          onResponderGrant={[Function]}
-                          onResponderMove={[Function]}
-                          onResponderRelease={[Function]}
-                          onResponderTerminate={[Function]}
-                          onResponderTerminationRequest={[Function]}
-                          onStartShouldSetResponder={[Function]}
                           style={
                             Array [
                               Object {
@@ -365,12 +361,17 @@ exports[`Testing Messages screen Render correct component 1`] = `
                           </RCTScrollView>
                           <View
                             style={
-                              Object {
-                                "alignItems": "flex-end",
-                                "flexDirection": "row",
-                                "margin": 10,
-                                "paddingBottom": 20,
-                              }
+                              Array [
+                                Object {
+                                  "backgroundColor": "#fff",
+                                },
+                                Object {
+                                  "alignItems": "flex-end",
+                                  "flexDirection": "row",
+                                  "margin": 10,
+                                  "paddingBottom": 20,
+                                },
+                              ]
                             }
                           >
                             <TextInput
@@ -415,7 +416,7 @@ exports[`Testing Messages screen Render correct component 1`] = `
                                 style={
                                   Array [
                                     Object {
-                                      "color": undefined,
+                                      "color": "#000",
                                       "fontSize": 30,
                                     },
                                     Object {

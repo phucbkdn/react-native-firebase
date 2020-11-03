@@ -30,9 +30,7 @@ const ScreenWithoutScrolling: FC<ScreenProps> = (props: ScreenProps) => {
       keyboardVerticalOffset={offsets[props.keyboardOffset || 'none']}
     >
       <StatusBar barStyle={props.statusBar || 'light-content'} />
-      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <View style={[preset.inner, style, insetStyle]}>{props.children}</View>
-      </TouchableWithoutFeedback>
+      <View style={[preset.inner, style, insetStyle]}>{props.children}</View>
     </KeyboardAvoidingView>
   )
 }
@@ -53,16 +51,14 @@ const ScreenWithScrolling: FC<ScreenProps> = memo((props: ScreenProps) => {
       keyboardVerticalOffset={offsets[props.keyboardOffset || 'none']}
     >
       <StatusBar barStyle={props.statusBar || 'light-content'} />
-      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <View style={[preset.outer, backgroundStyle, insetStyle]}>
-          <ScrollView
-            style={[preset.outer, backgroundStyle]}
-            contentContainerStyle={[preset.inner, style]}
-          >
-            {props.children}
-          </ScrollView>
-        </View>
-      </TouchableWithoutFeedback>
+      <View style={[preset.outer, backgroundStyle, insetStyle]}>
+        <ScrollView
+          style={[preset.outer, backgroundStyle]}
+          contentContainerStyle={[preset.inner, style]}
+        >
+          {props.children}
+        </ScrollView>
+      </View>
     </KeyboardAvoidingView>
   )
 })

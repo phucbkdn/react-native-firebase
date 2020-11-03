@@ -42,6 +42,13 @@ export type RootStackParamList = {
   NotFound: undefined
   TableOrder: undefined
   BottomTabNavigator: undefined
-  Messages: undefined
+  Messages: {
+    name: string
+    id: string
+  }
+  Users: {
+    name: string
+    id: string
+  }
   Login: undefined
 }
