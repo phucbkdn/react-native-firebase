@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useCallback, FC } from 'react'
-import { Switch, Alert } from 'react-native'
+import { Switch, Alert, Platform } from 'react-native'
 import { Avatar, ListItem } from 'react-native-elements'
 
 import * as ImagePicker from 'expo-image-picker'
@@ -21,7 +21,7 @@ import { settingsStyles } from './styles/Settings.styles'
 import { View, Text } from '../components/Themed'
 import { color } from '../themes'
 
-const Settings: FC = () => {
+const Settings: FC = ({ navigation }) => {
   useStatusBar('dark-content')
 
   const [expoPushToken, setExpoPushToken] = useState('')
@@ -92,6 +92,10 @@ const Settings: FC = () => {
     setDarkMode(!darkMode)
   }
 
+  const handleBack = () => {
+    navigation.goBack()
+  }
+
   return (
     <View style={styles.scroll}>
       {loading && <Indicator />}
@@ -116,32 +120,34 @@ const Settings: FC = () => {
         <Text style={styles.text}>Account</Text>
       </View>
       <View>
-        <ListItem
-          containerStyle={styles.listItemContainer}
-          onPress={() =>
-            sendPushNotification({
-              to: expoPushToken,
-              sound: 'default',
-              title: 'Original Title',
-              body: 'And here is the body!',
-              data: { data: 'goes here' },
-            })
-          }
-        >
-          <BaseIcon
-            style={{
-              backgroundColor: color.lavenderRose,
-            }}
-            icon={{
-              type: 'material',
-              name: 'notifications',
-            }}
-          />
-          <ListItem.Content>
-            <Text>Push notification</Text>
-          </ListItem.Content>
-          <Switch onValueChange={() => {}} value={true} />
-        </ListItem>
+        {Platform.OS !== 'web' && (
+          <ListItem
+            containerStyle={styles.listItemContainer}
+            onPress={() =>
+              sendPushNotification({
+                to: expoPushToken,
+                sound: 'default',
+                title: 'Original Title',
+                body: 'And here is the body!',
+                data: { data: 'goes here' },
+              })
+            }
+          >
+            <BaseIcon
+              style={{
+                backgroundColor: color.lavenderRose,
+              }}
+              icon={{
+                type: 'material',
+                name: 'notifications',
+              }}
+            />
+            <ListItem.Content>
+              <Text>Push notification</Text>
+            </ListItem.Content>
+            <Switch onValueChange={() => {}} value={true} />
+          </ListItem>
+        )}
         <ListItem containerStyle={styles.listItemContainer}>
           <BaseIcon
             style={{
@@ -184,6 +190,16 @@ const Settings: FC = () => {
             <ListItem.Title style={styles.logoutText}>Sign out</ListItem.Title>
           </ListItem.Content>
         </ListItem>
+        {Platform.OS === 'web' && (
+          <ListItem
+            onPress={handleBack}
+            containerStyle={styles.listItemContainer}
+          >
+            <ListItem.Content>
+              <ListItem.Title style={styles.logoutText}>Back</ListItem.Title>
+            </ListItem.Content>
+          </ListItem>
+        )}
       </View>
     </View>
   )

@@ -57,7 +57,9 @@ export const registerForPushNotificationsAsync = async (): Promise<
       alert('Failed to get push token for push notification!')
       return
     }
-    token = (await getExpoPushTokenAsync()).data
+    if (Platform.OS !== 'web') {
+      token = (await getExpoPushTokenAsync()).data
+    }
   } else {
     alert('Must use physical device for Push Notifications')
   }

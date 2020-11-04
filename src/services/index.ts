@@ -14,7 +14,13 @@ import firebaseApp, { db, auth } from './firebaseAccess'
 export const lazyMessages = (collectionName: string, query: string) => {
   return user(auth).pipe(
     switchMap((user) => {
-      const ref = db.collection(collectionName).orderBy('created', 'asc')
+      const ref = db
+        .collection(collectionName)
+        .where('thread', 'in', [
+          `${user.email}-${query}`,
+          `${query}-${user.email}`,
+        ])
+        .orderBy('created', 'asc')
       return collectionData(ref, 'id')
     })
   )
@@ -29,7 +35,13 @@ export const addMessage = (collectionName: string, data: any) => {
   const user$ = authState(auth).pipe(filter((user) => !!user))
   return user(auth).pipe(
     switchMap((user) => {
-      return db.collection(collectionName).add(data)
+      const dataUpdate = {
+        ...data,
+        user: user.email,
+        thread: `${user.email}-${data.sendTo}`,
+      }
+
+      return db.collection(collectionName).add(dataUpdate)
     })
   )
 }
