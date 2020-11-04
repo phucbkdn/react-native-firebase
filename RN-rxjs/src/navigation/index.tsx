@@ -63,7 +63,6 @@ export default function Navigation() {
     },
     getStateFromPath,
     getPathFromState(state, config) {
-      console.log(config, state)
       if (!state || typeof state.index !== 'number') {
         return 'NotFound'
       }
@@ -101,7 +100,7 @@ export default function Navigation() {
 const Stack = createStackNavigator<RootStackParamList>()
 
 export const App = ({ user }) => (
-  <Stack.Navigator headerMode="none">
+  <Stack.Navigator>
     <Stack.Screen name="primaryStack" component={DrawerScreen} />
     <Stack.Screen
       name="Messages"
