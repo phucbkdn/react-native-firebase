@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
-import { LogBox } from 'react-native';
+import { LogBox, Platform } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import {
   setNotificationHandler,
@@ -24,7 +24,9 @@ setNotificationHandler({
 })
 
 // Ignore log setting a time on android devices
-LogBox.ignoreLogs(['Setting a timer'])
+if(Platform.OS !== 'web') {
+  LogBox.ignoreLogs(['Setting a timer'])
+}
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
