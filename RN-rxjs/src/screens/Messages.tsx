@@ -66,10 +66,11 @@ const Messages = () => {
 
   const renderItem = ({ item }) => (
     <Message
-      isPrimary={item.user === user?.email}
+      isPrimary={item.user !== user?.email}
       message={item.message}
       time={item.time}
       key={item.id}
+      photoURL={item.photoURL}
     />
   )
 
