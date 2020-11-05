@@ -100,12 +100,19 @@ export default function Navigation() {
 const Stack = createStackNavigator<RootStackParamList>()
 
 export const App = ({ user }) => (
-  <Stack.Navigator headerMode="none">
-    <Stack.Screen name="primaryStack" component={DrawerScreen} />
+  <Stack.Navigator>
+    <Stack.Screen
+      name="primaryStack"
+      component={DrawerScreen}
+      options={{ headerShown: false }}
+    />
     <Stack.Screen
       name="Messages"
       component={Messages}
-      options={{ title: user }}
+      options={({ route }) => ({
+        title: route.params.name,
+        headerBackTitleVisible: false,
+      })}
     />
     <Stack.Screen
       name="NotFound"
