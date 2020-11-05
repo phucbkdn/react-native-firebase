@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { authState } from 'rxfire/auth'
 import moment from 'moment'
-import firebaseApp, { auth } from '../services/firebaseAccess'
+import firebaseApp, { auth, db } from '../services/firebaseAccess'
 import { User } from '../models'
 
 export const authStateChange = (
@@ -15,11 +15,18 @@ export const authStateChange = (
 
       if (!!user) {
         const userRef = firebaseApp.database().ref('users/' + user.uid)
+        const store = db.collection('users').doc(user.uid)
         firebaseApp
           .database()
           .ref('.info/connected')
           .on('value', (snapshot) => {
             if (snapshot.val() === false) {
+              store.update({
+                state: 'offline',
+                last_changed: moment().format(),
+                email: user.email,
+                photoUrl: user.photoURL,
+              })
               userRef.set({
                 state: 'online',
                 last_changed: moment().format(),
@@ -36,6 +43,12 @@ export const authStateChange = (
                 email: user.email,
               })
               .then(() => {
+                store.update({
+                  state: 'online',
+                  last_changed: moment().format(),
+                  email: user.email,
+                  photoUrl: user.photoURL,
+                })
                 userRef.set({
                   state: 'online',
                   last_changed: moment().format(),

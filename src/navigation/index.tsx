@@ -100,7 +100,7 @@ export default function Navigation() {
 const Stack = createStackNavigator<RootStackParamList>()
 
 export const App = ({ user }) => (
-  <Stack.Navigator>
+  <Stack.Navigator headerMode="none">
     <Stack.Screen name="primaryStack" component={DrawerScreen} />
     <Stack.Screen
       name="Messages"

@@ -38,6 +38,7 @@ export const addMessage = (collectionName: string, data: any) => {
       const dataUpdate = {
         ...data,
         user: user.email,
+        photoURL: user.photoURL,
         thread: `${user.email}-${data.sendTo}`,
       }
 

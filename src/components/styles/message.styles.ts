@@ -8,7 +8,7 @@ export const messageStyles = {
     alignItems: 'flex-end',
     alignContent: 'flex-end',
     padding: 10,
-    margin: 10,
+    marginHorizontal: 10,
   } as ViewStyle,
   textStyle: {
     fontSize: 18,
@@ -31,9 +31,15 @@ export const messageStyles = {
     borderBottomEndRadius: 5,
   } as ViewStyle,
   primaryWrapper: {
-    alignItems: 'flex-end',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    padding: 10,
   } as ViewStyle,
   secondaryWrapper: {
+    flexDirection: 'row-reverse',
+    justifyContent: 'flex-start',
     alignItems: 'flex-start',
+    padding: 10,
   } as ViewStyle,
 }

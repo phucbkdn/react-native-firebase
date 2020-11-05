@@ -1,4 +1,4 @@
-import { TextStyle, ViewStyle, StatusBar } from 'react-native'
+import { TextStyle, ViewStyle, StatusBar, Platform } from 'react-native'
 import { color } from '../../themes'
 
 export const messagesStyles = {
@@ -14,7 +14,7 @@ export const messagesStyles = {
   input: {
     borderBottomColor: color.red,
     borderBottomWidth: 2,
-    width: '80%',
+    width: Platform.OS !== 'web' ? '80%' : '100%',
     height: 40,
     paddingLeft: 5,
     marginRight: 20,
