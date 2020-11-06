@@ -21,3 +21,8 @@ ui-debug.log
 service-account-file.json
 firebase-debug.log
 google-services.json
+
+# envs
+env.json
+envs/development.json
+envs/production.json
