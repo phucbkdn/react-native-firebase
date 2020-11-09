@@ -339,7 +339,7 @@ exports[`Testing Messages screen Render correct component 1`] = `
                             getItem={[Function]}
                             getItemCount={[Function]}
                             horizontal={false}
-                            initialNumToRender={10}
+                            initialNumToRender={16}
                             keyExtractor={[Function]}
                             maxToRenderPerBatch={10}
                             onContentSizeChange={[Function]}
@@ -378,6 +378,7 @@ exports[`Testing Messages screen Render correct component 1`] = `
                               allowFontScaling={true}
                               keyboardType="ascii-capable"
                               onChangeText={[Function]}
+                              onKeyPress={[Function]}
                               rejectResponderTermination={true}
                               style={
                                 Object {

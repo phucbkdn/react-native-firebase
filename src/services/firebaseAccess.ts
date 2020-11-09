@@ -5,29 +5,30 @@ import 'firebase/functions'
 import 'firebase/storage'
 import 'firebase/database'
 
-// TODO: move to env config
+import {
+  FIREBASE_API_KEY,
+  FIREBASE_AUTH_DOMAIN,
+  FIREBASE_DATABASE_URL,
+  FIREBASE_PROJECT_ID,
+  FIREBASE_STORAGE_BUCKET,
+  FIREBASE_MESSAGING_SENDER_ID,
+  FIREBASE_APP_ID,
+} from '../../env.json'
+
 // Initialize Firebase
 export const firebaseConfig = {
-  apiKey: 'AIzaSyBqEZbrQK2U4U5LGSXC-sBAOd_BJTPTFlU',
-  authDomain: 'products-management-db74a.firebaseapp.com',
-  databaseURL: 'https://products-management-db74a.firebaseio.com',
-  projectId: 'products-management-db74a',
-  storageBucket: 'products-management-db74a.appspot.com',
-  messagingSenderId: '252959242991',
-  appId: '1:252959242991:web:648745a45f86b5efb5f91a',
+  apiKey: FIREBASE_API_KEY,
+  authDomain: FIREBASE_AUTH_DOMAIN,
+  databaseURL: FIREBASE_DATABASE_URL,
+  projectId: FIREBASE_PROJECT_ID,
+  storageBucket: FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
+  appId: FIREBASE_APP_ID,
 }
 
 const firebaseApp = firebase.apps[0] || firebase.initializeApp(firebaseConfig)
 
 export const auth = firebase.auth()
 export default firebaseApp
-
-// Mock local host for firebase emulator
-if (location.hostname === 'localhost') {
-  firebase.firestore().settings({
-    host: 'localhost:8080',
-    ssl: false,
-  })
-}
 
 export const db = firebase.firestore()

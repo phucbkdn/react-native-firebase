@@ -402,6 +402,15 @@ exports[`Testing Users screen Render correct component 1`] = `
                                           "success": "#4cd964",
                                           "warning": "#ffcc00",
                                         },
+                                        "web": Object {
+                                          "error": "#ff190c",
+                                          "grey": "#393e42",
+                                          "primary": "#2089dc",
+                                          "searchBg": "#303337",
+                                          "secondary": "#ca71eb",
+                                          "success": "#52c41a",
+                                          "warning": "#faad14",
+                                        },
                                       },
                                       "primary": "#2089dc",
                                       "searchBg": "#303337",
@@ -478,6 +487,15 @@ exports[`Testing Users screen Render correct component 1`] = `
                                               "success": "#4cd964",
                                               "warning": "#ffcc00",
                                             },
+                                            "web": Object {
+                                              "error": "#ff190c",
+                                              "grey": "#393e42",
+                                              "primary": "#2089dc",
+                                              "searchBg": "#303337",
+                                              "secondary": "#ca71eb",
+                                              "success": "#52c41a",
+                                              "warning": "#faad14",
+                                            },
                                           },
                                           "primary": "#2089dc",
                                           "searchBg": "#303337",
@@ -489,6 +507,7 @@ exports[`Testing Users screen Render correct component 1`] = `
                                       }
                                     }
                                     transition={true}
+                                    transitionDuration={360}
                                   />
                                   <View
                                     accessibilityElementsHidden={true}
@@ -560,7 +579,6 @@ exports[`Testing Users screen Render correct component 1`] = `
                                       "color": "#000",
                                     },
                                     Object {
-                                      "color": "rgba(0,0,0,0.5)",
                                       "fontSize": 16,
                                     },
                                   ]
