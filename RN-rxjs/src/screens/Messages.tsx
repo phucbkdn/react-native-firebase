@@ -69,7 +69,6 @@ const Messages = () => {
       isPrimary={item.user !== user?.email}
       message={item.message}
       time={item.time}
-      key={item.id}
       photoURL={item.photoURL}
     />
   )
