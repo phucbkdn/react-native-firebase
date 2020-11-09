@@ -23,6 +23,10 @@ const Users: FC = () => {
     return () => sub.unsubscribe()
   }, [])
 
+  const renderItem = ({ item }) => (
+    <User active={item.state === 'online'} id={item.id} name={item.email} />
+  )
+
   return (
     <View style={usersStyles.container}>
       <Screen
@@ -50,14 +54,9 @@ const Users: FC = () => {
         <Text style={usersStyles.chatList}>Chat list</Text>
         <FlatList
           data={users}
-          renderItem={({ item }) => (
-            <User
-              active={item.state === 'online'}
-              id={item.id}
-              name={item.email}
-            />
-          )}
+          renderItem={renderItem}
           keyExtractor={(item) => item.id}
+          initialNumToRender={10}
         />
       </Screen>
     </View>
