@@ -1,4 +1,4 @@
-const { ICON } = require('./env.json')
+const { FAVICON, SPLASH, ICON, GOOGLE_SERVICES_PATH } = require('./env.json')
 
 module.exports = {
   expo: {
@@ -6,11 +6,11 @@ module.exports = {
     slug: 'rn-rxjs',
     version: '1.0.0',
     orientation: 'portrait',
-    icon: './src/assets/images/icon.png',
+    icon: ICON,
     scheme: 'myapp',
     userInterfaceStyle: 'automatic',
     splash: {
-      image: './src/assets/images/splash.png',
+      image: SPLASH,
       resizeMode: 'contain',
       backgroundColor: '#fff',
     },
@@ -23,11 +23,11 @@ module.exports = {
       bundleIdentifier: 'com.phucla.rnrxjs',
     },
     web: {
-      favicon: ICON,
+      favicon: FAVICON,
     },
     android: {
       package: 'com.phucla.rnrxjs',
-      googleServicesFile: './google-services.json',
+      googleServicesFile: GOOGLE_SERVICES_PATH,
     },
   },
 }
