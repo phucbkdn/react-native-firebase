@@ -27,6 +27,8 @@ export interface User {
   email: string
   last_changed: string
   state: UserState
+  photoURL?: string
+  displayName?: string
 }
 
 export interface MessageType {

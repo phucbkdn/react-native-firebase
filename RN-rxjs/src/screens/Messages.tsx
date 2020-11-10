@@ -29,11 +29,9 @@ const Messages = () => {
   const flatList = useRef() as React.RefObject<FlatList<MessageType>>
 
   useEffect(() => {
-    const sub = lazyMessages('messages', params.name).subscribe(
-      (list: MessageType[]) => {
-        setMessages(list)
-      }
-    )
+    const sub = lazyMessages('messages', params.name).subscribe((list) => {
+      setMessages(list as MessageType[])
+    })
 
     const auth = firebaseApp.auth()
     const loggedIn$ = authState(auth).pipe(filter((user) => !!user))

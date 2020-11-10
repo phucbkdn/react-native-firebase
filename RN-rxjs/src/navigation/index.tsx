@@ -10,9 +10,7 @@ import {
   getStateFromPath,
 } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { map } from 'rxjs/operators'
 import { RootStackParamList } from '../models'
-import LinkingConfiguration from './LinkingConfiguration'
 import DrawerScreen from './DrawerNavigator'
 
 // Screens
@@ -24,10 +22,8 @@ import LoginScreen from '../screens/Login'
 import Indicator from '../components/IndicatorBackdrop'
 
 // Store, provider
-import usersStore from '../store/users'
 import { AuthUserContext } from '../provider'
 import { authStateChange } from '../hooks/useAuthStateChange'
-import withObservableStream from '../streams'
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
@@ -55,7 +51,7 @@ export default function Navigation() {
     prefixes: [Linking.makeUrl('/')],
     config: {
       screens: {
-        Users: 'users/',
+        Users: 'users',
         Login: 'login',
         Messages: 'messages',
         NotFound: '*',
@@ -99,7 +95,7 @@ export default function Navigation() {
 // Read more here: https://reactnavigation.org/docs/modal
 const Stack = createStackNavigator<RootStackParamList>()
 
-export const App = ({ user }) => (
+export const AppStack = () => (
   <Stack.Navigator>
     <Stack.Screen
       name="primaryStack"
@@ -121,20 +117,6 @@ export const App = ({ user }) => (
     />
   </Stack.Navigator>
 )
-
-const store = usersStore.getStore()
-
-const AppStack = withObservableStream(
-  store.pipe(
-    map((data: any) => ({
-      user: data.user,
-    }))
-  ),
-  {},
-  {
-    user: '',
-  }
-)(App)
 
 export const AuthStack = () => (
   <Stack.Navigator headerMode="none">

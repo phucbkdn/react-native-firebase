@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, useCallback, FC } from 'react'
 import { Switch, Alert, Platform } from 'react-native'
 import { Avatar, ListItem } from 'react-native-elements'
-
+import { useNavigation, NavigationProp } from '@react-navigation/native'
 import * as ImagePicker from 'expo-image-picker'
 import Constants from 'expo-constants'
 import * as Permissions from 'expo-permissions'
@@ -16,12 +16,14 @@ import { AuthUserContext } from '../provider'
 import BaseIcon from '../components/Icon'
 import Indicator from '../components/IndicatorBackdrop'
 import { settingsStyles } from './styles/Settings.styles'
+import { NavigationType } from '../navigation'
 
 // Themes
 import { View, Text } from '../components/Themed'
 import { color } from '../themes'
 
-const Settings: FC = ({ navigation }) => {
+const Settings: FC = () => {
+  const navigation = useNavigation<NavigationProp<NavigationType>>()
   useStatusBar('dark-content')
 
   const [expoPushToken, setExpoPushToken] = useState('')
@@ -45,7 +47,7 @@ const Settings: FC = ({ navigation }) => {
     try {
       await logout()
     } catch (error) {
-      console.log(error)
+      Alert.alert('Error', error)
     }
   }
 
