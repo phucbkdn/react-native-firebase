@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   View,
   Text,
@@ -9,27 +9,27 @@ import {
   ImageResizeMode,
   Alert,
 } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
 import { Screen } from '../components/screen/screen'
 import { loginStyles } from './styles/Login.styles'
 import { images } from '../themes'
-import firebase from '../services/firebaseAccess'
+import { signInWithEmailAndPassword } from '../services'
 import Indicator from '../components/IndicatorBackdrop'
+import { AuthForm } from '../models'
 
 const resizeMode: ImageResizeMode = 'stretch'
 
-interface AuthForm {
-  userName: string
-  password: string
-}
-
 const Login = () => {
-  const navigation = useNavigation()
   const [loading, setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<string>('')
   const [authForm, setAuthForm] = useState<AuthForm>({
     userName: '',
     password: '',
   })
+  useEffect(() => {
+    if (error) {
+      Alert.alert('Error', error)
+    }
+  }, [error])
 
   const handleChange = (key: string, value: string) => {
     setAuthForm({
@@ -39,17 +39,8 @@ const Login = () => {
   }
 
   const loginGoogle = () => {
-    setLoading(true)
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(authForm.userName, authForm.password)
-      .then(() => {
-        setLoading(false)
-      })
-      .catch((e) => {
-        setLoading(false)
-        Alert.alert('Error', e.message)
-      })
+    setError('')
+    signInWithEmailAndPassword(authForm, setError, setLoading)
   }
 
   return (

@@ -52,3 +52,8 @@ export type RootStackParamList = {
   }
   Login: undefined
 }
+
+export interface AuthForm {
+  userName: string
+  password: string
+}

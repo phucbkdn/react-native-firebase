@@ -1,10 +1,12 @@
 import firebase from 'firebase/app'
-import { filter, switchMap } from 'rxjs/operators'
+import { switchMap } from 'rxjs/operators'
 import { extname } from 'path'
 import { collectionData } from 'rxfire/firestore'
-import { authState, user } from 'rxfire/auth'
+import { user } from 'rxfire/auth'
 import { fromTask, getDownloadURL } from 'rxfire/storage'
+import { Dispatch, SetStateAction } from 'react'
 import firebaseApp, { db, auth } from './firebaseAccess'
+import { AuthForm } from '../models'
 
 /**
  * Lazy Messages
@@ -32,7 +34,6 @@ export const lazyMessages = (collectionName: string, query: string) => {
  * @param data {Object} Message object
  */
 export const addMessage = (collectionName: string, data: any) => {
-  const user$ = authState(auth).pipe(filter((user) => !!user))
   return user(auth).pipe(
     switchMap((user) => {
       const dataUpdate = {
@@ -110,6 +111,27 @@ export const uploadAvatar = (
  * Function logout
  */
 export const logout = () => firebaseApp.auth().signOut()
+
+/**
+ * Sign in with Email and Password
+ * @param user {Object}
+ * @param setError {Function}
+ * @param setLoading {Function}
+ */
+export const signInWithEmailAndPassword = async (
+  user: AuthForm,
+  setError: Dispatch<SetStateAction<string>>,
+  setLoading: Dispatch<SetStateAction<boolean>>
+) => {
+  setLoading(true)
+  try {
+    await auth.signInWithEmailAndPassword(user.userName, user.password)
+  } catch (e) {
+    setError(e.message)
+  } finally {
+    setLoading(false)
+  }
+}
 
 interface priv {
   ExpoPushToken: string[]
