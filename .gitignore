@@ -16,13 +16,14 @@ web-build/
 /coverage
 firestore-coverage.html
 firestore-debug.log
-firestore.rules
+#firestore.rules
 ui-debug.log
-service-account-file.json
+#service-account-file.json
 firebase-debug.log
-google-services.json
+#google-services.json
 
 # envs
-env.json
-envs/development.json
-envs/production.json
+#env.json
+#envs/development.json
+#envs/production.json
+RN-rxjs

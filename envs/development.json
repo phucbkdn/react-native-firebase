@@ -1,0 +1,14 @@
+{
+  "API_URL": "https://development.api.com",
+  "FAVICON": "https://firebasestorage.googleapis.com/v0/b/products-management-db74a.appspot.com/o/avatar%2Fitem%202%20(2).png?alt=media&token=7ae1e58e-d654-4a9a-b756-9ae2c2cbaffe",
+  "FIREBASE_API_KEY": "AIzaSyBqEZbrQK2U4U5LGSXC-sBAOd_BJTPTFlU",
+  "FIREBASE_AUTH_DOMAIN": "products-management-db74a.firebaseapp.com",
+  "FIREBASE_DATABASE_URL": "https://products-management-db74a.firebaseio.com",
+  "FIREBASE_PROJECT_ID": "products-management-db74a",
+  "FIREBASE_STORAGE_BUCKET": "products-management-db74a.appspot.com",
+  "FIREBASE_MESSAGING_SENDER_ID": "252959242991",
+  "FIREBASE_APP_ID": "1:252959242991:web:648745a45f86b5efb5f91a",
+  "SPLASH": "./src/assets/images/splash-dev.png",
+  "ICON": "https://firebasestorage.googleapis.com/v0/b/products-management-db74a.appspot.com/o/designs%2Ficon.png?alt=media&token=54dd9053-7353-4e01-99ab-7aecc84570c8",
+  "GOOGLE_SERVICES_PATH": "./google-services.json"
+}
