@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Message component Render correct component 1`] = `
+<div>
+  <view>
+    <view
+      style="overflow: hidden;"
+    >
+      <view
+        uri="https:icon.png"
+      >
+        <view
+          style="background-color: transparent; align-items: center; justify-content: center;"
+        >
+          <text />
+        </view>
+      </view>
+    </view>
+  </view>
+</div>
+`;

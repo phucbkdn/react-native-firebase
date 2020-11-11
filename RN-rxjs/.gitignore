@@ -1,0 +1,28 @@
+node_modules/**/*
+.expo/*
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+
+# macOS
+.DS_Store
+
+# testing
+/coverage
+firestore-coverage.html
+firestore-debug.log
+firestore.rules
+ui-debug.log
+service-account-file.json
+firebase-debug.log
+google-services.json
+
+# envs
+env.json
+envs/development.json
+envs/production.json

@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Message component Render correct component 1`] = `
+<div>
+  <view
+    style="flex: 1;"
+  >
+    <rncsafeareaprovider>
+      <view
+        pointer-events="box-none"
+      >
+        <view
+          importantforaccessibility="auto"
+          pointer-events="box-none"
+        >
+          <view
+            pointer-events="box-none"
+            style="position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; opacity: 1;"
+          >
+            <view
+              style="flex: 1; background-color: rgb(255, 255, 255); border-bottom-color: rgb(216, 216, 216);"
+            />
+          </view>
+          <view
+            pointer-events="box-none"
+            style="height: 64px;"
+          >
+            <view
+              pointer-events="none"
+              style="height: 20px;"
+            />
+            <view
+              pointer-events="box-none"
+              style="flex: 1; flex-direction: row; align-items: center; justify-content: center;"
+            >
+              <view
+                pointer-events="box-none"
+                style="opacity: 1;"
+              >
+                <text
+                  accessibilityrole="header"
+                  aria-level="1"
+                  numberoflines="1"
+                  style="font-size: 17px; font-weight: 600; color: rgb(28, 28, 30);"
+                >
+                  Root
+                </text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view
+        style="flex: 1;"
+      >
+        <view
+          pointer-events="box-none"
+          style="position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"
+        >
+          <view
+            style="opacity: 1;"
+          />
+          <view
+            gesturevelocityimpact="0.3"
+            importantforaccessibility="auto"
+            pointer-events="box-none"
+            style="position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"
+            transitionspec="[object Object]"
+          >
+            <view
+              pointer-events="box-none"
+              style="flex: 1;"
+            >
+              <view
+                style="flex: 1; transform: [object Object],[object Object];"
+              >
+                <view
+                  pointer-events="none"
+                  style="position: absolute; top: 0px; bottom: 0px; width: 3px; left: 0px; background-color: rgb(242, 242, 242);"
+                />
+                <view>
+                  <view
+                    style="flex: 1; flex-direction: column-reverse;"
+                  >
+                    <view
+                      style="flex: 1;"
+                    >
+                      <view>
+                        <view
+                          focusable="true"
+                          style="flex-direction: row; padding-bottom: 20px; align-items: center; margin: 10px; width: 750px; flex: 1; opacity: 1;"
+                        >
+                          <text />
+                          <text>
+                            Name
+                          </text>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </rncsafeareaprovider>
+  </view>
+</div>
+`;

@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Message component Render correct component 1`] = `
+<div>
+  <view>
+    <view
+      style="background-color: transparent; height: 34px; width: 34px; border-radius: 17px;"
+      theme="[object Object]"
+    >
+      <view
+        style="background-color: transparent; position: relative; overflow: hidden; flex: 1; border-radius: 17px;"
+      >
+        <image
+          borderradius="17"
+          source="[object Object]"
+          style="position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; flex: 1;"
+          testid="RNE__Image"
+          theme="[object Object]"
+          transitionduration="360"
+        />
+        <view
+          importantforaccessibility="no-hide-descendants"
+          pointer-events="none"
+          style="position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; opacity: 1;"
+        >
+          <view
+            style="flex: 1; background-color: rgb(189, 189, 189); align-items: center; justify-content: center;"
+            testid="RNE__Image__placeholder"
+          />
+        </view>
+        <view
+          style="flex: 1;"
+        />
+      </view>
+    </view>
+    <view>
+      <text />
+      <text>
+        1:00
+      </text>
+    </view>
+  </view>
+</div>
+`;
